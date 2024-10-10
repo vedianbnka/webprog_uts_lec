@@ -4,7 +4,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <script src="../cek_admin.js"></script>
+        <script>
+        function checkSession() {
+  // Kirim permintaan AJAX ke check_session.php
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../check_session_admin.php", true);
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      if (response.status === "inactive") {
+        window.location.href = "../login/index.php";
+      }Z
+    }
+  };
+  xhr.send();
+}
+
+setInterval(checkSession, 1);
+    </script>
     </head>
     <body>
         <form action="add_admin_proses.php" method="POST">
