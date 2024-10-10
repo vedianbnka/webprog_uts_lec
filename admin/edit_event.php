@@ -41,8 +41,14 @@
 setInterval(checkSession, 1);
     </script>
 </head>
+<?php
+    require_once "../db.php";
+
+    $sql = "SELECT * FROM event_konser WHERE id_event = " . $_GET['id_event'];
+    $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
+?>
 <body class="d-flex align-items-center justify-content-center bg-light">
-        <form action="add_event_proses.php" method="POST" class="p-5 border rounded bg-white shadow animasi" enctype="multipart/form-data">
+        <form action="edit_event_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="p-5 border rounded bg-white shadow animasi" enctype="multipart/form-data">
             
             <h2 class="text-center">Edit Event</h2>
             <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
@@ -52,32 +58,32 @@ setInterval(checkSession, 1);
             <?php endif; ?>
             <div class="form-group">
                 <label for="nama_event">Nama Event</label>
-                <input type="text" id="nama_event" name="nama_event" class="form-control" required autocomplete="off">
+                <input type="text" id="nama_event" name="nama_event" class="form-control" value="<?= $event['nama_event'] ?>" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="tanggal">Tanggal</label>
-                <input type="date" id="tanggal" name="tanggal" class="form-control" required autocomplete="off">
+                <input type="date" id="tanggal" name="tanggal" class="form-control" value="<?= $event['tanggal'] ?>" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="nama_event">Waktu</label>
-                <input type="time" id="waktu" name="waktu" class="form-control" required autocomplete="off">
+                <input type="time" id="waktu" name="waktu" class="form-control" value="<?= $event['waktu'] ?>" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="nama_event">Lokasi</label>
-                <input type="text" id="lokasi" name="lokasi" class="form-control" required autocomplete="off">
+                <input type="text" id="lokasi" name="lokasi" class="form-control" value="<?= $event['lokasi'] ?>" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="nama_event">Deskripsi</label>
-                <input type="text" id="deskripsi" name="deskripsi" class="form-control" required autocomplete="off">
+                <input type="text" id="deskripsi" name="deskripsi" class="form-control" value="<?= $event['deskripsi'] ?>" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="jumlah_max_partisipan">Jumlah Max Partisipan</label>
-                <input type="number" id="jumlah_max_partisipan" name="jumlah_max_partisipan" class="form-control" required autocomplete="off">
+                <input type="number" id="jumlah_max_partisipan" name="jumlah_max_partisipan" class="form-control" value="<?= $event['jumlah_max_partisipan'] ?>" required autocomplete="off">
             </div>
 
             <div class="form-group">
@@ -85,7 +91,7 @@ setInterval(checkSession, 1);
                 <input type="file" id="banner_event" name="banner_event" class="form-control" required>
             </div>
 
-            <button type="submit" name="add_event" class="btn btn-primary btn-block">Add Event</button>
+            <button type="submit" name="add_event" class="btn btn-primary btn-block">Edit Event</button>
            
             
         </form>

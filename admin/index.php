@@ -33,7 +33,7 @@ setInterval(checkSession, 1);
             padding: 5px;
         }
         img {
-            width: 30%;
+            width: 20%;
         }
     </style>
 </head>
