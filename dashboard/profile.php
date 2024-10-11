@@ -2,15 +2,15 @@
 session_start();
 require '../db.php';
 
-// // Periksa apakah user sudah login
+// // Check if user is logged in
 // if (!isset($_SESSION['id'])) {
-//     header('Location: index.php'); // Arahkan ke halaman login jika belum login
+//     header('Location: index.php'); // Redirect to login if not logged in
 //     exit;
 // }
 
-$id_user = $_SESSION['id'];
+$id_user = $_SESSION['id_user'];
 
-// Ambil data user yang sedang login
+// Fetch user data
 $sql = "SELECT nama, email, phone FROM user WHERE id_user = ?";
 $stmt = $db->prepare($sql);
 $stmt->execute([$id_user]);
