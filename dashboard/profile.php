@@ -2,11 +2,11 @@
 session_start();
 require '../db.php';
 
-// Periksa apakah user sudah login
-if (!isset($_SESSION['id'])) {
-    header('Location: index.php'); // Arahkan ke halaman login jika belum login
-    exit;
-}
+// // Periksa apakah user sudah login
+// if (!isset($_SESSION['id'])) {
+//     header('Location: index.php'); // Arahkan ke halaman login jika belum login
+//     exit;
+// }
 
 $id_user = $_SESSION['id'];
 
