@@ -13,21 +13,21 @@ $result = $db->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Event Konser</title>
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Daftar Event Konser</h1>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-10 p-5 bg-white rounded shadow">
+        <h1 class="text-center text-3xl font-bold mb-5">Daftar Event Konser</h1>
 
         <!-- Profile link -->
-        <div class="text-end mb-3">
-            <a href="profile.php" class="btn btn-info">My Profile</a>
+        <div class="text-right mb-4">
+            <a href="profile.php" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">My Profile</a>
         </div>
 
         <!-- Display success or error message -->
         <?php if (isset($_SESSION['success'])): ?>
-            <div class="alert alert-success">
+            <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
                 <?php 
                 echo $_SESSION['success'];
                 unset($_SESSION['success']);
@@ -36,7 +36,7 @@ $result = $db->query($sql);
         <?php endif; ?>
 
         <?php if (isset($_SESSION['error'])): ?>
-            <div class="alert alert-danger">
+            <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
                 <?php 
                 echo $_SESSION['error'];
                 unset($_SESSION['error']);
@@ -45,40 +45,40 @@ $result = $db->query($sql);
         <?php endif; ?>
 
         <?php if ($result->rowCount() > 0): ?>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-800 text-white">
                         <tr>
-                            <th>Nama Event</th>
-                            <th>Tanggal</th>
-                            <th>Waktu</th>
-                            <th>Lokasi</th>
-                            <th>Deskripsi</th>
-                            <th>Partisipan</th>
-                            <th>Banner</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th class="px-4 py-2 text-left">Nama Event</th>
+                            <th class="px-4 py-2 text-left">Tanggal</th>
+                            <th class="px-4 py-2 text-left">Waktu</th>
+                            <th class="px-4 py-2 text-left">Lokasi</th>
+                            <th class="px-4 py-2 text-left">Deskripsi</th>
+                            <th class="px-4 py-2 text-left">Partisipan</th>
+                            <th class="px-4 py-2 text-left">Banner</th>
+                            <th class="px-4 py-2 text-left">Status</th>
+                            <th class="px-4 py-2 text-left">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-white divide-y divide-gray-200">
                         <?php while($row = $result->fetch(PDO::FETCH_ASSOC)): ?>
                         <tr>
-                            <td><?= htmlspecialchars($row['nama_event']) ?></td>
-                            <td><?= htmlspecialchars($row['tanggal']) ?></td>
-                            <td><?= htmlspecialchars($row['waktu']) ?></td>
-                            <td><?= htmlspecialchars($row['lokasi']) ?></td>
-                            <td><?= htmlspecialchars($row['deskripsi']) ?></td>
-                            <td><?= htmlspecialchars($row['jumlah_partisipan']) . "/" . htmlspecialchars($row['jumlah_max_partisipan']) ?></td>
-                            <td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($row['nama_event']) ?></td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($row['waktu']) ?></td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($row['lokasi']) ?></td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($row['deskripsi']) ?></td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($row['jumlah_partisipan']) . "/" . htmlspecialchars($row['jumlah_max_partisipan']) ?></td>
+                            <td class="px-4 py-2">
                                 <?php if ($row['banner_event']): ?>
-                                    <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="Banner" class="img-fluid" style="max-width: 100px;">
+                                    <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="Banner" class="w-24 h-16 object-cover">
                                 <?php else: ?>
                                     No banner
                                 <?php endif; ?>
                             </td>
-                            <td><?= ucfirst(htmlspecialchars($row['status_event'])) ?></td>
-                            <td>
-                                <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="btn btn-success">Register</a>
+                            <td class="px-4 py-2"><?= ucfirst(htmlspecialchars($row['status_event'])) ?></td>
+                            <td class="px-4 py-2">
+                                <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Register</a>
                             </td>
                         </tr>
                         <?php endwhile; ?>
@@ -86,13 +86,15 @@ $result = $db->query($sql);
                 </table>
             </div>
         <?php else: ?>
-            <div class="alert alert-info text-center">
-                Tidak ada event konser yang terbuka saat ini.
+            <div class="text-center mt-5">
+                <p class="text-gray-600">Tidak ada event konser yang terbuka saat ini.</p>
             </div>
         <?php endif; ?>
-    </div>
 
-    <!-- Bootstrap 5 JS and Popper.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Logout link -->
+        <div class="mt-4 text-left">
+            <a href="../logout.php" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Logout</a>
+        </div>
+    </div>
 </body>
 </html>
