@@ -21,11 +21,20 @@ if ($user) {
     exit;
 }
 
+$sql = "SELECT * FROM admin WHERE email = ?";
+$stmt = $db->prepare($sql);
+$stmt->execute([$email]);
+$admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($admin) {
+    header("location:index.php?error=2");
+    exit;
+}
+
 $hashPw = password_hash($password, PASSWORD_BCRYPT);
 $sql = "INSERT INTO user(nama,email,phone,password,role) VALUES (?,?,?,?,?)";
 $stmt = $db->prepare($sql);
 $data = [$nama, $email, $phone, $hashPw, 'user'];
 $stmt->execute($data);
 
-// Arahkan ke halaman login setelah berhasil registrasi
 header("location:../login/index.php");
