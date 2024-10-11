@@ -9,17 +9,17 @@
     <script>
         function checkSession() {
   // Kirim permintaan AJAX ke check_session.php
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../check_session_admin.php", true);
-  xhr.onload = function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "../check_session_admin.php", true);
+    xhr.onload = function () {
     if (xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      if (response.status === "inactive") {
+        var response = JSON.parse(xhr.responseText);
+        if (response.status === "inactive") {
         window.location.href = "../login/index.php";
-      }Z
+        }Z
     }
-  };
-  xhr.send();
+    };
+    xhr.send();
 }
 
 setInterval(checkSession, 1);
@@ -43,8 +43,8 @@ setInterval(checkSession, 1);
     <a href="../logout.php">Log Out</a>
 
     <div class="table-responsive">
-         <table id="tabell" class="display w-100">
-         <thead>
+        <table id="tabell" class="display w-100">
+        <thead>
             <tr>
                 <th>Nma Event</th>
                 <th>FOTO</th>
