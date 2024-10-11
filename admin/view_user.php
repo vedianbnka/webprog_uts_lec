@@ -38,52 +38,38 @@ setInterval(checkSession, 1);
     </script>
 </head>
 <body>
-    <a href="../admin/add_event.php">Add Event</a>
-    <a href="../admin/add_admin.php">Tambah Admin Baru</a>
-    <a href="../admin/view_user.php">View User</a>
     <a href="../logout.php">Log Out</a>
 
     <div class="table-responsive">
         <table id="tabell" class="display w-100">
             <thead>
                 <tr>
-                    <th>Nama Event</th>
-                    <th>FOTO</th>
-                    <th>STATUS EVENT</th>
-                    <th>PARTISIPAN</th>
-                    <th>ACTION</th>
+                    <th>ID User</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
             <?php
                 require_once "../db.php";
-                $sql = "SELECT * FROM event_konser";
+                $sql = "SELECT * FROM user";
                 $hasil = $db->query($sql);
 
                 while ($row = $hasil->fetch(PDO::FETCH_ASSOC)) {
             ?>
                 <tr>
-                    <td><?= $row['nama_event'] ?></td>
-                    <td><img class="img-fluid" src="../upload/<?= $row['banner_event'] ?>" alt=""></td>
+                    <td><?= $row['id_user'] ?></td>
+                    <td><?= $row['nama'] ?></td>
                     <td>
-                        <form method="post" action="update_status.php?id_event=<?= $row['id_event'] ?>">
-                        <select class="status-dropdown" name="status" onchange="this.form.submit()"> 
-                            <option value="open" <?= $row['status_event'] == 'open' ? 'selected' : '' ?>>Active</option>
-                            <option value="closed" <?= $row['status_event'] == 'closed' ? 'selected' : '' ?>>Closed</option>
-                            <option value="canceled" <?= $row['status_event'] == 'canceled' ? 'selected' : '' ?>>Canceled</option>
-                        </select></form>
+                        <?= $row['email'] ?>
                     </td>
                     <td>
-                        <?php
-                            echo $row['jumlah_partisipan']. " / ". $row['jumlah_max_partisipan'];
-                        ?>
+                        <?= $row['phone'] ?>
                     </td>
                     <td>
-                        <a href="edit_event.php?id_event=<?= $row['id_event'] ?>">Edit</a>
-                        <a href="detail_event.php?id_event=<?= $row['id_event'] ?>">Detail Event</a>
-                        <a href="delete_event.php?id_event=<?= $row['id_event'] ?>">Delete</a>
-                        <a href="list_peserta.php?id_event=<?= $row['id_event'] ?>">List Peserta</a>
-                    </td>
+                        <a href="delete_user.php?id_user=<?= $row['id_user'] ?>">Delete User</a>
                 </tr>
             <?php
                 }
