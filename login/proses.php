@@ -22,14 +22,14 @@
     if ($row && password_verify($pass, $row['password'])) {
         $_SESSION['nama'] = $row['nama'];
         $_SESSION['email'] = $row['email'];
-        $_SESSION['id'] = $row['id_user'];
+        $_SESSION['id_user'] = $row['id_user'];
         $_SESSION['role'] = $row['role'];
         header ('Location: ../dashboard/index.php');
         exit;
     } else if($roww && password_verify($pass, $roww['password'])) {
         $_SESSION['nama'] = $roww['nama'];
         $_SESSION['email'] = $roww['email'];
-        $_SESSION['id'] = $roww['id_user'];
+        $_SESSION['id_user'] = $roww['id_user'];
         $_SESSION['role'] = $roww['role'];
         header ('Location: ../admin/index.php');
         exit;
