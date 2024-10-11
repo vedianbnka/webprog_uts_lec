@@ -15,6 +15,36 @@ $result = $db->query($sql);
     <title>Daftar Event Konser</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        img {
+            width: 20%;
+        }
+    </style>
+    <script>
+        function checkSession() {
+  // Kirim permintaan AJAX ke check_session.php
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../check_session.php", true);
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      if (response.status === "inactive") {
+        window.location.href = "../login/index.php";
+      }
+    }
+  };
+  xhr.send();
+}
+
+setInterval(checkSession, 1);
+    </script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto mt-10 p-5 bg-white rounded shadow">
@@ -45,45 +75,31 @@ $result = $db->query($sql);
         <?php endif; ?>
 
         <?php if ($result->rowCount() > 0): ?>
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-800 text-white">
-                        <tr>
-                            <th class="px-4 py-2 text-left">Nama Event</th>
-                            <th class="px-4 py-2 text-left">Tanggal</th>
-                            <th class="px-4 py-2 text-left">Waktu</th>
-                            <th class="px-4 py-2 text-left">Lokasi</th>
-                            <th class="px-4 py-2 text-left">Deskripsi</th>
-                            <th class="px-4 py-2 text-left">Partisipan</th>
-                            <th class="px-4 py-2 text-left">Banner</th>
-                            <th class="px-4 py-2 text-left">Status</th>
-                            <th class="px-4 py-2 text-left">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <?php while($row = $result->fetch(PDO::FETCH_ASSOC)): ?>
-                        <tr>
-                            <td class="px-4 py-2"><?= htmlspecialchars($row['nama_event']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($row['waktu']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($row['lokasi']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($row['deskripsi']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($row['jumlah_partisipan']) . "/" . htmlspecialchars($row['jumlah_max_partisipan']) ?></td>
-                            <td class="px-4 py-2">
-                                <?php if ($row['banner_event']): ?>
-                                    <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="Banner" class="w-24 h-16 object-cover">
-                                <?php else: ?>
-                                    No banner
-                                <?php endif; ?>
-                            </td>
-                            <td class="px-4 py-2"><?= ucfirst(htmlspecialchars($row['status_event'])) ?></td>
-                            <td class="px-4 py-2">
-                                <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Register</a>
-                            </td>
-                        </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <?php while($row = $result->fetch(PDO::FETCH_ASSOC)): ?>
+                <div class="flex border border-gray-300 rounded-lg overflow-hidden shadow">
+                    <div class="w-1/3">
+                        <?php if ($row['banner_event']): ?>
+                            <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="Banner" class="w-full h-full object-cover">
+                        <?php else: ?>
+                            <div class="w-full h-full bg-gray-200 flex items-center justify-center">No banner</div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-xl font-bold"><?= htmlspecialchars($row['nama_event']) ?></h2>
+                            <p><strong>Tanggal:</strong> <?= htmlspecialchars($row['tanggal']) ?></p>
+                            <p><strong>Waktu:</strong> <?= htmlspecialchars($row['waktu']) ?></p>
+                            <p><strong>Lokasi:</strong> <?= htmlspecialchars($row['lokasi']) ?></p>
+                            <p><strong>Deskripsi:</strong> <?= htmlspecialchars($row['deskripsi']) ?></p>
+                            <p><strong>Partisipan:</strong> <?= htmlspecialchars($row['jumlah_partisipan']) . "/" . htmlspecialchars($row['jumlah_max_partisipan']) ?></p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Register</a>
+                        </div>
+                    </div>
+                </div>
+                <?php endwhile; ?>
             </div>
         <?php else: ?>
             <div class="text-center mt-5">

@@ -2,6 +2,7 @@
 session_start();
 require_once '../db.php'; // Adjust the path if necessary
 
+// Check if the user is logged in
 // if (!isset($_SESSION['user_id'])) {
 //     header('Location: ../login/index.php');
 //     exit();
@@ -27,7 +28,7 @@ if (isset($_POST['id_event'])) {
     $stmt_check->execute(['email' => $email]);
 
     if ($stmt_check->rowCount() === 0) {
-        $_SESSION['error'] = 'The email is not registered in the system.';
+        $_SESSION['error'] = 'The email is not registered in the system. Please check your email.';
         header('Location: regis.php?id_event=' . $id_event);
         exit();
     }
