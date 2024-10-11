@@ -30,17 +30,17 @@ $result = $db->query($sql);
     <script>
         function checkSession() {
   // Kirim permintaan AJAX ke check_session.php
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../check_session.php", true);
-  xhr.onload = function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "../check_session.php", true);
+    xhr.onload = function () {
     if (xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      if (response.status === "inactive") {
+        var response = JSON.parse(xhr.responseText);
+        if (response.status === "inactive") {
         window.location.href = "../login/index.php";
-      }
     }
-  };
-  xhr.send();
+    }
+    };
+    xhr.send();
 }
 
 setInterval(checkSession, 1);
@@ -80,7 +80,7 @@ setInterval(checkSession, 1);
                 <div class="flex border border-gray-300 rounded-lg overflow-hidden shadow">
                     <div class="w-1/3">
                         <?php if ($row['banner_event']): ?>
-                            <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="Banner" class="w-full h-full object-cover">
+                            <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="banner_event" class="w-full h-full object-cover">
                         <?php else: ?>
                             <div class="w-full h-full bg-gray-200 flex items-center justify-center">No banner</div>
                         <?php endif; ?>
