@@ -75,7 +75,16 @@ setInterval(checkSession, 1);
                     </td>
                     <td>
                         <?php
-                            echo $row['jumlah_partisipan']. " / ". $row['jumlah_max_partisipan'];
+                        $sqll = "SELECT * FROM tiket WHERE id_event = $row[id_event]";
+                        $result = $db->query($sqll);
+                        $kuota = 0;
+                        $jumlah_sold = 0;
+                        while ($roww = $result->fetch(PDO::FETCH_ASSOC)) {
+                            $jumlah_sold += $roww['jumlah_sold'];
+                            $kuota += $roww['kuota'];
+                        }
+
+                        echo $jumlah_sold . " / " . $kuota;
                         ?>
                     </td>
                     <td>

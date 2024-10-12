@@ -3,7 +3,7 @@ session_start();
 require_once '../db.php'; // Adjust the path if necessary
 
 // Fetch all events from the event_konser table
-$sql = "SELECT id_event, nama_event, tanggal, waktu, lokasi, deskripsi, jumlah_partisipan, jumlah_max_partisipan, banner_event, status_event FROM event_konser WHERE status_event = 'open'";
+$sql = "SELECT * FROM event_konser WHERE status_event = 'open'";
 $result = $db->query($sql);
 ?>
 
@@ -92,7 +92,17 @@ setInterval(checkSession, 1);
                             <p><strong>Waktu:</strong> <?= htmlspecialchars($row['waktu']) ?></p>
                             <p><strong>Lokasi:</strong> <?= htmlspecialchars($row['lokasi']) ?></p>
                             <p><strong>Deskripsi:</strong> <?= htmlspecialchars($row['deskripsi']) ?></p>
-                            <p><strong>Partisipan:</strong> <?= htmlspecialchars($row['jumlah_partisipan']) . "/" . htmlspecialchars($row['jumlah_max_partisipan']) ?></p>
+                            <p><strong>Partisipan:</strong> <?php
+                             $sqll = "SELECT * FROM tiket WHERE id_event = $row[id_event]";
+                        $result = $db->query($sqll);
+                        $kuota = 0;
+                        $jumlah_sold = 0;
+                        while ($roww = $result->fetch(PDO::FETCH_ASSOC)) {
+                            $jumlah_sold += $roww['jumlah_sold'];
+                            $kuota += $roww['kuota'];
+                        }
+
+                        echo $jumlah_sold . " / " . $kuota; ?></p>
                         </div>
                         <div class="mt-4">
                             <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Register</a>

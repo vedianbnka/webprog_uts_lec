@@ -15,13 +15,22 @@ if (!isset($_GET['id_event'])) {
     exit();
 }
 
-$id_event = (int)$_GET['id_event'];
+$id_event = $_GET['id_event'];
 
 // Fetch event details
-$sql = "SELECT nama_event, jumlah_partisipan, jumlah_max_partisipan, status_event FROM event_konser WHERE id_event = :id_event";
+$sql = "SELECT * FROM event_konser WHERE id_event = :id_event";
 $stmt = $db->prepare($sql);
 $stmt->execute(['id_event' => $id_event]);
 $event = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$sqll = "SELECT * FROM tiket WHERE id_event = $_GET[id_event]";
+                        $result = $db->query($sqll);
+                        $kuota = 0;
+                        $jumlah_sold = 0;
+                        while ($roww = $result->fetch(PDO::FETCH_ASSOC)) {
+                            $jumlah_sold += $roww['jumlah_sold'];
+                            $kuota += $roww['kuota'];
+                        }
 
 if (!$event) {
     $_SESSION['error'] = 'Event not found.';
@@ -30,7 +39,7 @@ if (!$event) {
 }
 
 // Display form only if event is open and has available slots
-if ($event['status_event'] != 'open' || $event['jumlah_partisipan'] >= $event['jumlah_max_partisipan']) {
+if ($event['status_event'] != 'open' || $jumlah_sold >= $kuota) {
     $_SESSION['error'] = 'Event is full or closed for registration.';
     header('Location: index.php');
     exit();
@@ -44,6 +53,24 @@ if ($event['status_event'] != 'open' || $event['jumlah_partisipan'] >= $event['j
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register for Event: <?= htmlspecialchars($event['nama_event']) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function checkSession() {
+  // Kirim permintaan AJAX ke check_session.php
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "../check_session.php", true);
+    xhr.onload = function () {
+    if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        if (response.status === "inactive") {
+        window.location.href = "../login/index.php";
+    }
+    }
+    };
+    xhr.send();
+}
+
+setInterval(checkSession, 1);
+    </script>
 </head>
 <body>
 <div class="container mt-5">
