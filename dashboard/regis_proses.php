@@ -35,13 +35,6 @@ if (isset($_POST['id_event'])) {
         exit(); // Menghentikan eksekusi kode lebih lanjut
     }
 
-    // Validate the input
-    if ($jumlah_tiket <= 0 || $jumlah_tiket > 10) {
-        $_SESSION['error'] = 'You can only buy between 1 and 10 tickets.';
-        header('Location: regis.php?id_event=' . $id_event);
-        exit();
-    }
-
     $sqll = "SELECT * FROM tiket WHERE id_event = $id_event";
                         $result = $db->query($sqll);
                         $kuota = 0;
@@ -53,9 +46,9 @@ if (isset($_POST['id_event'])) {
 
     // Fetch the event details
     
-    $sql = "INSERT INTO list_partisipan_event(id_user, id_event, tipe_tiket, jumlah) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO list_partisipan_event(id_user, id_event, tipe_tiket, jumlah, bukti_pembayaran) VALUES (?,?,?,?,?)";
     $stmt = $db->prepare($sql);
-    $stmt->execute([$id_user,$id_event, $tipe_tiket, $jumlah_tiket]);
+    $stmt->execute([$id_user,$id_event, $tipe_tiket, $jumlah_tiket, $file_name]);
 
     // Check if there are enough tickets available
     if ($jumlah_tiket > ($kuota - $jumlah_sold)) {
@@ -64,10 +57,14 @@ if (isset($_POST['id_event'])) {
         exit();
     }
 
+    $sql = "UPDATE tiket SET jumlah_sold = ? WHERE id_event = ? AND tipe_tiket = ?";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$jumlah_tiket, $id_event, $tipe_tiket]);
+
     // Register the user for the event and update the participant count
     // Registration success
     $_SESSION['success'] = 'Successfully registered with ' . $jumlah_tiket . ' tickets!';
-    // header('Location: index.php');
+    header('Location: index.php');
     exit();
 } else {
     // No event ID provided

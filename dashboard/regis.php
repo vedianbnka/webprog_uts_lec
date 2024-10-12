@@ -120,10 +120,15 @@ setInterval(checkSession, 1);
 
         <div class="mb-3">
             <label for="total_harga" class="form-label">Total Harga</label>
-            <input type="text" class="form-control" id="total_harga" name="total_harga" readonly>
+            <input type="text" class="form-control" id="total_harga" name="total_harga" disabled>
         </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <div class="mb-3">
+            <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
+            <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Book Ticket</button>
     </form>
 </div>
 
