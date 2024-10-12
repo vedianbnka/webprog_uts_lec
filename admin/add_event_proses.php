@@ -50,7 +50,7 @@
 
             $sql = "INSERT INTO tiket(id_event, tipe_tiket,kuota, harga, benefit) VALUES (?,?,?,?,?)";
             $stmt = $db->prepare($sql);
-            $stmt->execute([$id_event, $tipe_tiket[$i], $vvip_kuota, $vvip_harga, $vvip_benefit]);
+            $stmt->execute([$id_event, "VVIP", $vvip_kuota, $vvip_harga, $vvip_benefit]);
         } 
         if ($tipe_tiket[$i] == 'vip') {
             $vip_harga = $_POST['vip_harga'];
@@ -58,7 +58,7 @@
             $vip_benefit = $_POST['vip_benefit'];
             $sql = "INSERT INTO tiket(id_event, tipe_tiket,kuota, harga, benefit) VALUES (?,?,?,?,?)";
             $stmt = $db->prepare($sql);
-            $stmt->execute([$id_event, $tipe_tiket[$i], $vip_kuota, $vip_harga, $vip_benefit]);
+            $stmt->execute([$id_event, "VIP", $vip_kuota, $vip_harga, $vip_benefit]);
         } 
         if ($tipe_tiket[$i] == 'cat1') {
             $cat1_harga = $_POST['cat1_harga'];
@@ -66,7 +66,7 @@
             $cat1_benefit = $_POST['cat1_benefit'];
             $sql = "INSERT INTO tiket(id_event, tipe_tiket,kuota, harga, benefit) VALUES (?,?,?,?,?)";
             $stmt = $db->prepare($sql);
-            $stmt->execute([$id_event, $tipe_tiket[$i], $cat1_kuota, $cat1_harga, $cat1_benefit]);
+            $stmt->execute([$id_event, "CAT 1", $cat1_kuota, $cat1_harga, $cat1_benefit]);
         }
         if ($tipe_tiket[$i] == 'cat2') {
             $cat2_harga = $_POST['cat2_harga'];
@@ -74,7 +74,7 @@
             $cat2_benefit = $_POST['cat2_benefit'];
             $sql = "INSERT INTO tiket(id_event, tipe_tiket,kuota, harga, benefit) VALUES (?,?,?,?,?)";
             $stmt = $db->prepare($sql);
-            $stmt->execute([$id_event, $tipe_tiket[$i], $cat2_kuota, $cat2_harga, $cat2_benefit]);
+            $stmt->execute([$id_event, "CAT 2", $cat2_kuota, $cat2_harga, $cat2_benefit]);
         }
         if ($tipe_tiket[$i] == 'cat3') {
             $cat3_harga = $_POST['cat3_harga'];
@@ -83,7 +83,7 @@
 
             $sql = "INSERT INTO tiket(id_event, tipe_tiket,kuota, harga, benefit) VALUES (?,?,?,?,?)";
             $stmt = $db->prepare($sql);
-            $stmt->execute([$id_event, $tipe_tiket[$i], $cat3_kuota, $cat3_harga, $cat3_benefit]);
+            $stmt->execute([$id_event, "CAT 3", $cat3_kuota, $cat3_harga, $cat3_benefit]);
         }
     }
 

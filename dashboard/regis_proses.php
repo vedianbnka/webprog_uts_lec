@@ -10,9 +10,6 @@ require_once '../db.php'; // Adjust the path if necessary
 
 if (isset($_POST['id_event'])) {
     $id_event = (int)$_POST['id_event'];
-    $nama = $_POST['nama'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
     $jumlah_tiket = (int)$_POST['jumlah_tiket'];
     $tipe_tiket = $_POST['tipe_tiket'];
     $id_user = $_SESSION['id_user'];
