@@ -5,8 +5,8 @@
     $confirm_password = $_POST['confirm_password'];
 
     if ($password !== $confirm_password) {
-        $_SESSION['error'] = "TRUE";
-        header ('Location: ../Log_in_page/forgot_password.php?error=1');
+        $_SESSION['error'] = "Password yang anda masukkan tidak cocok";
+        header ('Location: ../Log_in_page/forgot_password.php');
         exit;
     }
 
@@ -19,10 +19,11 @@
     $stmt = $kunci->prepare($sql);
     $data = [$email];
     $stmt->execute($data);
-   
-    if ($stmt->rowCount() == 0) {
-        $_SESSION['error'] = "TRUE";
-        header ('Location: forgot_password.php?error=2');
+   $row = $stmt->fetch(PDO::FETCH_ASSOC);
+   var_dump($row);
+    if (!$row) {
+        $_SESSION['error'] = "Account anda belum terdaftar";
+        header ('Location: forgot_password.php');
         exit;
     }
 
@@ -30,4 +31,5 @@
     $stmt = $kunci->prepare($sql);
     $data = [$hashed_password, $email];
     $stmt->execute($data);
-    header ('Location: ../Log_in_page/index.php');
+    $_SESSION['success'] = "Password anda berhasil diubah";
+    header ('Location: ../login/index.php');

@@ -45,10 +45,14 @@ if ($event['status_event'] != 'open' || $jumlah_sold >= $kuota) {
     exit();
 }
 
-$sql = "SELECT tipe_tiket, harga, kuota FROM tiket WHERE id_event = :id_event";
+$sql = "SELECT tipe_tiket, harga,jumlah_sold, kuota FROM tiket WHERE id_event = :id_event";
 $stmt = $db->prepare($sql);
 $stmt->execute(['id_event' => $id_event]);
 $tikets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($tikets as &$tiket) {
+    $tiket['sisa_kuota'] = $tiket['kuota'] - $tiket['jumlah_sold'];
+}
 
 // Encode data ke dalam JSON
 $tiketsJson = json_encode($tikets);
@@ -102,16 +106,16 @@ setInterval(checkSession, 1);
         </div>
 
         <div class="mb-3">
-            <label for="tipe_tiket" class="form-label">Tipe Tiket</label><br>
-            <select class="status-dropdown" name="tipe_tiket" id="tipe_tiket" onchange="updateKuotaAndTotal()"> 
-                <option value="" disabled selected>Pilih Tipe Tiket</option>
-                <?php foreach ($tikets as $tiket): ?>
-                    <option value="<?= $tiket['tipe_tiket'] ?>" data-harga="<?= $tiket['harga'] ?>" data-kuota="<?= $tiket['kuota'] ?>">
-                        <?= $tiket['tipe_tiket'] ?> - Rp. <?= number_format($tiket['harga'], 0, ',', '.') ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+    <label for="tipe_tiket" class="form-label">Tipe Tiket</label><br>
+    <select class="status-dropdown" name="tipe_tiket" id="tipe_tiket" onchange="updateKuotaAndTotal()"> 
+        <option value="" disabled selected>Pilih Tipe Tiket</option>
+        <?php foreach ($tikets as $tiket): ?>
+            <option value="<?= $tiket['tipe_tiket'] ?>" data-harga="<?= $tiket['harga'] ?>" data-sisa-kuota="<?= $tiket['sisa_kuota'] ?>">
+                <?= $tiket['tipe_tiket'] ?> - Rp. <?= number_format($tiket['harga'], 0, ',', '.') ?> 
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
 
         <div class="mb-3 form-group">
             <label for="jumlah_tiket" class="form-label">Jumlah Tiket (Maks. <span id="max_kuota">0</span>)</label>
@@ -134,37 +138,34 @@ setInterval(checkSession, 1);
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Ambil data tiket dari PHP (encoded JSON)
-    var tiketData = <?= $tiketsJson ?>;
+   function updateKuotaAndTotal() {
+    var tipeTiketSelect = document.getElementById('tipe_tiket');
+    var selectedOption = tipeTiketSelect.options[tipeTiketSelect.selectedIndex];
 
-    function updateKuotaAndTotal() {
-        var tipeTiketSelect = document.getElementById('tipe_tiket');
-        var selectedOption = tipeTiketSelect.options[tipeTiketSelect.selectedIndex];
+    // Ambil sisa kuota dan harga dari data attribute
+    var sisaKuota = selectedOption.getAttribute('data-sisa-kuota');
+    var harga = selectedOption.getAttribute('data-harga');
 
-        // Ambil kuota dan harga dari data attribute
-        var kuota = selectedOption.getAttribute('data-kuota');
-        var harga = selectedOption.getAttribute('data-harga');
+    // Update max kuota untuk jumlah tiket
+    document.getElementById('max_kuota').innerText = sisaKuota;
+    document.getElementById('jumlah_tiket').max = sisaKuota;
 
-        // Update max kuota untuk jumlah tiket
-        document.getElementById('max_kuota').innerText = kuota;
-        document.getElementById('jumlah_tiket').max = kuota;
+    // Reset total harga
+    document.getElementById('total_harga').value = "0";
+}
 
-        // Reset total harga
-        document.getElementById('total_harga').value = "0";
-    }
+function updateTotal() {
+    var jumlahTiket = document.getElementById('jumlah_tiket').value;
+    var tipeTiketSelect = document.getElementById('tipe_tiket');
+    var selectedOption = tipeTiketSelect.options[tipeTiketSelect.selectedIndex];
+    var harga = selectedOption.getAttribute('data-harga');
 
-    function updateTotal() {
-        var jumlahTiket = document.getElementById('jumlah_tiket').value;
-        var tipeTiketSelect = document.getElementById('tipe_tiket');
-        var selectedOption = tipeTiketSelect.options[tipeTiketSelect.selectedIndex];
-        var harga = selectedOption.getAttribute('data-harga');
+    // Hitung total harga
+    var totalHarga = jumlahTiket * harga;
 
-        // Hitung total harga
-        var totalHarga = jumlahTiket * harga;
-
-        // Format total harga dan update di input total_harga
-        document.getElementById('total_harga').value = new Intl.NumberFormat('id-ID').format(totalHarga);
-    }
+    // Format total harga dan update di input total_harga
+    document.getElementById('total_harga').value = new Intl.NumberFormat('id-ID').format(totalHarga);
+}
 </script>
 
 
