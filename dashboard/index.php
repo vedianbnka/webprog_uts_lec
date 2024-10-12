@@ -1,10 +1,9 @@
 <?php
 session_start();
-require_once '../db.php'; // Adjust the path if necessary
+require_once '../db.php';
 
-// Fetch all events from the event_konser table
 $sql = "SELECT * FROM event_konser WHERE status_event = 'open'";
-$result = $db->query($sql);
+$resultEvents = $db->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +12,6 @@ $result = $db->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Event Konser</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         table, th, td {
@@ -29,33 +27,30 @@ $result = $db->query($sql);
     </style>
     <script>
         function checkSession() {
-  // Kirim permintaan AJAX ke check_session.php
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "../check_session.php", true);
-    xhr.onload = function () {
-    if (xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        if (response.status === "inactive") {
-        window.location.href = "../login/index.php";
-    }
-    }
-    };
-    xhr.send();
-}
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../check_session.php", true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === "inactive") {
+                        window.location.href = "../login/index.php";
+                    }
+                }
+            };
+            xhr.send();
+        }
 
-setInterval(checkSession, 1);
+        setInterval(checkSession, 1);
     </script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto mt-10 p-5 bg-white rounded shadow">
         <h1 class="text-center text-3xl font-bold mb-5">Daftar Event Konser</h1>
 
-        <!-- Profile link -->
         <div class="text-right mb-4">
             <a href="profile.php" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">My Profile</a>
         </div>
 
-        <!-- Display success or error message -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
                 <?php 
@@ -74,9 +69,9 @@ setInterval(checkSession, 1);
             </div>
         <?php endif; ?>
 
-        <?php if ($result->rowCount() > 0): ?>
+        <?php if ($resultEvents->rowCount() > 0): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <?php while($row = $result->fetch(PDO::FETCH_ASSOC)): ?>
+                <?php while($row = $resultEvents->fetch(PDO::FETCH_ASSOC)): ?>
                 <div class="flex border border-gray-300 rounded-lg overflow-hidden shadow">
                     <div class="w-1/3">
                         <?php if ($row['banner_event']): ?>
@@ -92,17 +87,24 @@ setInterval(checkSession, 1);
                             <p><strong>Waktu:</strong> <?= htmlspecialchars($row['waktu']) ?></p>
                             <p><strong>Lokasi:</strong> <?= htmlspecialchars($row['lokasi']) ?></p>
                             <p><strong>Deskripsi:</strong> <?= htmlspecialchars($row['deskripsi']) ?></p>
-                            <p><strong>Partisipan:</strong> <?php
-                             $sqll = "SELECT * FROM tiket WHERE id_event = $row[id_event]";
-                        $result = $db->query($sqll);
-                        $kuota = 0;
-                        $jumlah_sold = 0;
-                        while ($roww = $result->fetch(PDO::FETCH_ASSOC)) {
-                            $jumlah_sold += $roww['jumlah_sold'];
-                            $kuota += $roww['kuota'];
-                        }
+                            <p><strong>Partisipan:</strong> 
+                                <?php
+                                    $sqlTickets = "SELECT * FROM tiket WHERE id_event = :id_event";
+                                    $stmtTickets = $db->prepare($sqlTickets);
+                                    $stmtTickets->bindParam(':id_event', $row['id_event'], PDO::PARAM_INT);
+                                    $stmtTickets->execute();
 
-                        echo $jumlah_sold . " / " . $kuota; ?></p>
+                                    $kuota = 0;
+                                    $jumlah_sold = 0;
+
+                                    while ($ticket = $stmtTickets->fetch(PDO::FETCH_ASSOC)) {
+                                        $jumlah_sold += $ticket['jumlah_sold'];
+                                        $kuota += $ticket['kuota'];
+                                    }
+
+                                    echo $jumlah_sold . " / " . $kuota;
+                                ?>
+                            </p>
                         </div>
                         <div class="mt-4">
                             <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Register</a>
@@ -117,7 +119,6 @@ setInterval(checkSession, 1);
             </div>
         <?php endif; ?>
 
-        <!-- Logout link -->
         <div class="mt-4 text-left">
             <a href="../logout.php" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Logout</a>
         </div>
