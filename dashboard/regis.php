@@ -80,33 +80,86 @@ setInterval(checkSession, 1);
         <div class="alert alert-danger"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
     <?php endif; ?>
 
-    <form action="regis_proses.php" method="POST">
+    <form action="regis_proses.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id_event" value="<?= $id_event ?>">
 
         <div class="mb-3">
-            <label for="email" class="form-label">Email (must be registered)</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<?= $_SESSION['email']; ?>" disabled>
         </div>
 
         <div class="mb-3">
             <label for="nama" class="form-label">Nama Lengkap</label>
-            <input type="text" class="form-control" id="nama" name="nama" required>
+            <input type="text" class="form-control" id="nama" name="nama" value="<?= $_SESSION['nama']; ?>" disabled>
         </div>
 
         <div class="mb-3">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
+            <label for="tipe_tiket" class="form-label">Tipe Tiket</label><br>
+            <select class="status-dropdown" name="tipe_tiket"> 
+                            <option value="vvip">VVIP</option>
+                            <option value="vip">VIP</option>
+                            <option value="cat1">CAT 1</option>
+                            <option value="cat2">CAT 2</option>
+                            <option value="cat3">CAT 3</option>
+                        </select>
+        </div>
+
+        <div class="mb-3 form-group">
+            <label for="jumlah_tiket" class="form-label">Jumlah Tiket (max. 10)</label>
+            <input type="number" class="form-control" id="jumlah_tiket" name="jumlah_tiket" min="1" max="10" required>
         </div>
 
         <div class="mb-3">
-            <label for="jumlah_tiket" class="form-label">Jumlah Tiket (max 5)</label>
-            <input type="number" class="form-control" id="jumlah_tiket" name="jumlah_tiket" min="1" max="5" required>
-        </div>
+    <label for="total_harga" class="form-label">Total Harga</label>
+    <input type="text" class="form-control" id="total_harga" name="total_harga" readonly>
+</div>
 
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tipeTiketSelect = document.getElementById('tipe_tiket');
+        const jumlahTiketInput = document.getElementById('jumlah_tiket');
+        const totalHargaInput = document.getElementById('total_harga');
+        let hargaPerTiket = 0;
+
+        // Fungsi untuk mengambil harga dari server
+        function getHargaTiket(tipeTiket) {
+            if (tipeTiket !== "") {
+                // Menggunakan AJAX untuk mendapatkan harga dari server
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "get_price.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        hargaPerTiket = parseInt(response.harga);
+                        hitungTotal();
+                    }
+                };
+                xhr.send("tipe_tiket=" + tipeTiket);
+            }
+        }
+
+        // Fungsi untuk menghitung total harga
+        function hitungTotal() {
+            const jumlahTiket = parseInt(jumlahTiketInput.value) || 0;
+            const totalHarga = hargaPerTiket * jumlahTiket;
+            totalHargaInput.value = totalHarga.toLocaleString('id-ID') + ' IDR';
+        }
+
+        // Event listener untuk mengambil harga saat tipe tiket berubah
+        tipeTiketSelect.addEventListener('change', function() {
+            const tipeTiket = tipeTiketSelect.value;
+            getHargaTiket(tipeTiket);
+        });
+
+        // Event listener untuk menghitung total harga saat jumlah tiket berubah
+        jumlahTiketInput.addEventListener('input', hitungTotal);
+    });
+</script>
 </body>
 </html>
