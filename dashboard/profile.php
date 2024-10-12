@@ -27,11 +27,12 @@ if (!$user) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
+    <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
     <div class="max-w-lg mx-auto mt-10 p-5 bg-white rounded shadow">
-        <h2 class="text-2xl font-bold mb-5">Update Profile</h2>
+        <h2 class="text-2xl font-bold mb-5">Edit Profile</h2>
 
         <?php if (isset($_GET['error'])): ?>
             <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">

@@ -32,7 +32,7 @@
       var response = JSON.parse(xhr.responseText);
       if (response.status === "inactive") {
         window.location.href = "../login/index.php";
-      }Z
+      }
     }
   };
   xhr.send();
@@ -85,15 +85,15 @@ setInterval(checkSession, 1);
     <div id="vvip-fields" class="d-none">
         <div class="form-group">
             <label for="vvip-harga">Harga VVIP</label>
-            <input type="text" id="vvip-harga" name="vvip_harga" class="form-control" required>
+            <input type="text" id="vvip-harga" name="vvip_harga" class="form-control">
         </div>
         <div class="form-group">
             <label for="vvip-kuota">Kuota Tiket VVIP</label>
-            <input type="number" id="vvip-kuota" name="vvip_kuota" class="form-control"required>
+            <input type="number" id="vvip-kuota" name="vvip_kuota" class="form-control">
         </div>
         <div class="form-group">
             <label for="vvip-benefit">Benefit VVIP</label>
-            <input type="text" id="vvip-benefit" name="vvip_benefit" class="form-control"required>
+            <input type="text" id="vvip-benefit" name="vvip_benefit" class="form-control">
         </div>
     </div>
     
