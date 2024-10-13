@@ -127,61 +127,72 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 
     <!-- Content Section -->
     <section class="bg-transparent py-20 relative">
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <h1 class="text-4xl font-bold text-white">
-                Experience the Best Concerts
-            </h1>
-            <p class="text-white mt-4">Your hub for live music events.</p>
-            <a href="events.php"><button class="mt-6 px-6 py-3 bg-[#7B61FF] text-white rounded-md shadow-lg hover:bg-[#6A52E0]">
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <h1 class="text-4xl font-bold text-white">
+            Experience the Best Concerts
+        </h1>
+        <p class="text-white mt-4">Your hub for live music events.</p>
+        <a href="events.php">
+            <button class="mt-6 px-6 py-3 bg-[#7B61FF] text-white rounded-md shadow-lg hover:bg-[#6A52E0]">
                 Get Started
-            </button></a>
-            
+            </button>
+        </a>
+    </div>
+    <br><br><br><br><br>
+</section>
+
+<!-- Content Section -->
+<section class="container mx-auto mt-10 p-5 bg-white rounded shadow">
+    <h1 class="text-center text-3xl font-bold mb-5">Available events</h1>
+
+    <?php if (isset($_SESSION['success'])): ?>
+        <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
+            <?php 
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
         </div>
-        <br><br><br><br><br>
-    </section>
+    <?php endif; ?>
 
-    <!-- Content Section -->
-    <section class="container mx-auto mt-10 p-5 bg-white rounded shadow">
-        <h1 class="text-center text-3xl font-bold mb-5">Available events</h1>
+    <?php if (isset($_SESSION['error'])): ?>
+        <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+            <?php 
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+            ?>
+        </div>
+    <?php endif; ?>
 
-        <?php if (isset($_SESSION['success'])): ?>
-            <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
-                <?php 
-                echo $_SESSION['success'];
-                unset($_SESSION['success']);
-                ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION['error'])): ?>
-            <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
-                <?php 
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
-                ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if ($resultEvents->rowCount() > 0): ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <?php while($row = $resultEvents->fetch(PDO::FETCH_ASSOC)): ?>
-                <div class="flex border border-gray-300 rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-                    <div class="w-1/3">
-                        <?php if ($row['banner_event']): ?>
-                            <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="banner_event">
-                        <?php else: ?>
-                            <div class="w-full h-full bg-gray-200 flex items-center justify-center">No banner</div>
-                        <?php endif; ?>
-                    </div>
+    <?php if ($resultEvents->rowCount() > 0): ?>
+        <div class="relative">
+            <!-- Navigation Buttons -->
+            <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#7B61FF] text-white p-2 rounded-full shadow hover:bg-[#6A52E0] z-10" onclick="slideLeft()">
+                &#10094;
+            </button>
+            <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#7B61FF] text-white p-2 rounded-full shadow hover:bg-[#6A52E0] z-10" onclick="slideRight()">
+                &#10095;
+            </button>
             
-                    <div class="w-2/3 p-4 flex flex-col justify-between">
-                        <div>
-                            <h2 class="text-xl font-bold text-[#7B61FF]"><?= htmlspecialchars($row['nama_event']) ?></h2>
-                            <p class="text-gray-700"><strong>Tanggal:</strong> <?= htmlspecialchars($row['tanggal']) ?></p>
-                            <p class="text-gray-700"><strong>Waktu:</strong> <?= htmlspecialchars($row['waktu']) ?></p>
-                            <p class="text-gray-700"><strong>Lokasi:</strong> <?= htmlspecialchars($row['lokasi']) ?></p>
-                            <p class="text-gray-700"><strong>Deskripsi:</strong> <?= htmlspecialchars($row['deskripsi']) ?></p>
-                            <p class="text-gray-700"><strong>Partisipan:</strong> 
+            <div id="event-slider" class="flex overflow-x-auto scroll-smooth gap-5 mx-auto w-full max-w-5xl px-5">
+                <?php while($row = $resultEvents->fetch(PDO::FETCH_ASSOC)): ?>
+                    <div class="flex-shrink-0 w-80 relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                        <div class="relative h-40 overflow-hidden rounded-t-xl bg-gray-300">
+                            <?php if ($row['banner_event']): ?>
+                                <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="banner_event" class="object-cover w-full h-full">
+                            <?php else: ?>
+                                <div class="w-full h-full flex items-center justify-center text-gray-600">No banner</div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="p-6">
+                            <h2 class="mb-2 text-xl font-bold leading-snug tracking-normal text-[#7B61FF] antialiased">
+                                <?= htmlspecialchars($row['nama_event']) ?>
+                            </h2>
+                            <p class="block font-sans text-base font-light leading-relaxed text-gray-700 antialiased">
+                                <strong>Tanggal:</strong> <?= htmlspecialchars($row['tanggal']) ?><br>
+                                <strong>Waktu:</strong> <?= htmlspecialchars($row['waktu']) ?><br>
+                                <strong>Lokasi:</strong> <?= htmlspecialchars($row['lokasi']) ?><br>
+                                <strong>Deskripsi:</strong> <?= htmlspecialchars($row['deskripsi']) ?><br>
+                                <strong>Partisipan:</strong> 
                                 <?php
                                     $sqlTickets = "SELECT * FROM tiket WHERE id_event = :id_event";
                                     $stmtTickets = $db->prepare($sqlTickets);
@@ -200,18 +211,48 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                                 ?>
                             </p>
                         </div>
-                        <div class="mt-4">
-                        <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="border border-[#7B61FF] text-[#7B61FF] bg-white px-4 py-2 rounded hover:bg-[#7B61FF] hover:text-white transition">Register</a>
+                        <div class="p-6 pt-0">
+                            <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="select-none rounded-lg bg-[#7B61FF] py-3 px-6 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:bg-[#7B61FF]/90">
+                                Register
+                            </a>
                         </div>
                     </div>
-                </div>
                 <?php endwhile; ?>
             </div>
-        <?php else: ?>
-            <div class="text-center mt-5">
-                <p class="text-gray-600">Tidak ada event konser yang terbuka saat ini.</p>
-            </div>
-        <?php endif; ?>
+        </div>
+    <?php else: ?>
+        <div class="text-center mt-5">
+            <p class="text-gray-600">Tidak ada event konser yang terbuka saat ini.</p>
+        </div>
+    <?php endif; ?>
+</section>
+
+<!-- JavaScript for Scrolling -->
+<script>
+    const slider = document.getElementById('event-slider');
+
+    function slideLeft() {
+        slider.scrollLeft -= 300; // Adjust the value as needed
+    }
+
+    function slideRight() {
+        slider.scrollLeft += 300; // Adjust the value as needed
+    }
+</script>
+<style>
+    /* Hide scrollbar for all browsers */
+    #event-slider {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;     /* Firefox */
+    }
+
+    #event-slider::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+</style>
+
+
+
 
         <!-- Tombol See More -->
         <?php if ($limit < $totalEvents): ?>
@@ -286,5 +327,8 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             <p class="text-white">© 2024 Konserhub. All rights reserved.</p>
         </div>
     </footer>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 </body>
 </html>
