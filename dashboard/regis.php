@@ -44,6 +44,18 @@ if ($event['status_event'] != 'open' || $jumlah_sold >= $kuota) {
     header('Location: index.php');
     exit();
 }
+
+$sql = "SELECT tipe_tiket, harga,jumlah_sold, kuota FROM tiket WHERE id_event = :id_event";
+$stmt = $db->prepare($sql);
+$stmt->execute(['id_event' => $id_event]);
+$tikets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($tikets as &$tiket) {
+    $tiket['sisa_kuota'] = $tiket['kuota'] - $tiket['jumlah_sold'];
+}
+
+// Encode data ke dalam JSON
+$tiketsJson = json_encode($tikets);
 ?>
 
 <!DOCTYPE html>
@@ -80,33 +92,82 @@ setInterval(checkSession, 1);
         <div class="alert alert-danger"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
     <?php endif; ?>
 
-    <form action="regis_proses.php" method="POST">
+    <form action="regis_proses.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id_event" value="<?= $id_event ?>">
 
         <div class="mb-3">
-            <label for="email" class="form-label">Email (must be registered)</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<?= $_SESSION['email']; ?>" disabled>
         </div>
 
         <div class="mb-3">
             <label for="nama" class="form-label">Nama Lengkap</label>
-            <input type="text" class="form-control" id="nama" name="nama" required>
+            <input type="text" class="form-control" id="nama" name="nama" value="<?= $_SESSION['nama']; ?>" disabled>
         </div>
 
         <div class="mb-3">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
+    <label for="tipe_tiket" class="form-label">Tipe Tiket</label><br>
+    <select class="status-dropdown" name="tipe_tiket" id="tipe_tiket" onchange="updateKuotaAndTotal()"> 
+        <option value="" disabled selected>Pilih Tipe Tiket</option>
+        <?php foreach ($tikets as $tiket): ?>
+            <option value="<?= $tiket['tipe_tiket'] ?>" data-harga="<?= $tiket['harga'] ?>" data-sisa-kuota="<?= $tiket['sisa_kuota'] ?>">
+                <?= $tiket['tipe_tiket'] ?> - Rp. <?= number_format($tiket['harga'], 0, ',', '.') ?> 
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
+        <div class="mb-3 form-group">
+            <label for="jumlah_tiket" class="form-label">Jumlah Tiket (Maks. <span id="max_kuota">0</span>)</label>
+            <input type="number" class="form-control" id="jumlah_tiket" name="jumlah_tiket" min="1" max="0" required oninput="updateTotal()">
         </div>
 
         <div class="mb-3">
-            <label for="jumlah_tiket" class="form-label">Jumlah Tiket (max 5)</label>
-            <input type="number" class="form-control" id="jumlah_tiket" name="jumlah_tiket" min="1" max="5" required>
+            <label for="total_harga" class="form-label">Total Harga</label>
+            <input type="text" class="form-control" id="total_harga" name="total_harga" disabled>
         </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <div class="mb-3">
+            <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
+            <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Book Ticket</button>
     </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   function updateKuotaAndTotal() {
+    var tipeTiketSelect = document.getElementById('tipe_tiket');
+    var selectedOption = tipeTiketSelect.options[tipeTiketSelect.selectedIndex];
+
+    // Ambil sisa kuota dan harga dari data attribute
+    var sisaKuota = selectedOption.getAttribute('data-sisa-kuota');
+    var harga = selectedOption.getAttribute('data-harga');
+
+    // Update max kuota untuk jumlah tiket
+    document.getElementById('max_kuota').innerText = sisaKuota;
+    document.getElementById('jumlah_tiket').max = sisaKuota;
+
+    // Reset total harga
+    document.getElementById('total_harga').value = "0";
+}
+
+function updateTotal() {
+    var jumlahTiket = document.getElementById('jumlah_tiket').value;
+    var tipeTiketSelect = document.getElementById('tipe_tiket');
+    var selectedOption = tipeTiketSelect.options[tipeTiketSelect.selectedIndex];
+    var harga = selectedOption.getAttribute('data-harga');
+
+    // Hitung total harga
+    var totalHarga = jumlahTiket * harga;
+
+    // Format total harga dan update di input total_harga
+    document.getElementById('total_harga').value = new Intl.NumberFormat('id-ID').format(totalHarga);
+}
+</script>
+
+
 </body>
 </html>

@@ -34,7 +34,8 @@
         header ('Location: ../admin/index.php');
         exit;
     }else {
-        header ('Location: index.php?error=1');
+        $_SESSION['error'] = "Password atau email anda salah";
+        header ('Location: index.php');
         exit;
     }
 

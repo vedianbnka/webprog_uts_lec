@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         @keyframes slideSide {
             0% {
@@ -24,8 +26,26 @@
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <?php session_start(); ?>
         <form action="proses_reset_pw.php" method="POST" class="p-5 border rounded bg-white shadow animasi">
-            <h2 class="text-center">Reset Password</h2>
+            <h2 class="text-3xl font-bold text-center mb-4">Reset Password</h2>
+            <?php if (isset($_SESSION['success'])): ?>
+            <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
+                <?php 
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+                <?php 
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?>
+            </div>
+        <?php endif; ?>
             <div class="form-group">
                 <label for="username">Email:</label>
                 <input type="text" id="username" name="email" class="form-control" required autocomplete="off">
@@ -49,18 +69,7 @@
                         </div>
                         </div>
             </div>
-            <?php 
-            if (isset($_GET['error']) && $_GET['error'] == 1) {
-                echo '<div class="alert alert-danger" role="alert">';
-                echo "Password and confirmation password do not match!";
-                echo '</div>';
-            }
-            if (isset($_GET['error']) && $_GET['error'] == 2) {
-                echo '<div class="alert alert-danger" role="alert">';
-                echo "Account anda belum terdaftar!";
-                echo '</div>';
-            }
-        ?>
+            
             <button type="submit" name="login" class="btn btn-primary btn-block">Reset Password</button>
             <br>
             <a href="index.php">
