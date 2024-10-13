@@ -312,21 +312,32 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 
     <!-- Footer -->
     <footer class="bg-black py-8 mt-10">
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://instagram.com" target="_blank">
-                    <img src="../brand/ig2.png" alt="Instagram" class="h-10 w-10 object-contain">
-                </a>
-                <a href="https://twitter.com" target="_blank">
-                    <img src="../brand/x.png" alt="X (Twitter)" class="h-10 w-8 object-contain">
-                </a>
-                <a href="https://tiktok.com" target="_blank">
-                    <img src="../brand/tiktok3.png" alt="TikTok" class="h-10 w-10 object-contain">
-                </a>
-            </div>
-            <p class="text-white">© 2024 Konserhub. All rights reserved.</p>
+    <div class="container mx-auto px-4 text-center">
+        <!-- Social Media Icons -->
+        <div class="flex flex-wrap justify-center space-x-6 md:space-x-10 mb-4">
+            <a href="https://instagram.com" target="_blank">
+                <img src="../brand/ig2.png" alt="Instagram" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif: Ukuran berbeda di layar lebih besar -->
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <img src="../brand/x.png" alt="X (Twitter)" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif -->
+            </a>
+            <a href="https://tiktok.com" target="_blank">
+                <img src="../brand/tiktok3.png" alt="TikTok" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif -->
+            </a>
         </div>
-    </footer>
+        
+        <!-- Footer Text -->
+        <p class="text-white text-sm md:text-base lg:text-lg">© 2024 Konserhub. All rights reserved.</p>
+        
+        <!-- Additional Links -->
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Terms of Service</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Contact Us</a>
+        </div>
+    </div>
+</footer>
+
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
