@@ -90,16 +90,30 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 </head>
 <body class="bg-gray-100">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-lg">
+<!-- Navbar -->
+<nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-         <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
-            <ul class="flex space-x-6">
-                <li><a href="#" class="text-black hover:text-[#7B61FF]">Home</a></li>
-                <li><a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a></li>
-                <li><a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a></li>
-                <li><a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a></li>
-            </ul>
+            <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
+            <div class="block lg:hidden">
+                <button id="menu-button" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex space-x-6" id="menu">
+                <a href="#" class="text-black hover:text-[#7B61FF]">Home</a>
+                <a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a>
+                <a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a>
+                <a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a>
+            </div>
+        </div>
+        <!-- Dropdown Menu -->
+        <div class="lg:hidden" id="mobile-menu" style="display: none;">
+            <a href="#" class="block text-black hover:text-[#7B61FF] px-4 py-2">Home</a>
+            <a href="events.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Events</a>
+            <a href="profile.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Profile</a>
+            <a href="../logout.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Logout</a>
         </div>
     </nav>
 
@@ -123,6 +137,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             </button></a>
             
         </div>
+        <br><br><br><br><br>
     </section>
 
     <!-- Content Section -->
@@ -158,6 +173,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                             <div class="w-full h-full bg-gray-200 flex items-center justify-center">No banner</div>
                         <?php endif; ?>
                     </div>
+            
                     <div class="w-2/3 p-4 flex flex-col justify-between">
                         <div>
                             <h2 class="text-xl font-bold text-[#7B61FF]"><?= htmlspecialchars($row['nama_event']) ?></h2>
@@ -185,7 +201,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                             </p>
                         </div>
                         <div class="mt-4">
-                            <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Register</a>
+                        <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="border border-[#7B61FF] text-[#7B61FF] bg-white px-4 py-2 rounded hover:bg-[#7B61FF] hover:text-white transition">Register</a>
                         </div>
                     </div>
                 </div>
@@ -196,6 +212,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                 <p class="text-gray-600">Tidak ada event konser yang terbuka saat ini.</p>
             </div>
         <?php endif; ?>
+
         <!-- Tombol See More -->
         <?php if ($limit < $totalEvents): ?>
             <div class="text-center mt-5 mb-6"> <!-- Tambahkan 'mb-6' untuk padding di bawah -->
