@@ -7,7 +7,7 @@ require '../db.php';
 //     exit;
 // }
 
-$id_user = $_SESSION['id'];
+$id_user = $_SESSION['id_user'];
 $nama = $_POST['nama'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
