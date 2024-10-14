@@ -106,11 +106,9 @@ $resultEvents = $db->query($sql);
     </nav>
 
     <div class="slideshow">        
-        <img src="slide/slide1.jpg" alt="Slide 1">
-        <img src="slide/slide2.jpg" alt="Slide 2">
-        <img src="slide/slide3.jpg" alt="Slide 3">
-        <img src="slide/slide4.jpg" alt="Slide 3">
-        <img src="slide/slide5.jpg" alt="Slide 3">
+        <img src="slide/slide6.jpg" alt="Slide 1">
+        <img src="slide/slide7.jpg" alt="Slide 2">
+        <img src="slide/slide8.jpg" alt="Slide 3">
     </div><br><br>
 
     <!-- Content Section -->
@@ -121,10 +119,9 @@ $resultEvents = $db->query($sql);
             </h1>
         </div>
     </section>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <!-- Content Section -->
-<section class="container mx-auto mt-10 p-5 bg-white rounded shadow">
+<section class="container mx-auto mt-40 p-5 bg-white rounded shadow">
     <h1 class="text-center text-3xl font-bold mb-5">Available events</h1>
 
     <?php if (isset($_SESSION['success'])): ?>
