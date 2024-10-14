@@ -24,9 +24,23 @@
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#7B61FF] to-[#6A52E0]">
-    <form action="proses.php" method="POST" class="p-10 border rounded-lg bg-white shadow-lg animasi max-w-sm w-full">
-        <h2 class="text-3xl font-bold text-center mb-6 text-[#7B61FF]">Daftar Akun Baru</h2>
+<body class="relative min-h-screen bg-gray-900 flex items-center justify-center">
+    <video
+      autoplay
+      loop
+      muted
+      class="absolute top-0 left-0 w-full h-full object-cover -z-10"
+    >
+      <source src="../login/videobg/sample2.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="absolute top-6 left-10">
+        <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
+    </div>
+
+    <form action="proses.php" method="POST" class="p-10 bg-opacity-80 border rounded-lg bg-white shadow-lg animasi max-w-sm w-full">
+        <h2 class="text-3xl font-bold text-center mb-6 text-[#7B61FF]">Sign Up</h2>
         
         <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
             <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
@@ -39,7 +53,7 @@
         <?php endif; ?>
         
         <div class="mb-4">
-            <label for="nama" class="block mb-1 text-gray-700">Nama Lengkap:</label>
+            <label for="nama" class="block mb-1 text-gray-700">Full Name:</label>
             <input type="text" name="nama" id="nama" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
         </div>
         <div class="mb-4">
@@ -47,7 +61,7 @@
             <input type="email" name="email" id="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
         </div>
         <div class="mb-4">
-            <label for="phone" class="block mb-1 text-gray-700">Nomor Telepon:</label>
+            <label for="phone" class="block mb-1 text-gray-700">Phone Number:</label>
             <input type="text" name="phone" id="phone" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
         </div>
         <div class="mb-4">
@@ -58,17 +72,17 @@
             </div>
         </div>
         <div class="mb-4">
-            <label for="confirm_password" class="block mb-1 text-gray-700">Konfirmasi Password:</label>
+            <label for="confirm_password" class="block mb-1 text-gray-700">Confirmation Password:</label>
             <div class="relative">
                 <input type="password" name="confirm_password" id="confirm_password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" required>
                 <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onclick="togglePassword('confirm_password')">👁️</span>
             </div>
         </div>
         
-        <button type="submit" class="w-full px-4 py-2 text-white bg-[#7B61FF] rounded hover:bg-[#6A52E0] focus:outline-none focus:bg-[#6A52E0]">Daftar</button>
+        <button type="submit" class="w-full px-4 py-2 text-white bg-[#7B61FF] rounded hover:bg-[#6A52E0] focus:outline-none focus:bg-[#6A52E0]">Sign Up</button>
         <br>
         <a href="../login/index.php">
-            <button type="button" class="w-full mt-3 px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600">Kembali ke Login</button>
+            <button type="button" class="w-full mt-3 px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600">Back to Login</button>
         </a>
     </form>
 
