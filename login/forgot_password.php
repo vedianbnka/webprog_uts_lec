@@ -24,9 +24,23 @@
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#7B61FF] to-[#6A52E0]">
+<body class="relative min-h-screen bg-gray-900 flex items-center justify-center">
+    <video
+      autoplay
+      loop
+      muted
+      class="absolute top-0 left-0 w-full h-full object-cover -z-10"
+    >
+      <source src="videobg/sample3.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="absolute top-6 left-10">
+        <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
+    </div>
+
     <?php session_start(); ?>
-    <form action="proses_reset_pw.php" method="POST" class="p-10 border rounded-lg bg-white shadow-lg animasi max-w-sm w-full">
+    <form action="proses_reset_pw.php" method="POST" class="p-10 bg-opacity-80 border rounded-lg bg-white shadow-lg animasi max-w-sm w-full">
         <h2 class="text-3xl font-bold text-center mb-6 text-[#7B61FF]">Reset Password</h2>
         
         <?php if (isset($_SESSION['success'])): ?>
@@ -52,7 +66,7 @@
             <input type="text" id="username" name="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" required autocomplete="off">
         </div>
         <div class="mb-4">
-            <label for="password" class="block mb-1 text-gray-700">Masukkan Password Baru:</label>
+            <label for="password" class="block mb-1 text-gray-700">New Password:</label>
             <div class="relative">
                 <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" required>
                 <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onclick="togglePassword('password')">👁️</span>
