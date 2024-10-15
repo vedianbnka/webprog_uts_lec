@@ -2,9 +2,30 @@
 session_start();
 require_once '../db.php';
 
-$sql = "SELECT * FROM event_konser WHERE status_event = 'open'";
-$resultEvents = $db->query($sql);
+// Tentukan jumlah event per halaman
+$events_per_page = 12;
+
+// Ambil nomor halaman dari parameter URL, jika tidak ada maka default ke halaman 1
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+
+// Hitung offset
+$offset = ($page - 1) * $events_per_page;
+
+// Query untuk menghitung total jumlah event
+$total_events_sql = "SELECT COUNT(*) as total FROM event_konser WHERE status_event = 'open'";
+$total_events_result = $db->query($total_events_sql);
+$total_events = $total_events_result->fetch(PDO::FETCH_ASSOC)['total'];
+
+// Query untuk mengambil event dengan paginasi
+$sql = "SELECT * FROM event_konser WHERE status_event = 'open' LIMIT :limit OFFSET :offset";
+$stmt = $db->prepare($sql);
+$stmt->bindValue(':limit', $events_per_page, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+$resultEvents = $stmt;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -190,12 +211,23 @@ $resultEvents = $db->query($sql);
                 </div>
             <?php endwhile; ?>
         </div>
+
+        <!-- Pagination -->
+        <div class="mt-10 flex justify-center">
+            <?php for ($i = 1; $i <= ceil($total_events / $events_per_page); $i++): ?>
+                <a href="?page=<?= $i ?>" class="mx-2 px-4 py-2 bg-<?= ($page == $i) ? '[#7B61FF]' : 'gray-300' ?> text-white rounded">
+                    <?= $i ?>
+                </a>
+            <?php endfor; ?>
+        </div>
+
     <?php else: ?>
         <div class="text-center mt-5">
             <p class="text-gray-600">Tidak ada event konser yang terbuka saat ini.</p>
         </div>
     <?php endif; ?>
 </section>
+
 
     <!-- Footer -->
 <footer class="bg-black py-8 mt-10">
