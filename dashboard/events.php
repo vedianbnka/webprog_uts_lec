@@ -119,6 +119,7 @@ $resultEvents = $db->query($sql);
             </h1>
         </div>
     </section>
+    <br><br><br><br><br>
 
 <!-- Content Section -->
 <section class="container mx-auto mt-40 p-5 bg-white rounded shadow">

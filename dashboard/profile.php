@@ -63,7 +63,7 @@ if (!$user) {
             </div>
             <div class="mb-5">
                 <label class="block text-gray-700 font-semibold">Email:</label>
-                <input type="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-[#7B61FF]" value="<?= htmlspecialchars($user['email']); ?>" required>
+                <input type="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-[#7B61FF]" value="<?= htmlspecialchars($user['email']); ?>" readonly>
             </div>
             <div class="mb-5">
                 <label class="block text-gray-700 font-semibold">Phone:</label>
