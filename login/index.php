@@ -7,20 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <style>
-        @keyframes slideSide {
-            0% {
-                transform: translateX(-100px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0px);
-                opacity: 1;
-            }
-        }
-
-        .animasi {
-            animation: slideSide 1s;
-        }
+     
     </style>
 </head>
 <body class="relative min-h-screen bg-gray-900 flex items-center justify-center">
