@@ -134,32 +134,35 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 </head>
 <body class="bg-gray-100">
 
-<!-- Navbar -->
-<nav class="bg-white shadow-lg">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
-        <div class="block lg:hidden">
-            <button id="menu-button" class="focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="../brand/logo1.png" alt="Website Logo" class="h-7 w-auto">
+            </a>
+            <div class="block lg:hidden">
+                <button id="menu-button" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex space-x-6" id="menu">
+                <a href="#" class="text-black hover:text-[#7B61FF]">Home</a>
+                <a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a>
+                <a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a>
+                <a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a>
+            </div>
         </div>
-        <div class="hidden lg:flex space-x-6" id="menu">
-            <a href="#" class="text-black hover:text-[#7B61FF]">Home</a>
-            <a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a>
-            <a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a>
-            <a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a>
+        <!-- Dropdown Menu -->
+        <div class="lg:hidden" id="mobile-menu" style="display: none;">
+            <a href="#" class="block text-black hover:text-[#7B61FF] px-4 py-2">Home</a>
+            <a href="events.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Events</a>
+            <a href="profile.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Profile</a>
+            <a href="../logout.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Logout</a>
         </div>
-    </div>
-    <!-- Dropdown Menu -->
-    <div class="lg:hidden" id="mobile-menu" style="display: none;">
-        <a href="#" class="block text-black hover:text-[#7B61FF] px-4 py-2">Home</a>
-        <a href="events.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Events</a>
-        <a href="profile.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Profile</a>
-        <a href="../logout.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Logout</a>
-    </div>
-</nav>
+    </nav>
+
+
 
     <div class="slideshow">        
         <img src="slide/slide1.jpg" alt="Slide 1">

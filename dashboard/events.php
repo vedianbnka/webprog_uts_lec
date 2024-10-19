@@ -157,9 +157,11 @@ $resultEvents = $stmt;
 </head>
 <body class="bg-gray-100">
 
-    <nav class="bg-white shadow-lg">
+<nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
+            <a href="#" class="flex items-center space-x-2">
+                <img src="../brand/logo1.png" alt="Website Logo" class="h-7 w-auto">
+            </a>
             <div class="block lg:hidden">
                 <button id="menu-button" class="focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
