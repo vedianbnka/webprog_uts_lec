@@ -74,6 +74,19 @@ $resultEvents = $stmt;
         .card {
             width: 300px; /* Adjust card width */
         }
+
+        #mobile-menu {
+            display: none;
+            position: absolute; 
+            left: 0;
+            right: 0;
+            background-color: white; 
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+            z-index: 50; 
+            max-height: 0; 
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out; 
+        }
     </style>
     <script>
         function checkSession() {
@@ -113,16 +126,29 @@ $resultEvents = $stmt;
 </head>
 <body class="bg-gray-100">
 
-    <!-- Navbar -->
     <nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-         <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
-            <ul class="flex space-x-6">
-                <li><a href="index.php" class="text-black hover:text-[#7B61FF]">Home</a></li>
-                <li><a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a></li>
-                <li><a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a></li>
-                <li><a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a></li>
-            </ul>
+            <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
+            <div class="block lg:hidden">
+                <button id="menu-button" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex space-x-6" id="menu">
+                <a href="index.php" class="text-black hover:text-[#7B61FF]">Home</a>
+                <a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a>
+                <a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a>
+                <a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a>
+            </div>
+        </div>
+        <!-- Dropdown Menu -->
+        <div class="lg:hidden" id="mobile-menu" style="display: none;">
+            <a href="index.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Home</a>
+            <a href="events.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Events</a>
+            <a href="profile.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Profile</a>
+            <a href="../logout.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Logout</a>
         </div>
     </nav>
 
@@ -246,6 +272,26 @@ $resultEvents = $stmt;
         <p class="text-white">© 2024 Konserhub. All rights reserved.</p>
     </div>
 </footer>
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
+    menuButton.addEventListener('click', () => {
+        if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+            mobileMenu.style.display = 'block'; 
+            mobileMenu.style.maxHeight = '0'; 
+            setTimeout(() => {
+                mobileMenu.style.maxHeight = '500px'; 
+            }, 10);
+        } else {
+            mobileMenu.style.maxHeight = '0'; 
+            mobileMenu.addEventListener('transitionend', () => {
+                if (mobileMenu.style.maxHeight === '0px') {
+                    mobileMenu.style.display = 'none'; 
+                }
+            }, { once: true }); 
+        }
+    });
+</script>
 </body>
 </html>
