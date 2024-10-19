@@ -75,6 +75,37 @@ $resultEvents = $stmt;
             width: 300px; /* Adjust card width */
         }
 
+        .sosmed {
+            width: 2.5rem;
+            height: 2.5rem; 
+        }
+
+        .sosmedx {
+            width: 2rem;
+            height: 2rem;
+            margin-top: 5px;
+        }
+
+        .sosmed:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmedx:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmed:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
+
+        .sosmedx:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
+
         #mobile-menu {
             display: none;
             position: absolute; 
@@ -256,22 +287,29 @@ $resultEvents = $stmt;
 
 
     <!-- Footer -->
-<footer class="bg-black py-8 mt-10">
+    <footer class="bg-black py-8 mt-10">
     <div class="container mx-auto px-4 text-center">
-        <div class="flex justify-center space-x-6 mb-4">
-            <a href="https://instagram.com" target="_blank">
-                <img src="../brand/ig2.png" alt="Instagram" class="h-10 w-10 object-contain">
+        <div class="flex flex-wrap justify-center space-x-6 md:space-x-10 mb-4">
+            <a href="#" target="_blank">
+                <img src="../brand/ig2.png" alt="Instagram" class="sosmed"> 
             </a>
-            <a href="https://twitter.com" target="_blank">
-                <img src="../brand/x.png" alt="X (Twitter)" class="h-10 w-8 object-contain">
+            <a href="#" target="_blank">
+                <img src="../brand/x.png" alt="X (Twitter)" class="sosmedx">
             </a>
-            <a href="https://tiktok.com" target="_blank">
-                <img src="../brand/tiktok3.png" alt="TikTok" class="h-10 w-10 object-contain">
+            <a href="#" target="_blank">
+                <img src="../brand/tiktok3.png" alt="TikTok" class="sosmed">
             </a>
         </div>
-        <p class="text-white">© 2024 Konserhub. All rights reserved.</p>
+        
+        <p class="text-white text-sm md:text-base lg:text-lg">© 2024 Konserhub. All rights reserved.</p>
+        
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Terms of Service</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Contact Us</a>
+        </div>
     </div>
-</footer>
+    </footer>
 <script>
     const menuButton = document.getElementById('menu-button');
     const mobileMenu = document.getElementById('mobile-menu');

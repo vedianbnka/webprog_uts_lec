@@ -371,7 +371,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Contact Us</a>
         </div>
     </div>
-</footer>
+    </footer>
 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
