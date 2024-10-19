@@ -51,6 +51,37 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
         .slideshow img.active {
             opacity: 1;
         }
+
+        .sosmed {
+            width: 2.5rem;
+            height: 2.5rem; 
+        }
+
+        .sosmedx {
+            width: 2rem;
+            height: 2rem;
+            margin-top: 5px;
+        }
+
+        .sosmed:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmedx:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmed:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
+
+        .sosmedx:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
     </style>
     <script>
         function checkSession() {
@@ -310,19 +341,17 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-black py-8 mt-10">
     <div class="container mx-auto px-4 text-center">
-        <!-- Social Media Icons -->
         <div class="flex flex-wrap justify-center space-x-6 md:space-x-10 mb-4">
-            <a href="https://instagram.com" target="_blank">
-                <img src="../brand/ig2.png" alt="Instagram" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif: Ukuran berbeda di layar lebih besar -->
+            <a href="#" target="_blank">
+                <img src="../brand/ig2.png" alt="Instagram" class="sosmed"> 
             </a>
-            <a href="https://twitter.com" target="_blank">
-                <img src="../brand/x.png" alt="X (Twitter)" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif -->
+            <a href="#" target="_blank">
+                <img src="../brand/x.png" alt="X (Twitter)" class="sosmedx">
             </a>
-            <a href="https://tiktok.com" target="_blank">
-                <img src="../brand/tiktok3.png" alt="TikTok" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif -->
+            <a href="#" target="_blank">
+                <img src="../brand/tiktok3.png" alt="TikTok" class="sosmed">
             </a>
         </div>
         
