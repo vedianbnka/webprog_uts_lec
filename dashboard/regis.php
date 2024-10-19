@@ -109,7 +109,7 @@ setInterval(checkSession, 1);
     <label for="tipe_tiket" class="form-label">Tipe Tiket</label><br>
     <select class="status-dropdown" name="tipe_tiket" id="tipe_tiket" onchange="updateKuotaAndTotal()"> 
         <option value="" disabled selected>Pilih Tipe Tiket</option>
-        <?php foreach ($tikets as $tiket): ?>
+        <?php foreach ($tikets as &$tiket): ?>
             <option value="<?= $tiket['tipe_tiket'] ?>" data-harga="<?= $tiket['harga'] ?>" data-sisa-kuota="<?= $tiket['sisa_kuota'] ?>">
                 <?= $tiket['tipe_tiket'] ?> - Rp. <?= number_format($tiket['harga'], 0, ',', '.') ?> 
             </option>

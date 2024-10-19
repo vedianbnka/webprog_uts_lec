@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +45,24 @@ setInterval(checkSession, 1);
     <a href="../admin/add_admin.php">Tambah Admin Baru</a>
     <a href="../admin/view_user.php">View User</a>
     <a href="../logout.php">Log Out</a>
+    <?php if (isset($_SESSION['success'])): ?>
+        
+        <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
+            <?php 
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+        </div>
+    <?php endif; ?>
 
+    <?php if (isset($_SESSION['error'])): ?>
+        <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+            <?php 
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+            ?>
+        </div>
+    <?php endif; ?>
     <div class="table-responsive">
         <table id="tabell" class="display w-100">
             <thead>
@@ -91,6 +111,7 @@ setInterval(checkSession, 1);
                         <a href="edit_event.php?id_event=<?= $row['id_event'] ?>">Edit</a>
                         <a href="detail_event.php?id_event=<?= $row['id_event'] ?>">Detail Event</a>
                         <a href="delete_event.php?id_event=<?= $row['id_event'] ?>">Delete</a>
+                        <a href="edit_kuota.php?id_event=<?= $row['id_event'] ?>">Edit Kuota Tiket</a>
                         <a href="list_peserta.php?id_event=<?= $row['id_event'] ?>">List Peserta</a>
                     </td>
                 </tr>

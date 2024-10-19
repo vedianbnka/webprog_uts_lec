@@ -42,6 +42,7 @@ setInterval(checkSession, 1);
     </script>
 </head>
 <?php
+    session_start();
     require_once "../db.php";
 
     $sql = "SELECT * FROM event_konser WHERE id_event = " . $_GET['id_event'];
@@ -51,11 +52,24 @@ setInterval(checkSession, 1);
         <form action="edit_event_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="p-5 border rounded bg-white shadow animasi" enctype="multipart/form-data">
             
             <h2 class="text-center">Edit Event</h2>
-            <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
-                <div class="alert alert-danger" role="alert">
-                    File type not supported
-                </div>
-            <?php endif; ?>
+            <?php if (isset($_SESSION['success'])): ?>
+        
+        <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
+            <?php 
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['error'])): ?>
+        <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+            <?php 
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+            ?>
+        </div>
+    <?php endif; ?>
             <div class="form-group">
                 <label for="nama_event">Nama Event</label>
                 <input type="text" id="nama_event" name="nama_event" class="form-control" value="<?= $event['nama_event'] ?>" required autocomplete="off">
@@ -79,11 +93,6 @@ setInterval(checkSession, 1);
             <div class="form-group">
                 <label for="nama_event">Deskripsi</label>
                 <input type="text" id="deskripsi" name="deskripsi" class="form-control" value="<?= $event['deskripsi'] ?>" required autocomplete="off">
-            </div>
-
-            <div class="form-group">
-                <label for="jumlah_max_partisipan">Jumlah Max Partisipan</label>
-                <input type="number" id="jumlah_max_partisipan" name="jumlah_max_partisipan" class="form-control" value="<?= $event['jumlah_max_partisipan'] ?>" required autocomplete="off">
             </div>
 
             <div class="form-group">
