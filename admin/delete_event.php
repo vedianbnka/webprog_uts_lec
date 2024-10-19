@@ -20,4 +20,5 @@ if ($event) { // Pastikan ada data yang dikembalikan
 $sql = "DELETE FROM event_konser WHERE id_event = ?";
 $statement = $db->prepare($sql);
 $statement->execute([$id_event]);
+$_SESSION['success'] = 'Berhasil menghapus event.';
 header('Location: index.php');

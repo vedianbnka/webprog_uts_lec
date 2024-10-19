@@ -150,6 +150,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                 <a href="#" class="text-black hover:text-[#7B61FF]">Home</a>
                 <a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a>
                 <a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a>
+                <a href="tiket.php" class="text-black hover:text-[#7B61FF]">Tiket Saya</a>
                 <a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a>
             </div>
         </div>

@@ -54,5 +54,6 @@
     $stmt->execute($data);
 
     // Redirect ke halaman admin setelah sukses
+    $_SESSION['success'] = 'Berhasil mengedit event.';
     header('Location: ../admin/index.php');
 ?>

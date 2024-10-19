@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once "../db.php";
+
+$id_user = $_SESSION['id_user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,22 +25,20 @@ session_start();
         }
     </style>
     <script>
-        function checkSession() {
-  // Kirim permintaan AJAX ke check_session.php
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../check_session_admin.php", true);
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      if (response.status === "inactive") {
-        window.location.href = "../login/index.php";
-      }
-    }
-  };
-  xhr.send();
-}
-
-setInterval(checkSession, 1);
+       function checkSession() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../check_session.php", true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === "inactive") {
+                        window.location.href = "../login/index.php";
+                    }
+                }
+            };
+            xhr.send();
+        }
+        setInterval(checkSession, 1);
     </script>
 </head>
 <body>
@@ -59,17 +60,7 @@ setInterval(checkSession, 1);
             ?>
         </div>
     <?php endif; ?>
-    <?php
-        require_once '../db.php';
-
-        $id_event = $_GET['id_event'];
-        $sql = "SELECT * FROM event_konser WHERE id_event = ?";
-        $statement = $db->prepare($sql);
-        $statement->execute([$id_event]);
-        $event = $statement->fetch(PDO::FETCH_ASSOC);
-    ?>
-    <h1>List Partisipan <?php echo $event['nama_event']; ?></h1>
-    <a href="download_excel.php?id_event=<?= $id_event ?>">Download Excel</a>
+    <h1>Tiket Saya</h1>
     <div class="table-responsive">
         <table id="tabell" class="display w-100">
             <thead>
@@ -79,15 +70,13 @@ setInterval(checkSession, 1);
                     <th>Tipe Tiket</th>
                     <th>Jumlah Pembelian Tiket</th>
                     <th>Bukti Pembayaran</th>
-                    <th>Action</th>
-                    <th>No. tiket</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    $sql = "SELECT u.nama, p.tanggal_register, p.tipe_tiket, p.jumlah, p.bukti_pembayaran, p.status, p.id_partisipan, p.no_tiket FROM list_partisipan_event AS p JOIN user AS u ON p.id_user=u.id_user WHERE p.id_event = ?";
+                    $sql = "SELECT u.nama, p.tanggal_register, p.tipe_tiket, p.jumlah, p.bukti_pembayaran FROM list_partisipan_event AS p JOIN user AS u ON p.id_user=u.id_user WHERE p.id_user = ?";
                     $statement = $db->prepare($sql);
-                    $statement->execute([$id_event]);
+                    $statement->execute([$id_user]);
                     while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <tr>
@@ -96,21 +85,6 @@ setInterval(checkSession, 1);
                     <td><?= $row['tipe_tiket'] ?></td>
                     <td><?= $row['jumlah'] ?></td>
                     <td><img class="img-fluid" src="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" alt=""></td>
-                    <td>
-                    <form method="post" action="status_tiket.php?id_event=<?= $id_event ?>&id_partisipan=<?= $row['id_partisipan'] ?>">
-                        <select class="status-dropdown" name="status" onchange="this.form.submit()"> 
-                            <option value="approved" <?= $row['status'] == 'approved' ? 'selected' : '' ?>>Approved</option>
-                            <option value="pending" <?= $row['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
-                            <option value="rejected" <?= $row['status'] == 'rejected' ? 'selected' : '' ?>>Rejected</option>
-                        </select>
-                    </form>
-                            <option value="approved" <?= $row['status'] == 'approved' ? 'selected' : '' ?>>Approved</option>
-                            <option value="pending" <?= $row['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
-                            <option value="rejected" <?= $row['status'] == 'rejected' ? 'selected' : '' ?>>Rejected</option>
-                        </select>
-                    </form>
-                    </td>
-                    <td><?= $row['no_tiket'] == null ? '-' : $row['no_tiket'] ?></td>
                 </tr>
                 <?php
                     }

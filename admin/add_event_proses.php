@@ -1,4 +1,5 @@
 <?php
+session_start();
     require_once "../db.php";
 
     // Mengambil data dari form
@@ -88,5 +89,6 @@
     }
 
     // Redirect ke halaman admin setelah sukses
+    $_SESSION['success'] = 'Berhasil menambahkan event.';
     header('Location: ../admin/index.php');
 ?>

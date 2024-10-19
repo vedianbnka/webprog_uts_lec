@@ -57,10 +57,10 @@ if (isset($_POST['id_event'])) {
         exit();
     }
 
-    $sql = "UPDATE tiket SET jumlah_sold = ? WHERE id_event = ? AND tipe_tiket = ?";
-    $stmt = $db->prepare($sql);
-    $jumlah_tiket = $jumlah_tiket + $jumlah_sold;
-    $stmt->execute([$jumlah_tiket, $id_event, $tipe_tiket]);
+    // $sql = "UPDATE tiket SET jumlah_sold = ? WHERE id_event = ? AND tipe_tiket = ?";
+    // $stmt = $db->prepare($sql);
+    // $jumlah_tiket = $jumlah_tiket + $jumlah_sold;
+    // $stmt->execute([$jumlah_tiket, $id_event, $tipe_tiket]);
 
     // Register the user for the event and update the participant count
     // Registration success

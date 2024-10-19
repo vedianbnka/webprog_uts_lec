@@ -1,0 +1,13 @@
+{
+    "name": "vedianbunka/webprog_uts_lec",
+    "description": "uts_lec",
+    "autoload": {
+        "psr-4": {
+            "Vedianbunka\\WebprogUtsLec\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "phpoffice/phpspreadsheet": "dev-master"
+    }
+}
