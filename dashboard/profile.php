@@ -40,8 +40,17 @@ if (!$user) {
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#7B61FF] to-[#6A52E0]">
-    <div class="p-8 bg-white rounded-lg shadow-lg animasi max-w-lg w-full">
+<body class="relative min-h-screen bg-gray-900 flex items-center justify-center">
+    <video
+        autoplay
+        loop
+        muted
+        class="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        >
+        <source src="../login/videobg/sample4.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+    <div class="p-10 bg-opacity-80 bg-white border rounded-lg shadow-lg animasi max-w-sm w-full">
         <h2 class="text-3xl font-bold text-[#7B61FF] mb-6">Edit Profile</h2>
 
         <?php if (isset($_GET['error'])): ?>

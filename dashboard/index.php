@@ -34,9 +34,9 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             top: 0;
             left: 0;
             width: 100%;
-            height: 60vh; /* Adjust the height as needed */
+            height: 60vh;
             overflow: hidden;
-            z-index: -1; /* Places the slideshow behind the content */
+            z-index: -1; 
         }
 
         .slideshow img {
@@ -51,6 +51,51 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
         .slideshow img.active {
             opacity: 1;
         }
+
+        .sosmed {
+            width: 2.5rem;
+            height: 2.5rem; 
+        }
+
+        .sosmedx {
+            width: 2rem;
+            height: 2rem;
+            margin-top: 5px;
+        }
+
+        .sosmed:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmedx:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmed:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
+
+        .sosmedx:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
+
+        #mobile-menu {
+            display: none;
+            position: absolute; 
+            left: 0;
+            right: 0;
+            background-color: white; 
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+            z-index: 50; 
+            max-height: 0; 
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out; 
+        }
+
     </style>
     <script>
         function checkSession() {
@@ -68,7 +113,6 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
         }
         setInterval(checkSession, 1);
 
-        //slideshow
         let currentSlide = 0;
 
         function showSlides() {
@@ -84,16 +128,17 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 
         document.addEventListener('DOMContentLoaded', () => {
             showSlides();
-            setInterval(showSlides, 5000); // Change slide every 5 seconds
+            setInterval(showSlides, 5000); 
         });
     </script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 fade-in">
 
-<!-- Navbar -->
-<nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
+            <a href="#" class="flex items-center space-x-2">
+                <img src="../brand/logo1.png" alt="Website Logo" class="h-7 w-auto">
+            </a>
             <div class="block lg:hidden">
                 <button id="menu-button" class="focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -116,6 +161,8 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             <a href="../logout.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Logout</a>
         </div>
     </nav>
+
+
 
     <div class="slideshow">        
         <img src="slide/slide1.jpg" alt="Slide 1">
@@ -143,7 +190,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 
 <!-- Content Section -->
 <section class="container mx-auto mt-10 p-5 bg-white rounded shadow">
-    <h1 class="text-center text-3xl font-bold mb-5">Available events</h1>
+    <h1 class="text-center text-3xl font-bold mb-5">Upcoming events</h1>
 
     <?php if (isset($_SESSION['success'])): ?>
         <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
@@ -225,10 +272,8 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             <p class="text-gray-600">Tidak ada event konser yang terbuka saat ini.</p>
         </div>
     <?php endif; ?>
-</section>
-
-<!-- JavaScript for Scrolling -->
-<script>
+    </section>
+    <script>
     const slider = document.getElementById('event-slider');
 
     function slideLeft() {
@@ -238,25 +283,22 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
     function slideRight() {
         slider.scrollLeft += 300; // Adjust the value as needed
     }
-</script>
-<style>
-    /* Hide scrollbar for all browsers */
-    #event-slider {
-        -ms-overflow-style: none;  /* Internet Explorer 10+ */
-        scrollbar-width: none;     /* Firefox */
-    }
-
-    #event-slider::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
-    }
-</style>
 
 
+    </script>
+    <style>
+        /* Hide scrollbar for all browsers */
+        #event-slider {
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;     /* Firefox */
+        }
 
-
-        <!-- Tombol See More -->
+        #event-slider::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+    </style>
         <?php if ($limit < $totalEvents): ?>
-            <div class="text-center mt-5 mb-6"> <!-- Tambahkan 'mb-6' untuk padding di bawah -->
+            <div class="text-center mt-5 mb-6"> 
                 <br>
                 <a href="events.php?limit=<?= $limit + 6 ?>" class="mt-6 px-6 py-3 bg-[#7B61FF] text-white rounded-md shadow-lg hover:bg-[#6A52E0]">See More ></a>
                 <br>
@@ -310,36 +352,53 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-black py-8 mt-10">
     <div class="container mx-auto px-4 text-center">
-        <!-- Social Media Icons -->
         <div class="flex flex-wrap justify-center space-x-6 md:space-x-10 mb-4">
-            <a href="https://instagram.com" target="_blank">
-                <img src="../brand/ig2.png" alt="Instagram" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif: Ukuran berbeda di layar lebih besar -->
+            <a href="#" target="_blank">
+                <img src="../brand/ig2.png" alt="Instagram" class="sosmed"> 
             </a>
-            <a href="https://twitter.com" target="_blank">
-                <img src="../brand/x.png" alt="X (Twitter)" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif -->
+            <a href="#" target="_blank">
+                <img src="../brand/x.png" alt="X (Twitter)" class="sosmedx">
             </a>
-            <a href="https://tiktok.com" target="_blank">
-                <img src="../brand/tiktok3.png" alt="TikTok" class="h-8 w-8 md:h-10 md:w-10 object-contain"> <!-- Responsif -->
+            <a href="#" target="_blank">
+                <img src="../brand/tiktok3.png" alt="TikTok" class="sosmed">
             </a>
         </div>
         
-        <!-- Footer Text -->
         <p class="text-white text-sm md:text-base lg:text-lg">© 2024 Konserhub. All rights reserved.</p>
         
-        <!-- Additional Links -->
         <div class="flex justify-center space-x-4 mt-4">
             <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Privacy Policy</a>
             <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Terms of Service</a>
             <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Contact Us</a>
         </div>
     </div>
-</footer>
+    </footer>
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+        if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+            mobileMenu.style.display = 'block'; 
+            mobileMenu.style.maxHeight = '0'; 
+            setTimeout(() => {
+                mobileMenu.style.maxHeight = '500px'; 
+            }, 10);
+        } else {
+            mobileMenu.style.maxHeight = '0'; 
+            mobileMenu.addEventListener('transitionend', () => {
+                if (mobileMenu.style.maxHeight === '0px') {
+                    mobileMenu.style.display = 'none'; 
+                }
+            }, { once: true }); 
+        }
+    });
+</script>
 </body>
 </html>

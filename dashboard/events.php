@@ -74,6 +74,50 @@ $resultEvents = $stmt;
         .card {
             width: 300px; /* Adjust card width */
         }
+
+        .sosmed {
+            width: 2.5rem;
+            height: 2.5rem; 
+        }
+
+        .sosmedx {
+            width: 2rem;
+            height: 2rem;
+            margin-top: 5px;
+        }
+
+        .sosmed:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmedx:hover {
+            transition: ease-in-out .2s;
+            transform: scale(1.5);
+        }
+
+        .sosmed:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
+
+        .sosmedx:not(:hover) {
+            transition: ease-in-out .2s;
+            transform: scale(1);
+        }
+
+        #mobile-menu {
+            display: none;
+            position: absolute; 
+            left: 0;
+            right: 0;
+            background-color: white; 
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+            z-index: 50; 
+            max-height: 0; 
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out; 
+        }
     </style>
     <script>
         function checkSession() {
@@ -113,21 +157,36 @@ $resultEvents = $stmt;
 </head>
 <body class="bg-gray-100">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-lg">
+<nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-         <a href="#" class="text-2xl font-bold text-black">Konserhub</a>
-            <ul class="flex space-x-6">
-                <li><a href="index.php" class="text-black hover:text-[#7B61FF]">Home</a></li>
-                <li><a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a></li>
-                <li><a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a></li>
-                <li><a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a></li>
-            </ul>
+            <a href="#" class="flex items-center space-x-2">
+                <img src="../brand/logo1.png" alt="Website Logo" class="h-7 w-auto">
+            </a>
+            <div class="block lg:hidden">
+                <button id="menu-button" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex space-x-6" id="menu">
+                <a href="index.php" class="text-black hover:text-[#7B61FF]">Home</a>
+                <a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a>
+                <a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a>
+                <a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a>
+            </div>
+        </div>
+        <!-- Dropdown Menu -->
+        <div class="lg:hidden" id="mobile-menu" style="display: none;">
+            <a href="index.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Home</a>
+            <a href="events.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Events</a>
+            <a href="profile.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Profile</a>
+            <a href="../logout.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Logout</a>
         </div>
     </nav>
 
     <div class="slideshow">        
-        <img src="slide/slide6.jpg" alt="Slide 1">
+        <img src="slide/slide9.jpg" alt="Slide 1">
         <img src="slide/slide7.jpg" alt="Slide 2">
         <img src="slide/slide8.jpg" alt="Slide 3">
     </div><br><br>
@@ -230,22 +289,49 @@ $resultEvents = $stmt;
 
 
     <!-- Footer -->
-<footer class="bg-black py-8 mt-10">
+    <footer class="bg-black py-8 mt-10">
     <div class="container mx-auto px-4 text-center">
-        <div class="flex justify-center space-x-6 mb-4">
-            <a href="https://instagram.com" target="_blank">
-                <img src="../brand/ig2.png" alt="Instagram" class="h-10 w-10 object-contain">
+        <div class="flex flex-wrap justify-center space-x-6 md:space-x-10 mb-4">
+            <a href="#" target="_blank">
+                <img src="../brand/ig2.png" alt="Instagram" class="sosmed"> 
             </a>
-            <a href="https://twitter.com" target="_blank">
-                <img src="../brand/x.png" alt="X (Twitter)" class="h-10 w-8 object-contain">
+            <a href="#" target="_blank">
+                <img src="../brand/x.png" alt="X (Twitter)" class="sosmedx">
             </a>
-            <a href="https://tiktok.com" target="_blank">
-                <img src="../brand/tiktok3.png" alt="TikTok" class="h-10 w-10 object-contain">
+            <a href="#" target="_blank">
+                <img src="../brand/tiktok3.png" alt="TikTok" class="sosmed">
             </a>
         </div>
-        <p class="text-white">© 2024 Konserhub. All rights reserved.</p>
+        
+        <p class="text-white text-sm md:text-base lg:text-lg">© 2024 Konserhub. All rights reserved.</p>
+        
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Terms of Service</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Contact Us</a>
+        </div>
     </div>
-</footer>
+    </footer>
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
+    menuButton.addEventListener('click', () => {
+        if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+            mobileMenu.style.display = 'block'; 
+            mobileMenu.style.maxHeight = '0'; 
+            setTimeout(() => {
+                mobileMenu.style.maxHeight = '500px'; 
+            }, 10);
+        } else {
+            mobileMenu.style.maxHeight = '0'; 
+            mobileMenu.addEventListener('transitionend', () => {
+                if (mobileMenu.style.maxHeight === '0px') {
+                    mobileMenu.style.display = 'none'; 
+                }
+            }, { once: true }); 
+        }
+    });
+</script>
 </body>
 </html>
