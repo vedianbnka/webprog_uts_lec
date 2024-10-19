@@ -132,7 +132,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
         });
     </script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 fade-in">
 
     <nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -190,7 +190,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 
 <!-- Content Section -->
 <section class="container mx-auto mt-10 p-5 bg-white rounded shadow">
-    <h1 class="text-center text-3xl font-bold mb-5">Available events</h1>
+    <h1 class="text-center text-3xl font-bold mb-5">Upcoming events</h1>
 
     <?php if (isset($_SESSION['success'])): ?>
         <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
