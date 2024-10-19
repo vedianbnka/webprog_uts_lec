@@ -186,7 +186,7 @@ $resultEvents = $stmt;
     </nav>
 
     <div class="slideshow">        
-        <img src="slide/slide6.jpg" alt="Slide 1">
+        <img src="slide/slide9.jpg" alt="Slide 1">
         <img src="slide/slide7.jpg" alt="Slide 2">
         <img src="slide/slide8.jpg" alt="Slide 3">
     </div><br><br>
