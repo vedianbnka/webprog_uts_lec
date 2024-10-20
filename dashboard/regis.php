@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../db.php'; // Adjust the path if necessary
+require_once '../db.php';
 
 // // Check if user is logged in
 // if (!isset($_SESSION['user_id'])) {
@@ -8,7 +8,6 @@ require_once '../db.php'; // Adjust the path if necessary
 //     exit();
 // }
 
-// Check if event ID is provided
 if (!isset($_GET['id_event'])) {
     $_SESSION['error'] = 'No event selected.';
     header('Location: index.php');
@@ -17,7 +16,6 @@ if (!isset($_GET['id_event'])) {
 
 $id_event = $_GET['id_event'];
 
-// Fetch event details
 $sql = "SELECT * FROM event_konser WHERE id_event = :id_event";
 $stmt = $db->prepare($sql);
 $stmt->execute(['id_event' => $id_event]);
@@ -38,7 +36,6 @@ if (!$event) {
     exit();
 }
 
-// Display form only if event is open and has available slots
 if ($event['status_event'] != 'open' || $jumlah_sold >= $kuota) {
     $_SESSION['error'] = 'Event is full or closed for registration.';
     header('Location: index.php');
@@ -167,7 +164,5 @@ function updateTotal() {
     document.getElementById('total_harga').value = new Intl.NumberFormat('id-ID').format(totalHarga);
 }
 </script>
-
-
 </body>
 </html>
