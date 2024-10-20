@@ -150,9 +150,9 @@ $id_user = $_SESSION['id_user'];
 
         <h1 class="text-3xl font-bold text-black mb-6">My Ticket</h1>
 
-        <input type="text" id="search" placeholder="Cari Tiket..." class="mb-4 p-2 border border-gray-300 rounded" onkeyup="searchTickets()" autocomplete="off">
+        <input type="text" id="search" placeholder="Find Ticket..." class="mb-4 p-2 border border-gray-300 rounded" onkeyup="searchTickets()" autocomplete="off">
 
-        <label for="ticketsPerPage" class="mr-2">Tampilkan:</label>
+        <label for="ticketsPerPage" class="mr-2">Number of list:</label>
         <select id="ticketsPerPage" class="mb-4 p-2 border border-gray-300 rounded" onchange="updateTicketsPerPage()">
             <option value="5">5</option>
             <option value="10">10</option>

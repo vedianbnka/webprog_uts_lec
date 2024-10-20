@@ -222,7 +222,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                 &#10095;
             </button>
             
-            <div id="event-slider" class="flex overflow-x-auto scroll-smooth gap-5 mx-auto w-full max-w-5xl px-5">
+            <div id="event-slider" class="flex overflow-x-auto scroll-smooth gap-5 mx-auto w-full max-w-5xl px-5 pb-5">
                 <?php while($row = $resultEvents->fetch(PDO::FETCH_ASSOC)): ?>
                     <div class="flex-shrink-0 w-80 relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                         <div class="relative h-40 overflow-hidden rounded-t-xl bg-gray-300">
