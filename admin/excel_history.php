@@ -17,36 +17,26 @@ $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 $sql = "SELECT * FROM list_partisipan_event AS p JOIN event_konser AS e ON p.id_event = e.id_event WHERE p.id_user = ? AND p.status = 'approved'";
 $statement = $db->prepare($sql);
-$statement->execute([$id_event]);
+$statement->execute([$id_user]);
     $sheet->setCellValue('A1', 'History Partisipan User : '.$nama);
-   $sheet->setCellValue('A2', 'ID Partisipan');
+   $sheet->setCellValue('A2', 'Nama Event');
+   $sheet->setCellValue('B2', 'Tanggal Register');
+   $sheet->setCellValue('C2', 'Tipe Tiket');
+   $sheet->setCellValue('D2', 'Jumlah Pembelian Tiket');
+   $sheet->setCellValue('E2', 'No. Tiket');
+   $i = 3;
 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-    $id_partisipan = $row['id_partisipan'];
-    $id_user = $row['id_user'];
-    $nama = $row['nama'];
-    $email = $row['email'];
-    $no_telp = $row['no_telp'];
-    $tipe_tiket = $row['tipe_tiket'];
-    $jml_pilih = $row['jumlah'];
-    $bukti_tf = $row['bukti_pembayaran'];
-    $status = $row['status'];
-    $no_tiket = $row['no_tiket'];
-    $sheet->setCellValue('A' . ($i + 2), $id_partisipan);
-    $sheet->setCellValue('B' . ($i + 2), $id_user);
-    $sheet->setCellValue('C' . ($i + 2), $nama);
-    $sheet->setCellValue('D' . ($i + 2), $email);
-    $sheet->setCellValue('E' . ($i + 2), $no_telp);
-    $sheet->setCellValue('F' . ($i + 2), $tipe_tiket);
-    $sheet->setCellValue('G' . ($i + 2), $jml_pilih);
-    $sheet->setCellValue('H' . ($i + 2), $bukti_tf);
-    $sheet->setCellValue('I' . ($i + 2), $status);
-    $sheet->setCellValue('J' . ($i + 2), $no_tiket);
-    $i++;
+   $sheet->setCellValue('A'.$i, $row['nama_event']);
+   $sheet->setCellValue('B'.$i, $row['tanggal_register']);
+   $sheet->setCellValue('C'.$i, $row['tipe_tiket']);
+   $sheet->setCellValue('D'.$i, $row['jumlah']);
+   $sheet->setCellValue('E'.$i, $row['no_tiket']);
+   $i++;
 }
 
 // Prepare to download the file instead of saving it
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename=history_partisipan_"'.$nama.'.xlsx"');
+header('Content-Disposition: attachment;filename="history_partisipan_'.$nama.'.xlsx"');
 header('Cache-Control: max-age=0');
 
 // Save the spreadsheet to the output stream for download
