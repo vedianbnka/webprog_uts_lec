@@ -159,7 +159,7 @@ $resultEvents = $stmt;
 
 <nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-2">
+            <a href="index.php" class="flex items-center space-x-2">
                 <img src="../brand/logo1.png" alt="Website Logo" class="h-7 w-auto">
             </a>
             <div class="block lg:hidden">

@@ -107,7 +107,7 @@ $id_user = $_SESSION['id_user'];
     <!-- Navbar -->
     <nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-2">
+            <a href="index.php" class="flex items-center space-x-2">
                 <img src="../brand/logo1.png" alt="Website Logo" class="h-7 w-auto">
             </a>
             <div class="block lg:hidden">
@@ -136,7 +136,6 @@ $id_user = $_SESSION['id_user'];
     </nav>
 
     <div class="container mx-auto px-4 py-8">
-        <!-- Alert Notifikasi -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
                 <?= $_SESSION['success']; unset($_SESSION['success']); ?>
