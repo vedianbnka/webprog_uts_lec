@@ -22,6 +22,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konserhub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <style>
         img {
@@ -96,6 +97,11 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             transition: max-height 0.3s ease-in-out; 
         }
 
+        .slide-in-elliptic-bottom-fwd {
+            -webkit-animation: slide-in-elliptic-bottom-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                    animation: slide-in-elliptic-bottom-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
     </style>
     <script>
         function checkSession() {
@@ -132,7 +138,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
         });
     </script>
 </head>
-<body class="bg-gray-100 fade-in">
+<body class="bg-gray-100">
 
     <nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">

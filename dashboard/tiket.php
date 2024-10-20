@@ -9,7 +9,7 @@ $id_user = $_SESSION['id_user'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title>Konserhub | My Ticket</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <script>

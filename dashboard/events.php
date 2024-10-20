@@ -32,7 +32,7 @@ $resultEvents = $stmt;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konserhub</title>
+    <title>Konserhub | Events</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <style>
