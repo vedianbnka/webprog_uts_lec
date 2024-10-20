@@ -70,6 +70,8 @@ setInterval(checkSession, 1);
                     </td>
                     <td>
                         <a href="delete_user.php?id_user=<?= $row['id_user'] ?>">Delete User</a>
+                        <a href="history.php?id_user=<?= $row['id_user'] ?>">History Partisipan</a>
+                        </td>
                 </tr>
             <?php
                 }

@@ -1,8 +1,5 @@
 <?php
 session_start();
-require_once "../db.php";
-
-$id_user = $_SESSION['id_user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,20 +22,22 @@ $id_user = $_SESSION['id_user'];
         }
     </style>
     <script>
-       function checkSession() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "../check_session.php", true);
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.status === "inactive") {
-                        window.location.href = "../login/index.php";
-                    }
-                }
-            };
-            xhr.send();
-        }
-        setInterval(checkSession, 1);
+        function checkSession() {
+  // Kirim permintaan AJAX ke check_session.php
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../check_session_admin.php", true);
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      if (response.status === "inactive") {
+        window.location.href = "../login/index.php";
+      }
+    }
+  };
+  xhr.send();
+}
+
+setInterval(checkSession, 1);
     </script>
 </head>
 <body>
@@ -60,35 +59,41 @@ $id_user = $_SESSION['id_user'];
             ?>
         </div>
     <?php endif; ?>
-    <h1>Tiket Saya</h1>
+    <?php
+        require_once '../db.php';
+
+        $id_user = $_GET['id_user'];
+        $sql = "SELECT * FROM user WHERE id_user = ?";
+        $statement = $db->prepare($sql);
+        $statement->execute([$id_user]);
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+    ?>
+    <h1>List History Partisipan <?php echo $user['nama']; ?></h1>
+    <a href="excel_history.php?id_user=<?= $id_user ?>">Download Excel</a>
     <div class="table-responsive">
         <table id="tabell" class="display w-100">
             <thead>
                 <tr>
-                    <th>Nama event</th>
+                    <th>Nama Event</th>
                     <th>Tanggal Register</th>
                     <th>Tipe Tiket</th>
                     <th>Jumlah Pembelian Tiket</th>
-                    <th>Bukti Pembayaran</th>
-                    <th>Status</th>
                     <th>No. tiket</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    $sql = "SELECT * FROM list_partisipan_event AS p JOIN event_konser AS e ON p.id_event = e.id_event WHERE p.id_user = ?";
+                    $sql = "SELECT * FROM list_partisipan_event AS p JOIN event_konser AS e ON p.id_event = e.id_event WHERE p.id_user = ? AND p.status = 'approved'";
                     $statement = $db->prepare($sql);
                     $statement->execute([$id_user]);
                     while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <tr>
-                    <td><a href="detail_event.php?id_event=<?= $row['id_event'] ?>"><?= $row['nama_event'] ?></a></td>
+                    <td><?= $row['nama_event'] ?></td>
                     <td><?= $row['tanggal_register'] ?></td>
                     <td><?= $row['tipe_tiket'] ?></td>
                     <td><?= $row['jumlah'] ?></td>
-                    <td><img class="img-fluid" src="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" alt=""></td>
-                    <td><?= $row['status'] ?></td>
-                    <td><?= $row['no_tiket'] == null ? '-' : $row['no_tiket'] ?></td>
+                    <td><?= $row['no_tiket'] ?></td>
                 </tr>
                 <?php
                     }
