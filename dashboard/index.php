@@ -147,18 +147,19 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                 </button>
             </div>
             <div class="hidden lg:flex space-x-6" id="menu">
-                <a href="#" class="text-black hover:text-[#7B61FF]">Home</a>
+                <a href="index.php" class="text-black hover:text-[#7B61FF]">Home</a>
                 <a href="events.php" class="text-black hover:text-[#7B61FF]">Events</a>
                 <a href="profile.php" class="text-black hover:text-[#7B61FF]">Profile</a>
-                <a href="tiket.php" class="text-black hover:text-[#7B61FF]">Tiket Saya</a>
+                <a href="tiket.php" class="text-black hover:text-[#7B61FF]">My Ticket</a>
                 <a href="../logout.php" class="text-black hover:text-[#7B61FF]">Logout</a>
             </div>
         </div>
         <!-- Dropdown Menu -->
         <div class="lg:hidden" id="mobile-menu" style="display: none;">
-            <a href="#" class="block text-black hover:text-[#7B61FF] px-4 py-2">Home</a>
+            <a href="index.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Home</a>
             <a href="events.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Events</a>
             <a href="profile.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Profile</a>
+            <a href="tiket.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">My Ticket</a>
             <a href="../logout.php" class="block text-black hover:text-[#7B61FF] px-4 py-2">Logout</a>
         </div>
     </nav>
