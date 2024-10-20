@@ -18,16 +18,18 @@ $sheet = $spreadsheet->getActiveSheet();
 $sql = "SELECT * FROM list_partisipan_event AS a JOIN user AS b ON a.id_user = b.id_user WHERE id_event = ?";
 $statement = $db->prepare($sql);
 $statement->execute([$id_event]);
-    $sheet->setCellValue('A1', 'ID Partisipan');
-    $sheet->setCellValue('B1', 'ID User');
-    $sheet->setCellValue('C1', 'Nama');
-    $sheet->setCellValue('D1', 'Email');
-    $sheet->setCellValue('E1', 'No. Telp');
-    $sheet->setCellValue('F1', 'Tipe Tiket');
-    $sheet->setCellValue('G1', 'Jumlah Pembelian');
-    $sheet->setCellValue('H1', 'Bukti Pembayaran');
-    $sheet->setCellValue('I1', 'Status');
-    $sheet->setCellValue('J1', 'No. Tiket');
+
+$sheet->setCellValue('A1', 'History Partisipan Event : '.$nama_event);
+    $sheet->setCellValue('A2', 'ID Partisipan');
+    $sheet->setCellValue('B2', 'ID User');
+    $sheet->setCellValue('C2', 'Nama');
+    $sheet->setCellValue('D2', 'Email');
+    $sheet->setCellValue('E2', 'No. Telp');
+    $sheet->setCellValue('F2', 'Tipe Tiket');
+    $sheet->setCellValue('G2', 'Jumlah Pembelian');
+    $sheet->setCellValue('H2', 'Bukti Pembayaran');
+    $sheet->setCellValue('I2', 'Status');
+    $sheet->setCellValue('J2', 'No. Tiket');
 
 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $id_partisipan = $row['id_partisipan'];
@@ -40,16 +42,16 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $bukti_tf = $row['bukti_pembayaran'];
     $status = $row['status'];
     $no_tiket = $row['no_tiket'];
-    $sheet->setCellValue('A' . ($i + 2), $id_partisipan);
-    $sheet->setCellValue('B' . ($i + 2), $id_user);
-    $sheet->setCellValue('C' . ($i + 2), $nama);
-    $sheet->setCellValue('D' . ($i + 2), $email);
-    $sheet->setCellValue('E' . ($i + 2), $no_telp);
-    $sheet->setCellValue('F' . ($i + 2), $tipe_tiket);
-    $sheet->setCellValue('G' . ($i + 2), $jml_pilih);
-    $sheet->setCellValue('H' . ($i + 2), $bukti_tf);
-    $sheet->setCellValue('I' . ($i + 2), $status);
-    $sheet->setCellValue('J' . ($i + 2), $no_tiket);
+    $sheet->setCellValue('A' . ($i + 3), $id_partisipan);
+    $sheet->setCellValue('B' . ($i + 3), $id_user);
+    $sheet->setCellValue('C' . ($i + 3), $nama);
+    $sheet->setCellValue('D' . ($i + 3), $email);
+    $sheet->setCellValue('E' . ($i + 3), $no_telp);
+    $sheet->setCellValue('F' . ($i + 3), $tipe_tiket);
+    $sheet->setCellValue('G' . ($i + 3), $jml_pilih);
+    $sheet->setCellValue('H' . ($i + 3), $bukti_tf);
+    $sheet->setCellValue('I' . ($i + 3), $status);
+    $sheet->setCellValue('J' . ($i + 3), $no_tiket);
     $i++;
 }
 
