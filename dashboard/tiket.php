@@ -11,6 +11,7 @@ $id_user = $_SESSION['id_user'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <script>
         function checkSession() {
             var xhr = new XMLHttpRequest();
@@ -164,13 +165,13 @@ $id_user = $_SESSION['id_user'];
             <table id="ticketTable" class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
                 <thead class="bg-[#7B61FF] text-white">
                     <tr>
-                        <th class="px-4 py-2 border-b">Nama Event</th>
+                        <th class="px-4 py-2 border-b rounded-tl-lg">Nama Event</th>
                         <th class="px-4 py-2 border-b">Tanggal Register</th>
                         <th class="px-4 py-2 border-b">Tipe Tiket</th>
                         <th class="px-4 py-2 border-b">Jumlah Pembelian Tiket</th>
                         <th class="px-4 py-2 border-b">Bukti Pembayaran</th>
                         <th class="px-4 py-2 border-b">Status</th>
-                        <th class="px-4 py-2 border-b">No. Tiket</th>
+                        <th class="px-4 py-2 border-b rounded-tr-lg">No. Tiket</th>
                     </tr>
                 </thead>
                 <tbody id="ticketBody">

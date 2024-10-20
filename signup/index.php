@@ -39,50 +39,50 @@
         <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
     </div>
 
-    <form action="proses.php" method="POST" class="p-10 bg-opacity-80 border rounded-lg bg-white shadow-lg animasi max-w-sm w-full">
-        <h2 class="text-3xl font-bold text-center mb-6 text-[#7B61FF]">Sign Up</h2>
+    <form action="proses.php" method="POST" class="p-4 bg-opacity-80 border rounded-lg bg-white shadow-lg animasi max-w-sm w-full h-auto">
+        <h2 class="text-2xl font-bold text-center mb-4 text-[#7B61FF]">Sign Up</h2>
         
         <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
-            <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+            <div class="mb-3 text-red-600 bg-red-100 p-2 rounded">
                 Password dan konfirmasi password tidak sama.
             </div>
         <?php elseif (isset($_GET['error']) && $_GET['error'] == 2): ?>
-            <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+            <div class="mb-3 text-red-600 bg-red-100 p-2 rounded">
                 Email sudah terdaftar, silakan login.
             </div>
         <?php endif; ?>
         
-        <div class="mb-4">
-            <label for="nama" class="block mb-1 text-gray-700">Full Name:</label>
-            <input type="text" name="nama" id="nama" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
+        <div class="mb-2">
+            <label for="nama" class="block mb-1 text-gray-700 text-sm">Full Name:</label>
+            <input type="text" name="nama" id="nama" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
         </div>
-        <div class="mb-4">
-            <label for="email" class="block mb-1 text-gray-700">Email:</label>
-            <input type="email" name="email" id="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
+        <div class="mb-2">
+            <label for="email" class="block mb-1 text-gray-700 text-sm">Email:</label>
+            <input type="email" name="email" id="email" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
         </div>
-        <div class="mb-4">
-            <label for="phone" class="block mb-1 text-gray-700">Phone Number:</label>
-            <input type="text" name="phone" id="phone" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
+        <div class="mb-2">
+            <label for="phone" class="block mb-1 text-gray-700 text-sm">Phone Number:</label>
+            <input type="text" name="phone" id="phone" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" autocomplete="off" required>
         </div>
-        <div class="mb-4">
-            <label for="password" class="block mb-1 text-gray-700">Password:</label>
+        <div class="mb-2">
+            <label for="password" class="block mb-1 text-gray-700 text-sm">Password:</label>
             <div class="relative">
-                <input type="password" name="password" id="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" required>
+                <input type="password" name="password" id="password" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" required>
                 <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onclick="togglePassword('password')">👁️</span>
             </div>
         </div>
-        <div class="mb-4">
-            <label for="confirm_password" class="block mb-1 text-gray-700">Confirmation Password:</label>
+        <div class="mb-2">
+            <label for="confirm_password" class="block mb-1 text-gray-700 text-sm">Confirmation Password:</label>
             <div class="relative">
-                <input type="password" name="confirm_password" id="confirm_password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" required>
+                <input type="password" name="confirm_password" id="confirm_password" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-[#7B61FF]" required>
                 <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onclick="togglePassword('confirm_password')">👁️</span>
             </div>
         </div>
         
-        <button type="submit" class="w-full px-4 py-2 text-white bg-[#7B61FF] rounded hover:bg-[#6A52E0] focus:outline-none focus:bg-[#6A52E0]">Sign Up</button>
+        <button type="submit" class="w-full px-3 py-2 text-white bg-[#7B61FF] rounded hover:bg-[#6A52E0] focus:outline-none focus:bg-[#6A52E0]">Sign Up</button>
         <br>
         <a href="../login/index.php">
-            <button type="button" class="w-full mt-3 px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600">Back to Login</button>
+            <button type="button" class="w-full mt-2 px-3 py-2 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600">Back to Login</button>
         </a>
     </form>
 
