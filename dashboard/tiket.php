@@ -149,7 +149,7 @@ $id_user = $_SESSION['id_user'];
             </div>
         <?php endif; ?>
 
-        <h1 class="text-3xl font-bold text-black mb-6">My Ticket/h1>
+        <h1 class="text-3xl font-bold text-black mb-6">My Ticket</h1>
 
         <input type="text" id="search" placeholder="Cari Tiket..." class="mb-4 p-2 border border-gray-300 rounded" onkeyup="searchTickets()">
 
