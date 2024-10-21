@@ -39,9 +39,6 @@
                     <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
                 </li>
                 <li>
-                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Participants</a>
-                </li>
-                <li>
                     <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
                 </li>
                 <li>
