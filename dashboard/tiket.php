@@ -26,7 +26,7 @@ $id_user = $_SESSION['id_user'];
             };
             xhr.send();
         }
-        setInterval(checkSession, 10000); // Mengecek sesi setiap 10 detik
+        setInterval(checkSession, 1); // Mengecek sesi setiap 10 detik
     </script>
 
     <style>
