@@ -3,19 +3,15 @@
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $dsn = 'mysql:host=localhost;dbname=web_konser';
-    $kunci = new PDO($dsn, 'root', '');
+    require_once '../db.php';
 
     $sql = "SELECT * FROM user WHERE email = ? ";
-    $stmt = $kunci->prepare($sql);
+    $stmt = $db->prepare($sql);
     $stmt->execute([$email]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $dsnn = 'mysql:host=localhost;dbname=web_konser';
-    $kuncii = new PDO($dsn, 'root', '');
-
     $sqll = "SELECT * FROM admin WHERE email = ? ";
-    $stmtt = $kuncii->prepare($sqll);
+    $stmtt = $db->prepare($sqll);
     $stmtt->execute([$email]);
     $roww = $stmtt->fetch(PDO::FETCH_ASSOC);
 
