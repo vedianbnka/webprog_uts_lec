@@ -7,23 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="icon.png" type="image/x-icon">
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" rel="stylesheet">
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 5px;
-        }
-        img {
-            width: 100%;
-        }
-        /* Add background color for table header */
-        thead {
-            background-color: #7B61FF; /* Change this color as needed */
-            color: white; /* Change text color for better visibility */
-        }
-    </style>
+    
     <script>
         function checkSession() {
             var xhr = new XMLHttpRequest();
@@ -39,25 +23,39 @@
             xhr.send();
         }
 
-        setInterval(checkSession, 1000); // Changed interval to 1 second for practicality
+        setInterval(checkSession, 1); // Changed interval to 1 second for practicality
     </script>
 </head>
 <body class="bg-gray-100">
-    <div class="flex">
-    <aside class="w-64 bg-[#7B61FF] h-screen p-4">
-        <img src="../brand/logo_white.png" alt="Website Logo" class="img-fluid">
-            <nav>
-                <ul class="space-y-4">
-                    <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
-                    <li><a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
-                    <li><a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
-                    <li><a href="add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a></li>
-                    <li><a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a></li>
-                    <li><a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-
+    <div class="flex flex-col md:flex-row">
+    <aside class="w-full lg:w-64 bg-[#7B61FF] h-auto lg:h-screen p-4">
+    <img src="../brand/logo_white.png" alt="Website Logo" class="img-fluid">
+        <nav>
+            <ul class="space-y-4">
+                <li>
+                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
+                </li>
+                <li>
+                    <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
+                </li>
+                <li>
+                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Participants</a>
+                </li>
+                <li>
+                    <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
+                </li>
+                <li>
+                    <a href="../admin/add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a>
+                </li>
+                <li>
+                    <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
+                </li>
+                <li>
+                    <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
         <!-- Main Content -->
         <div class="flex-1">
@@ -91,7 +89,7 @@
 
                                     while ($row = $hasil->fetch(PDO::FETCH_ASSOC)) {
                                 ?>
-                                <tr >
+                                <tr>
                                     <td class="py-4 px-6 text-sm text-gray-900 border-b border-[#7B61FF]"><?= $row['id_user'] ?></td>
                                     <td class="py-4 px-6 text-sm text-gray-900 border-b border-[#7B61FF]"><?= $row['nama'] ?></td>
                                     <td class="py-4 px-6 text-sm text-gray-900 border-b border-[#7B61FF]"><?= $row['email'] ?></td>
@@ -114,15 +112,16 @@
                         © 2024 Konserhub Admin. All rights reserved.
                     </div>
                 </footer>
-            </div>
+            </main>
         </div>
+    </div>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#tabell').DataTable(); 
-            });
-        </script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable(); 
+        });
+    </script>
+</body>
 </html>
