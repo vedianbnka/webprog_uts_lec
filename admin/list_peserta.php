@@ -62,9 +62,6 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
                         <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
                     </li>
                     <li>
-                        <a href="list_peserta.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Participants</a>
-                    </li>
-                    <li>
                         <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
                     </li>
                     <li><a href="../admin/add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a></li>
@@ -82,7 +79,7 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
         <div class="flex-1">
             <!-- Header -->
             <header class="bg-white shadow p-4 flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-black">Dashboard</h2>
+                <h2 class="text-2xl font-bold text-black">Participants</h2>
                 <div class="text-gray-700">Welcome, Admin</div>
             </header>
 

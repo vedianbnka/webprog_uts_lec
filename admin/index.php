@@ -30,12 +30,11 @@ session_start();
 <body class="bg-gray-100">
     <div class="flex">
         <aside class="w-64 bg-[#7B61FF] h-screen p-4">
-            <h2 class="text-2xl font-bold text-white mb-6">Konserhub Admin</h2>
+        <img src="../brand/logo_white.png" alt="Website Logo" class="img-fluid">
             <nav>
                 <ul class="space-y-4">
                     <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
                     <li><a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
-                    <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Participants</a></li>
                     <li><a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
                     <li><a href="add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a></li>
                     <li><a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a></li>
@@ -46,7 +45,7 @@ session_start();
         <div class="flex-1">
             <header class="bg-white shadow p-4 flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-black">Dashboard</h2>
-                <div class="text-gray-700">Welcome, Admin</div>
+                <h3>Selamat Datang, <?php echo isset($_SESSION['admin_name']) ? htmlspecialchars($_SESSION['admin_name']) : 'Admin'; ?></h3>
             </header>
             <main class="p-6 bg-gray-100">
                 <?php if (isset($_SESSION['success'])): ?>

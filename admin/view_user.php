@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="icon.png" type="image/x-icon">
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         table, th, td {
             border: 1px solid black;
@@ -17,7 +16,7 @@
             padding: 5px;
         }
         img {
-            width: 20%;
+            width: 100%;
         }
         /* Add background color for table header */
         thead {
@@ -45,13 +44,12 @@
 </head>
 <body class="bg-gray-100">
     <div class="flex">
-        <aside class="w-64 bg-[#7B61FF] h-screen p-4">
-            <h2 class="text-2xl font-bold text-white mb-6">Konserhub Admin</h2>
+    <aside class="w-64 bg-[#7B61FF] h-screen p-4">
+        <img src="../brand/logo_white.png" alt="Website Logo" class="img-fluid">
             <nav>
                 <ul class="space-y-4">
                     <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
                     <li><a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
-                    <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Participants</a></li>
                     <li><a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
                     <li><a href="add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a></li>
                     <li><a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a></li>
@@ -60,12 +58,13 @@
             </nav>
         </aside>
 
+
         <!-- Main Content -->
         <div class="flex-1">
             <!-- Header -->
             <header class="bg-white shadow p-4 flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-black">Dashboard</h2>
-                <div class="text-gray-700">Welcome, Admin</div>
+                <h2 class="text-2xl font-bold text-black">User Management</h2>
+                <h3>Selamat Datang, <?php echo isset($_SESSION['admin_name']) ? htmlspecialchars($_SESSION['admin_name']) : 'Admin'; ?></h3>
             </header>
 
             <!-- Content -->
