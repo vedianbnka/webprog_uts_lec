@@ -93,48 +93,49 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
                         <a href="download_excel.php?id_event=<?= $id_event ?>" class="text-white-700 hover:underline">Download Excel</a>
                     </button>
                     <div class="table-responsive mt-4">
-                        <table id="tabell" class="display w-100">
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Tanggal Register</th>
-                                    <th>Tipe Tiket</th>
-                                    <th>Jumlah Pembelian Tiket</th>
-                                    <th>Bukti Pembayaran</th>
-                                    <th>Action</th>
-                                    <th>No. tiket</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $sql = "SELECT u.nama, p.tanggal_register, p.tipe_tiket, p.jumlah, p.bukti_pembayaran, p.status, p.id_partisipan, p.no_tiket FROM list_partisipan_event AS p JOIN user AS u ON p.id_user=u.id_user WHERE p.id_event = ?";
-                                    $statement = $db->prepare($sql);
-                                    $statement->execute([$id_event]);
-                                    while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                                ?>
-                                <tr>
-                                    <td><?= $row['nama'] ?></td>
-                                    <td><?= $row['tanggal_register'] ?></td>
-                                    <td><?= $row['tipe_tiket'] ?></td>
-                                    <td><?= $row['jumlah'] ?></td>
-                                    <td><img class="img-fluid" src="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" alt=""></td>
-                                    <td>
-                                        <form method="post" action="status_tiket.php?id_event=<?= $id_event ?>&id_partisipan=<?= $row['id_partisipan'] ?>">
-                                            <select class="status-dropdown" name="status" onchange="this.form.submit()"> 
-                                                <option value="approved" <?= $row['status'] == 'approved' ? 'selected' : '' ?>>Approved</option>
-                                                <option value="pending" <?= $row['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
-                                                <option value="rejected" <?= $row['status'] == 'rejected' ? 'selected' : '' ?>>Rejected</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                    <td><?= $row['no_tiket'] == null ? '-' : $row['no_tiket'] ?></td>
-                                </tr>
-                                <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
+    <table id="tabell" class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
+        <thead class="bg-[#7B61FF] text-white">
+            <tr>
+                <th class="px-4 py-2 text-left">Nama</th>
+                <th class="px-4 py-2 text-left">Tanggal Register</th>
+                <th class="px-4 py-2 text-left">Tipe Tiket</th>
+                <th class="px-4 py-2 text-left">Jumlah Pembelian Tiket</th>
+                <th class="px-4 py-2 text-left">Bukti Pembayaran</th>
+                <th class="px-4 py-2 text-left">Action</th>
+                <th class="px-4 py-2 text-left">No. tiket</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white">
+            <?php
+                $sql = "SELECT u.nama, p.tanggal_register, p.tipe_tiket, p.jumlah, p.bukti_pembayaran, p.status, p.id_partisipan, p.no_tiket FROM list_partisipan_event AS p JOIN user AS u ON p.id_user=u.id_user WHERE p.id_event = ?";
+                $statement = $db->prepare($sql);
+                $statement->execute([$id_event]);
+                while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <tr class="border-b">
+                <td class="px-4 py-2"><?= $row['nama'] ?></td>
+                <td class="px-4 py-2"><?= $row['tanggal_register'] ?></td>
+                <td class="px-4 py-2"><?= $row['tipe_tiket'] ?></td>
+                <td class="px-4 py-2"><?= $row['jumlah'] ?></td>
+                <td class="px-4 py-2"><img class="img-fluid w-20" src="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" alt=""></td>
+                <td class="px-4 py-2">
+                    <form method="post" action="status_tiket.php?id_event=<?= $id_event ?>&id_partisipan=<?= $row['id_partisipan'] ?>">
+                        <select class="status-dropdown p-1 border rounded" name="status" onchange="this.form.submit()"> 
+                            <option value="approved" <?= $row['status'] == 'approved' ? 'selected' : '' ?>>Approved</option>
+                            <option value="pending" <?= $row['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
+                            <option value="rejected" <?= $row['status'] == 'rejected' ? 'selected' : '' ?>>Rejected</option>
+                        </select>
+                    </form>
+                </td>
+                <td class="px-4 py-2"><?= $row['no_tiket'] == null ? '-' : $row['no_tiket'] ?></td>
+            </tr>
+            <?php
+                }
+            ?>
+        </tbody>
+    </table>
+</div>
+
                 </section>          
             </main>
         </div>
