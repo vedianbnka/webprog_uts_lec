@@ -130,55 +130,55 @@ session_start();
         </div>
     </div>
     <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        <!-- About Company Section -->
-        <div>
-            <h4 class="font-semibold text-lg mb-4">About Company</h4>
-            <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
-            <div class="flex space-x-4 mt-4">
-                <!-- Social Media Icons -->
-                <a href="#"><img src="../brand/ig2.png" alt="Facebook" class="w-6 h-6"></a>
-                <a href="#"><img src="../brand/tiktokWhite.png" alt="YouTube" class="w-6 h-6"></a>
-                <a href="#"><img src="../brand/x.png" alt="WhatsApp" class="w-6 h-6"></a>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- About Company Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">About Company</h4>
+                <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
+                <div class="flex space-x-4 mt-4">
+                    <!-- Social Media Icons -->
+                    <a href="#"><img src="../brand/ig2.png" alt="Facebook" class="w-6 h-6"></a>
+                    <a href="#"><img src="../brand/tiktokWhite.png" alt="YouTube" class="w-6 h-6"></a>
+                    <a href="#"><img src="../brand/x.png" alt="WhatsApp" class="w-6 h-6"></a>
+                </div>
+            </div>
+
+            <!-- Service Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Service</h4>
+                <ul class="text-sm space-y-2">
+                    <li><a href="add-event.php" class="hover:text-blue-300">Add Event</a></li>
+                    <li><a href="view_user.php" class="hover:text-blue-300">User Management</a></li>
+                    <li><a href="add_admin.php" class="hover:text-blue-300">Add Admin</a></li>
+                </ul>
+            </div>
+
+            <!-- Useful Links Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Useful Link</h4>
+                <ul class="text-sm space-y-2">
+                    <li><a href="#" class="hover:text-blue-300">About Us</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Team</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Portfolio</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Services</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+                <form class="flex flex-col space-y-4">
+                    <input type="email" placeholder="My Email" class="px-4 py-2 rounded-md text-gray-700 focus:outline-none">
+                    <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md">Submit</button>
+                </form>
             </div>
         </div>
 
-        <!-- Service Section -->
-        <div>
-            <h4 class="font-semibold text-lg mb-4">Service</h4>
-            <ul class="text-sm space-y-2">
-                <li><a href="#" class="hover:text-blue-300">Add Event</a></li>
-                <li><a href="#" class="hover:text-blue-300">User Management</a></li>
-                <li><a href="#" class="hover:text-blue-300">Add Admin</a></li>
-            </ul>
+        <div class="border-t border-gray-600 mt-8 pt-4 text-center">
+            <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
         </div>
-
-        <!-- Useful Links Section -->
-        <div>
-            <h4 class="font-semibold text-lg mb-4">Useful Link</h4>
-            <ul class="text-sm space-y-2">
-                <li><a href="#" class="hover:text-blue-300">About Us</a></li>
-                <li><a href="#" class="hover:text-blue-300">Team</a></li>
-                <li><a href="#" class="hover:text-blue-300">Portfolio</a></li>
-                <li><a href="#" class="hover:text-blue-300">Services</a></li>
-                <li><a href="#" class="hover:text-blue-300">Contact Us</a></li>
-            </ul>
-        </div>
-
-        <!-- Contact Us Section -->
-        <div>
-            <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-            <form class="flex flex-col space-y-4">
-                <input type="email" placeholder="My Email" class="px-4 py-2 rounded-md text-gray-700 focus:outline-none">
-                <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="border-t border-gray-600 mt-8 pt-4 text-center">
-        <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
-    </div>
-</footer>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
     <script>
