@@ -129,15 +129,7 @@ session_start();
             </main>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#tabell').DataTable(); 
-        });
-    </script>
-</body>
-<footer class="bg-gray-900 bg-opacity-80 text-white py-8">
+    <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <!-- About Company Section -->
         <div>
@@ -187,4 +179,12 @@ session_start();
         <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
     </div>
 </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tabell').DataTable(); 
+        });
+    </script>
+</body>
 </html>
