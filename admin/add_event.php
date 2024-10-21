@@ -176,9 +176,9 @@
             </div>
 
             <div class="mb-2">
-                <label for="poster" class="block text-sm">Upload Poster</label>
-                <input type="file" id="poster" name="poster" class="w-full px-2 py-1 border rounded"/>
-            </div>
+    <label for="banner_event" class="block text-sm">Upload Poster</label>
+    <input type="file" id="banner_event" name="banner_event" class="w-full px-2 py-1 border rounded" required/>
+</div>
 
             <div class="mt-4 text-center">
                 <button type="submit" class="bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-4 py-2 rounded">Add Event</button>
