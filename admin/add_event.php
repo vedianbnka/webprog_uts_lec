@@ -21,7 +21,7 @@
             xhr.send();
         }
 
-        setInterval(checkSession, 1);
+        setInterval(checkSession, 1000);
 
         function toggleFields(ticketType) {
             const fields = document.getElementById(ticketType + "-fields");
@@ -34,22 +34,36 @@
     </script>
 </head>
 <body class="bg-gray-100">
-<div class="flex flex-col md:flex-row">
-        <aside class=" lg:w-54 bg-[#7B61FF] h-auto lg:h-screen p-4">
-            <img src="../brand/logo_white.png" alt="Website Logo" class="flex justify-start w-32 md:w-40 lg:w-32">
-            <nav>
-                <ul class="space-y-4 mt-4">
-                    <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
-                    <li><a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
-                    <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Participants</a></li>
-                    <li><a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
-                    <li><a href="../admin/add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a></li>
-                    <li><a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a></li>
-                    <li><a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-    <div class="flex-1 p-4">
+<div class="min-h-screen flex flex-col lg:flex-row">
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-64 bg-[#7B61FF] p-4 lg:h-screen">
+        <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
+        <nav>
+            <ul class="space-y-4">
+                <li>
+                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
+                </li>
+                <li>
+                    <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
+                </li>
+                <li>
+                    <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
+                </li>
+                <li>
+                    <a href="../admin/add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a>
+                </li>
+                <li>
+                    <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
+                </li>
+                <li>
+                    <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4">
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-black">Add Event</h2>
@@ -57,8 +71,8 @@
         </header>
 
         <!-- Add Event Form -->
-        <form action="add_event_proses.php" method="POST" class="p-4 border rounded bg-white shadow animasi max-w-lg mx-auto mt-10" enctype="multipart/form-data">
-            <h1 class="text-center text-lg font-semibold mb-3 ">Add Event</h1>
+        <form action="add_event_proses.php" method="POST" class="bg-white p-4 border rounded shadow max-w-lg mx-auto mt-10" enctype="multipart/form-data">
+            <h1 class="text-center text-lg font-semibold mb-3">Add Event</h1>
 
             <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
                 <div class="bg-red-100 text-red-800 p-2 rounded mb-3 text-sm">
@@ -92,9 +106,11 @@
                 <input type="text" id="deskripsi" name="deskripsi" class="w-full px-2 py-1 border rounded" required autocomplete="off"/>
             </div>
 
+            <!-- Ticket Types Section -->
             <div class="mb-2">
                 <label class="block text-sm">Tipe Tiket</label>
 
+                <!-- VVIP -->
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" id="vvip" name="tipe_tiket[]" value="vvip" class="rounded" onchange="toggleFields('vvip')"/>
                     <label for="vvip" class="text-sm">VVIP</label>
@@ -107,6 +123,7 @@
                     </div>
                 </div>
 
+                <!-- VIP -->
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" id="vip" name="tipe_tiket[]" value="vip" class="rounded" onchange="toggleFields('vip')"/>
                     <label for="vip" class="text-sm">VIP</label>
@@ -145,7 +162,6 @@
                     </div>
                 </div>
 
-                <!-- CAT 3 -->
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" id="cat3" name="tipe_tiket[]" value="cat3" class="rounded" onchange="toggleFields('cat3')"/>
                     <label for="cat3" class="text-sm">CAT 3</label>
@@ -157,20 +173,18 @@
                         <input type="text" id="cat3-benefit" name="cat3_benefit" placeholder="Benefit CAT 3" class="w-full px-2 py-1 border rounded col-span-2"/>
                     </div>
                 </div>
-
             </div>
 
             <div class="mb-2">
-                <label for="banner_event" class="block text-sm">Banner Event</label>
-                <input type="file" id="banner_event" name="banner_event" class="w-full px-2 py-1 border rounded" required/>
+                <label for="poster" class="block text-sm">Upload Poster</label>
+                <input type="file" id="poster" name="poster" class="w-full px-2 py-1 border rounded"/>
             </div>
 
-            <button type="submit" name="add_event" class="w-full bg-[#7B61FF] text-white font-semibold py-2 rounded hover:bg-purple-600 transition-colors">
-                Add Event
-            </button>
+            <div class="mt-4 text-center">
+                <button type="submit" class="bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-4 py-2 rounded">Add Event</button>
+            </div>
         </form>
-
-    </div>
+    </main>
 </div>
 <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
@@ -222,8 +236,5 @@
         <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
     </div>
 </footer>
-
-
-
 </body>
 </html>
