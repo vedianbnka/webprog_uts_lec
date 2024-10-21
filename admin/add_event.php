@@ -165,7 +165,7 @@
         <input type="file" id="banner_event" name="banner_event" class="w-full px-2 py-1 border rounded" required/>
     </div>
 
-    <button type="submit" name="add_event" class="w-full bg-purple-500 text-white font-semibold py-2 rounded hover:bg-purple-600 transition-colors">
+    <button type="submit" name="add_event" class="w-full bg-[#7B61FF] text-white font-semibold py-2 rounded hover:bg-purple-600 transition-colors">
         Add Event
     </button>
 </form>
