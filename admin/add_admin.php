@@ -26,7 +26,7 @@
     </script>
   </head>
   <body class="bg-gray-100">
-    <div class="flex">
+    <div class="flex flex-col md:flex-row">
       <aside class="w-64 bg-[#7B61FF] h-screen p-4">
       <img src="../brand/logo_white.png" alt="Website Logo" class="img-fluid">
         <nav>
@@ -79,56 +79,97 @@
           </header>
 
         <!-- Content -->
-        <main class="p-6 bg-gray-100">
-          <!-- Add Admin Form -->
-          <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-            <h3 class="text-xl font-semibold text-black mb-4">Register New Admin</h3>
 
-            <form action="add_admin_proses.php" method="POST" class="space-y-4">
-              <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
-              <div class="alert alert-danger text-red-500" role="alert">
-                Password dan confirm password yang anda input tidak sama
-              </div>
-              <?php endif; ?>
-
-              <div>
-                <label for="nama" class="block text-gray-700 font-bold mb-2">Nama Lengkap</label>
-                <input type="text" name="nama" id="nama" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B61FF]">
-              </div>
-
-              <div>
-                <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
-                <input type="email" name="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B61FF]">
-              </div>
-
-              <div>
-                <label for="phone" class="block text-gray-700 font-bold mb-2">Phone</label>
-                <input type="text" name="phone" id="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B61FF]">
-              </div>
-
-              <div>
-                <label for="password" class="block text-gray-700 font-bold mb-2">Password</label>
-                <input type="password" name="password" id="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B61FF]">
-              </div>
-
-              <div>
-                <label for="confirm_password" class="block text-gray-700 font-bold mb-2">Confirm Password</label>
-                <input type="password" name="confirm_password" id="confirm_password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B61FF]">
-              </div>
-
-              <div>
-                <input type="submit" value="Sign Up" class="w-full bg-[#7B61FF] text-white font-bold py-2 px-4 rounded hover:bg-[#6A52E0]">
-              </div>
-            </form>
-          </section>
-        </main>
-
-        <footer class="bg-black py-4 mt-8">
-          <div class="text-center text-white">
-            © 2024 Konserhub Admin. All rights reserved.
+        <form action="add_admin_proses.php" method="POST" class="space-y-3 bg-white p-4 rounded-lg shadow-md max-w-md mx-auto mt-7">
+        <h3 class="text-xl font-semibold text-black mb-4">Register New Admin</h3>
+        <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
+          <div class="text-red-500 bg-red-100 border border-red-400 rounded p-2" role="alert">
+            Password dan confirm password yang anda input tidak sama
           </div>
-        </footer>
+        <?php endif; ?>
+
+        <div>
+          <label for="nama" class="block text-gray-700 font-semibold mb-1">Nama Lengkap</label>
+          <input type="text" name="nama" id="nama" autocomplete="off" class="w-full px-3 py-1.5 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent">
+        </div>
+
+        <div>
+          <label for="email" class="block text-gray-700 font-semibold mb-1">Email</label>
+          <input type="email" name="email" id="email" autocomplete="off" class="w-full px-3 py-1.5 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent">
+        </div>
+
+        <div>
+          <label for="phone" class="block text-gray-700 font-semibold mb-1">Phone</label>
+          <input type="text" name="phone" id="phone" autocomplete="off" class="w-full px-3 py-1.5 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent">
+        </div>
+
+        <div>
+          <label for="password" class="block text-gray-700 font-semibold mb-1">Password</label>
+          <input type="password" name="password" id="password" autocomplete="off" class="w-full px-3 py-1.5 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent">
+        </div>
+
+        <div>
+          <label for="confirm_password" class="block text-gray-700 font-semibold mb-1">Confirm Password</label>
+          <input type="password" name="confirm_password" id="confirm_password" autocomplete="off" class="w-full px-3 py-1.5 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent">
+        </div>
+
+        <div>
+          <input type="submit" value="Sign Up" class="w-full bg-[#7B61FF] text-white font-semibold py-2 rounded hover:bg-[#6A52E0] focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:ring-offset-2 cursor-pointer">
+        </div>
+      </form>
+
       </div>
     </div>
+
+    <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- About Company Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">About Company</h4>
+                <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
+                <div class="flex space-x-4 mt-4">
+                    <!-- Social Media Icons -->
+                    <a href="#"><img src="../brand/ig2.png" alt="Facebook" class="w-6 h-6"></a>
+                    <a href="#"><img src="../brand/tiktokWhite.png" alt="YouTube" class="w-6 h-6"></a>
+                    <a href="#"><img src="../brand/x.png" alt="WhatsApp" class="w-6 h-6"></a>
+                </div>
+            </div>
+
+            <!-- Service Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Service</h4>
+                <ul class="text-sm space-y-2">
+                    <li><a href="add-event.php" class="hover:text-blue-300">Add Event</a></li>
+                    <li><a href="view_user.php" class="hover:text-blue-300">User Management</a></li>
+                    <li><a href="add_admin.php" class="hover:text-blue-300">Add Admin</a></li>
+                </ul>
+            </div>
+
+            <!-- Useful Links Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Useful Link</h4>
+                <ul class="text-sm space-y-2">
+                    <li><a href="#" class="hover:text-blue-300">About Us</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Team</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Portfolio</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Services</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us Section -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+                <form class="flex flex-col space-y-4">
+                    <input type="email" placeholder="My Email" class="px-4 py-2 rounded-md text-gray-700 focus:outline-none">
+                    <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-600 mt-8 pt-4 text-center">
+            <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
+        </div>
+    </footer>
   </body>
 </html>
