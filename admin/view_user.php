@@ -124,7 +124,7 @@
             <div>
                 <h4 class="font-semibold text-lg mb-4">Service</h4>
                 <ul class="text-sm space-y-2">
-                    <li><a href="add-event.php" class="hover:text-blue-300">Add Event</a></li>
+                    <li><a href="add_event.php" class="hover:text-blue-300">Add Event</a></li>
                     <li><a href="view_user.php" class="hover:text-blue-300">User Management</a></li>
                     <li><a href="add_admin.php" class="hover:text-blue-300">Add Admin</a></li>
                 </ul>
