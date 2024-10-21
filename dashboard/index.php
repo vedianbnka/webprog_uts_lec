@@ -409,4 +409,4 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
     });
 </script>
 </body>
-</html>
+</html> 
