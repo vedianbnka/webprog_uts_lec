@@ -37,4 +37,5 @@ $stmt = $db->prepare($sql);
 $data = [$nama, $email, $phone, $hashPw, 'user'];
 $stmt->execute($data);
 
+$_SESSION['success'] = "Registrasi berhasil. Silahkan Login!";
 header("location:../login/index.php");

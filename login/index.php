@@ -27,6 +27,10 @@
 
     <?php
     session_start();
+    if(isset($_SESSION['id_user'])) {
+        header('Location: ../admin_verify.php');
+        exit();
+    }
     ?>
 
     <form action="proses.php" method="POST" class="p-10 bg-opacity-80 bg-white border rounded-lg shadow-lg animasi max-w-sm w-full">

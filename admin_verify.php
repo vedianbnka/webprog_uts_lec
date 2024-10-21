@@ -5,6 +5,6 @@
         header('Location: ../admin/index.php');
         exit();
     }else{
-        header('Location: ../dashboard/index.php');
+        header('Location: dashboard/index.php');
         exit();
     }
