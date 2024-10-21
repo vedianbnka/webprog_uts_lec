@@ -76,7 +76,6 @@
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
           <h2 class="text-2xl font-bold text-black">Add Admin</h2>
-          <h3>Selamat Datang, <?php echo isset($_SESSION['admin_name']) ? htmlspecialchars($_SESSION['admin_name']) : 'Admin'; ?></h3>
           </header>
 
         <!-- Content -->
