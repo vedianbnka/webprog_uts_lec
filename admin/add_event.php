@@ -301,8 +301,8 @@
                             required="required"/>
                     </div>
 
-                    <button type="submit" name="add_event" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                        <a class="text-white-700 hover:underline">Add Event</a>
+                    <button type="submit" name="add_event" class="bg-purple-500 text-white font-bold py-2 px-4 rounded">
+                        Add Event
                     </button>
                 </form>
             </section>
