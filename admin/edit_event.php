@@ -131,9 +131,9 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Service</h4>
             <ul class="text-sm space-y-2">
-                <li><a href="#" class="hover:text-blue-300">Add Event</a></li>
-                <li><a href="#" class="hover:text-blue-300">User Management</a></li>
-                <li><a href="#" class="hover:text-blue-300">Add Admin</a></li>
+                <li><a href="add_event.php" class="hover:text-blue-300">Add Event</a></li>
+                <li><a href="list_peserta.php" class="hover:text-blue-300">User Management</a></li>
+                <li><a href="add_admin.php" class="hover:text-blue-300">Add Admin</a></li>
             </ul>
         </div>
 
@@ -152,10 +152,14 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
         <!-- Contact Us Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-            <h5 class="font-semibold text-lg mb-4">021 5993693 / 081354168293</h5>
+            <h5 class="font-semibold text-lg mb-4">021 5993693 / +62 354168293</h5>
         </div>
     </div>
-    </footer>
+
+    <div class="border-t border-gray-600 mt-8 pt-4 text-center">
+        <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
+    </div>
+</footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

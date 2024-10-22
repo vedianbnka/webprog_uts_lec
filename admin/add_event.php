@@ -200,9 +200,9 @@
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Service</h4>
             <ul class="text-sm space-y-2">
-                <li><a href="#" class="hover:text-blue-300">Add Event</a></li>
-                <li><a href="#" class="hover:text-blue-300">User Management</a></li>
-                <li><a href="#" class="hover:text-blue-300">Add Admin</a></li>
+                <li><a href="add_event.php" class="hover:text-blue-300">Add Event</a></li>
+                <li><a href="list_peserta.php" class="hover:text-blue-300">User Management</a></li>
+                <li><a href="add_admin.php" class="hover:text-blue-300">Add Admin</a></li>
             </ul>
         </div>
 
@@ -218,10 +218,10 @@
             </ul>
         </div>
 
-       <!-- Contact Us Section -->
-       <div class="flex flex-col">
+        <!-- Contact Us Section -->
+        <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-            <h5 class="font-semibold text-lg mb-4">021 5993693 / 081354168293</h5>
+            <h5 class="font-semibold text-lg mb-4">021 5993693 / +62 354168293</h5>
         </div>
     </div>
 

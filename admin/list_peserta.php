@@ -140,25 +140,29 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
 
 <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
+        <!-- About Company Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">About Company</h4>
             <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
             <div class="flex space-x-4 mt-4">
+                <!-- Social Media Icons -->
                 <a href="#"><img src="../brand/ig2.png" alt="Instagram" class="w-6 h-6"></a>
                 <a href="#"><img src="../brand/tiktokWhite.png" alt="TikTok" class="w-6 h-6"></a>
                 <a href="#"><img src="../brand/x.png" alt="WhatsApp" class="w-6 h-6"></a>
             </div>
         </div>
 
+        <!-- Service Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Service</h4>
             <ul class="text-sm space-y-2">
-                <li><a href="#" class="hover:text-blue-300">Add Event</a></li>
-                <li><a href="#" class="hover:text-blue-300">User Management</a></li>
-                <li><a href="#" class="hover:text-blue-300">Add Admin</a></li>
+                <li><a href="add_event.php" class="hover:text-blue-300">Add Event</a></li>
+                <li><a href="list_peserta.php" class="hover:text-blue-300">User Management</a></li>
+                <li><a href="add_admin.php" class="hover:text-blue-300">Add Admin</a></li>
             </ul>
         </div>
 
+        <!-- Useful Links Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Useful Links</h4>
             <ul class="text-sm space-y-2">
@@ -173,7 +177,7 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
         <!-- Contact Us Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-            <h5 class="font-semibold text-lg mb-4">021 5993693 / 081354168293</h5>
+            <h5 class="font-semibold text-lg mb-4">021 5993693 / +62 354168293</h5>
         </div>
     </div>
 
