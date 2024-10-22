@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Konserhub</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" rel="stylesheet">
     <link rel="icon" href="icon.png" type="image/x-icon">
@@ -43,13 +44,13 @@ session_start();
                         <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
                     </li>
                     <li>
-                        <a href="../admin/add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a>
+                        <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
                     </li>
                     <li>
                         <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
                     </li>
                     <li>
-                        <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
+                        <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -59,7 +60,7 @@ session_start();
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-black">Dashboard</h2>
-            <div class="text-gray-700">Welcome, Admin</div>
+            <div class="text-gray-700">Welcome, <?php echo $_SESSION['nama']; ?></div>
         </header>
 
             <main class="p-6 bg-gray-100">
@@ -130,9 +131,13 @@ session_start();
                                             <div class="flex flex-col lg:flex-row gap-2">
                                                 <a href="edit_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit</a>
                                                 <a href="detail_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Detail Event</a>
-                                                <a href="list_peserta.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">List Peserta</a>
+                                                <a href="list_peserta.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">List Partisipan</a>
                                                 <a href="edit_kuota.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit Kuota</a>
-                                                <a href="delete_event.php?id_event=<?= $row['id_event'] ?>" class="text-red-500 hover:underline">Delete</a>
+                                                <a href="#" class="text-red-500 hover:underline delete-btn" data-event-id="<?= $row['id_event'] ?>">Delete</a>
+                                                <!-- Form yang akan dikirim saat event dihapus -->
+                                                <form id="deleteForm_<?= $row['id_event'] ?>" action="delete_event.php?id_event=<?= $row['id_event'] ?>" method="POST" style="display:none;">
+                                                    <input type="hidden" name="id_event" value="<?= $row['id_event'] ?>">
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -202,6 +207,27 @@ session_start();
             $('#tabell').DataTable();
         });
     </script>
+    <script>
+    // Ketika tombol hapus diklik
+document.querySelectorAll('.delete-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        var eventId = this.getAttribute('data-event-id');
+        Swal.fire({
+            title: 'Hapus Event',
+            text: 'Apakah Anda yakin ingin menghapus event ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Tidak, Batalkan'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit form yang sesuai untuk menghapus event
+                document.getElementById('deleteForm_' + eventId).submit();
+            }
+        });
+    });
+});
+</script>
 </body>
 
 </html>

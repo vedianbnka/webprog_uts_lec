@@ -41,13 +41,13 @@
                         <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
                     </li>
                     <li>
-                        <a href="../admin/add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a>
+                    <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
                     </li>
                     <li>
                         <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
                     </li>
                     <li>
-                        <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
+                        <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -63,11 +63,22 @@
 
         <form action="add_admin_proses.php" method="POST" class="space-y-3 bg-white p-4 rounded-lg shadow-md max-w-md mx-auto mt-7">
         <h3 class="text-xl font-semibold text-black mb-4">Register New Admin</h3>
-        <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
-          <div class="text-red-500 bg-red-100 border border-red-400 rounded p-2" role="alert">
-            Password dan confirm password yang anda input tidak sama
-          </div>
-        <?php endif; ?>
+        <?php session_start(); if (isset($_SESSION['success'])): ?>
+                    <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
+                        <?php 
+                        echo $_SESSION['success'];
+                        unset($_SESSION['success']);
+                        ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+                        <?php 
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']);
+                        ?>
+                    </div>
+                <?php endif; ?>
 
         <div>
           <label for="nama" class="block text-gray-700 font-semibold mb-1">Nama Lengkap</label>

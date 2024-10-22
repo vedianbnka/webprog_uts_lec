@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="icon.png" type="image/x-icon">
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" rel="stylesheet">
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function checkSession() {
             var xhr = new XMLHttpRequest();
@@ -43,13 +44,13 @@
                         <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
                     </li>
                     <li>
-                        <a href="../admin/add_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Admin</a>
+                    <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
                     </li>
                     <li>
                         <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
                     </li>
                     <li>
-                        <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
+                        <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -59,7 +60,7 @@
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-black">User Management</h2>
-            <div class="text-gray-700">Welcome, Admin</div>
+            <div class="text-gray-700">Welcome, <?= $_SESSION['nama']; ?></div>
         </header>
 
             <!-- Content -->
@@ -92,7 +93,12 @@
                                     <td class="py-4 px-6 text-sm text-gray-900 border-b border-[#7B61FF]"><?= $row['email'] ?></td>
                                     <td class="py-4 px-6 text-sm text-gray-900 border-b border-[#7B61FF]"><?= $row['phone'] ?></td>
                                     <td class="py-4 px-6 text-sm border-b border-[#7B61FF]">
-                                        <a href="delete_user.php?id_user=<?= $row['id_user'] ?>" class="text-red-500 hover:text-red-700 border-[#7B61FF]">Delete User</a>
+                                        <a href="#" class="text-red-500 hover:text-red-700 border-[#7B61FF] delete-btn" data-event-id="<?= $row['id_user'] ?>">Delete User</a>
+
+                                        <!-- Form yang akan dikirim saat event dihapus -->
+                                        <form id="deleteForm_<?= $row['id_user'] ?>" action="delete_user.php?id_user=<?= $row['id_user'] ?>" method="POST" style="display:none;">
+                                            <input type="hidden" name="id_user" value="<?= $row['id_user'] ?>">
+                                        </form>
                                         <a href="history.php?id_user=<?= $row['id_user'] ?>" class="text-blue-500 hover:text-blue-700 border-[#7B61FF] ml-4">History Partisipan</a>
                                     </td>
                                 </tr>
@@ -163,6 +169,25 @@
         $(document).ready(function () {
             $('table').DataTable(); 
         });
+        // Ketika tombol hapus diklik
+document.querySelectorAll('.delete-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        var eventId = this.getAttribute('data-event-id');
+        Swal.fire({
+            title: 'Hapus Event',
+            text: 'Apakah Anda yakin ingin menghapus user ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Tidak, Batalkan'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit form yang sesuai untuk menghapus event
+                document.getElementById('deleteForm_' + eventId).submit();
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>
