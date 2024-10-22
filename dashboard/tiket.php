@@ -274,7 +274,9 @@ $id_user = $_SESSION['id_user'];
                                     <img class="w-20 h-auto rounded-md" src="../bukti_pembayaran/${ticket.bukti_pembayaran}" alt="Bukti Pembayaran">
                                 </td>
                                 <td class="px-4 py-3 border-b">${ticket.status}</td>
-                                <td class="px-4 py-3 border-b">${ticket.no_tiket == null ? '-' : ticket.no_tiket}</td>
+                                <td class="px-4 py-3 border-b">
+                                    ${ticket.no_tiket === null ? '-' : `<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" class="bg-[#7B61FF] text-white p-2 rounded disabled:opacity-50 hover:underline">My QR</a>`}
+                                </td>
                             </tr>`;
                 ticketBody.innerHTML += row;
             });
@@ -344,3 +346,4 @@ $id_user = $_SESSION['id_user'];
     </script>
 </body>
 </html>
+
