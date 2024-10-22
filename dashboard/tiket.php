@@ -30,6 +30,19 @@ $id_user = $_SESSION['id_user'];
     </script>
 
     <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1; /* Memungkinkan konten mengambil ruang yang tersedia */
+        }   
+
         img {
             width: 100%;
             height: auto;
