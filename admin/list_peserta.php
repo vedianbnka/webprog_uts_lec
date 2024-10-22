@@ -116,7 +116,11 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
                 <td class="px-4 py-2"><?= $row['tanggal_register'] ?></td>
                 <td class="px-4 py-2"><?= $row['tipe_tiket'] ?></td>
                 <td class="px-4 py-2"><?= $row['jumlah'] ?></td>
-                <td class="px-4 py-2"><img class="img-fluid w-20" src="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" alt=""></td>
+                <td class="px-4 py-2">
+                    <a href="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" target="_blank"data-fancybox data-caption="<?= $row['nama'] ?>">
+                        <img class="img-fluid w-20" src="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" alt="">
+                    </a>
+                </td>
                 <td class="px-4 py-2">
                     <form method="post" action="status_tiket.php?id_event=<?= $id_event ?>&id_partisipan=<?= $row['id_partisipan'] ?>">
                         <select class="status-dropdown p-1 border rounded" name="status" onchange="this.form.submit()"> 
