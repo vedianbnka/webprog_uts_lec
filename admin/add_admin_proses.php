@@ -16,10 +16,11 @@
     $confirm_password = $_POST["confirm_password"];
 
     if ($password != $confirm_password) {
-        header ("location:index.php?error=1");
+        $_SESSION["success"]="Password Tidak Match";
+        header ("location: add_admin.php");
         exit;
     }else {
-        $sql = "INSERT INTO user(nama,email,phone,password,role) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO admin(nama,email,phone,password,role) VALUES (?,?,?,?,?)";
         $stmt = $db->prepare($sql);
         $data = [$nama, $email, $phone, password_hash($password, PASSWORD_BCRYPT), 'admin'];
         $stmt->execute($data);

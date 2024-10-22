@@ -67,7 +67,6 @@
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-black">Add Event</h2>
-            <div class="text-gray-700">Welcome, Admin</div>
         </header>
 
         <!-- Add Event Form -->

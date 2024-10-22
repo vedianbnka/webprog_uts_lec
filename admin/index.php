@@ -131,6 +131,7 @@ session_start();
                                                 <a href="edit_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit</a>
                                                 <a href="detail_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Detail Event</a>
                                                 <a href="list_peserta.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">List Peserta</a>
+                                                <a href="edit_kuota.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit Kuota</a>
                                                 <a href="delete_event.php?id_event=<?= $row['id_event'] ?>" class="text-red-500 hover:underline">Delete</a>
                                             </div>
                                         </td>

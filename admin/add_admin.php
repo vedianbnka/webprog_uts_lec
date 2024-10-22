@@ -57,7 +57,6 @@
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-black">Add Admin</h2>
-            <div class="text-gray-700">Welcome, Admin</div>
         </header>
 
         <!-- Content -->
