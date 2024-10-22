@@ -17,6 +17,7 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
     <title>Admin Dashboard - Konserhub</title>
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <style>
         table, th, td {
             border: 1px solid black;
