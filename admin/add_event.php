@@ -221,13 +221,10 @@
             </ul>
         </div>
 
-        <!-- Contact Us Section -->
-        <div class="flex flex-col">
+       <!-- Contact Us Section -->
+       <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-            <form class="flex flex-col space-y-4">
-                <input type="email" placeholder="My Email" class="px-4 py-2 rounded-md text-gray-700 focus:outline-none">
-                <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md">Submit</button>
-            </form>
+            <h5 class="font-semibold text-lg mb-4">021 5993693 / 081354168293</h5>
         </div>
     </div>
 
