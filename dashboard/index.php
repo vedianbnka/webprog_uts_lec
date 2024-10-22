@@ -350,11 +350,11 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             <p class="text-gray-700">
               "Konserhub made finding live events so easy!"
             </p>
-            <h4 class="mt-4 font-semibold text-black">- John Doe</h4>
+            <h4 class="mt-4 font-semibold text-black">P. Diddy</h4>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-md">
             <p class="text-gray-700">"A must-have for all music lovers."</p>
-            <h4 class="mt-4 font-semibold text-black">- Jane Smith</h4>
+            <h4 class="mt-4 font-semibold text-black">Beyonce</h4>
           </div>
         </div>
       </div>
