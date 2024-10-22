@@ -6,7 +6,6 @@
     <title>Edit Event</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="icon.png" type="image/x-icon">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script>
         function checkSession() {
             var xhr = new XMLHttpRequest();
@@ -58,9 +57,9 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
 
             <!-- Content -->
             <main class="p-6 bg-gray-100">
-                <form action="edit_event_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="max-w-lg mx-auto p-6 border rounded-lg bg-white shadow-lg space-y-6" enctype="multipart/form-data">
+                <form action="edit_event_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="max-w-md mx-auto p-4 border rounded-lg bg-white shadow-lg space-y-4" enctype="multipart/form-data">
                     <?php if (isset($_SESSION['success'])): ?>
-                        <div class="mb-4 text-green-700 bg-green-100 p-4 rounded-md">
+                        <div class="mb-3 text-green-700 bg-green-100 p-3 rounded-md text-sm">
                             <?php 
                             echo $_SESSION['success'];
                             unset($_SESSION['success']);
@@ -69,7 +68,7 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['error'])): ?>
-                        <div class="mb-4 text-red-700 bg-red-100 p-4 rounded-md">
+                        <div class="mb-3 text-red-700 bg-red-100 p-3 rounded-md text-sm">
                             <?php 
                             echo $_SESSION['error'];
                             unset($_SESSION['error']);
@@ -79,36 +78,38 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
 
                     <div>
                         <label for="nama_event" class="block text-sm font-medium text-gray-700">Nama Event</label>
-                        <input type="text" id="nama_event" name="nama_event" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['nama_event'] ?>" required autocomplete="off">
+                        <input type="text" id="nama_event" name="nama_event" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 text-sm" value="<?= $event['nama_event'] ?>" required autocomplete="off">
                     </div>
 
                     <div>
                         <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal</label>
-                        <input type="date" id="tanggal" name="tanggal" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['tanggal'] ?>" required autocomplete="off">
+                        <input type="date" id="tanggal" name="tanggal" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 text-sm" value="<?= $event['tanggal'] ?>" required autocomplete="off">
                     </div>
 
                     <div>
                         <label for="waktu" class="block text-sm font-medium text-gray-700">Waktu</label>
-                        <input type="time" id="waktu" name="waktu" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['waktu'] ?>" required autocomplete="off">
+                        <input type="time" id="waktu" name="waktu" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 text-sm" value="<?= $event['waktu'] ?>" required autocomplete="off">
                     </div>
 
                     <div>
                         <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
-                        <input type="text" id="lokasi" name="lokasi" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['lokasi'] ?>" required autocomplete="off">
+                        <input type="text" id="lokasi" name="lokasi" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 text-sm" value="<?= $event['lokasi'] ?>" required autocomplete="off">
                     </div>
 
                     <div>
                         <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
-                        <input type="text" id="deskripsi" name="deskripsi" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['deskripsi'] ?>" required autocomplete="off">
+                        <input type="text" id="deskripsi" name="deskripsi" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 text-sm" value="<?= $event['deskripsi'] ?>" required autocomplete="off">
                     </div>
 
                     <div>
                         <label for="banner_event" class="block text-sm font-medium text-gray-700">Banner Event</label>
-                        <input type="file" id="banner_event" name="banner_event" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        <input type="file" id="banner_event" name="banner_event" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 text-sm" required>
                     </div>
 
-                    <button type="submit" name="add_event" class="w-full bg-[#7B61FF] hover:bg-[#6A52E0] text-white font-semibold py-2 rounded-md focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">Edit Event</button>
+                    <button type="submit" name="add_event" class="w-full bg-[#7B61FF] hover:bg-[#6A52E0] text-white font-semibold py-2 rounded-md text-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">Edit Event</button>
+                    <a href="javascript:history.back()" class="block w-full text-center bg-gray-500 text-white font-semibold py-2 rounded-md text-sm hover:bg-gray-600 focus:ring-4 focus:ring-gray-400 focus:ring-opacity-50">Back</a>
                 </form>
+
             </main>
         </div>
     </div>
