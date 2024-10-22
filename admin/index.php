@@ -26,11 +26,33 @@ session_start();
             xhr.send();
         }
         setInterval(checkSession, 1000);
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            setTimeout(() => {
+                menu.classList.remove('scale-y-0');
+                menu.classList.add('scale-y-100');
+            }, 10); // Sedikit delay agar animasi berjalan
+            } else {
+            menu.classList.remove('scale-y-100');
+            menu.classList.add('scale-y-0');
+            setTimeout(() => {
+                menu.classList.add('hidden');
+            }, 300); // Sesuaikan dengan durasi animasi
+            }
+        }
     </script>
 </head>
 <body class="bg-gray-100">
     <div class="flex flex-col lg:flex-row">
-        <aside class="w-full lg:w-64 bg-[#7B61FF] h-auto lg:h-screen p-4">
+        <button 
+        class="lg:hidden fixed top-4 right-4 z-50 bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none"
+        onclick="toggleMenu()">
+        ☰
+      </button>
+        <aside class="lg:w-64 bg-[#7B61FF] h-screen p-4 hidden lg:block transition-transform duration-300 ease-in-out transform origin-top" id="mobile-menu">
             <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
             <nav>
             <ul class="space-y-4">
