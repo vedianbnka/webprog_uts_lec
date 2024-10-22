@@ -4,43 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="icon.png" type="image/x-icon"/>
     <style>
         @keyframes slideSide {
             0% {
-            transform: translateX(-100px);
-            opacity: 0;
+                transform: translateX(-100px);
+                opacity: 0;
             }
-
             100% {
-            transform: translateX(0px);
-            opacity: 1;
+                transform: translateX(0px);
+                opacity: 1;
             }
         }
 
         .animasi {
             animation: slideSide 1s;
         }
+
+        <style>
+    input[type="number"]:hover {
+        border-color: #7B61FF;
+        box-shadow: 0 0 5px rgba(123, 97, 255, 0.5);
+        transition: 0.3s;
+    }
+    .form-group {
+        margin-bottom: 10px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+</style>
+
     </style>
     <script>
         function checkSession() {
-  // Kirim permintaan AJAX ke check_session.php
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../check_session_admin.php", true);
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      if (response.status === "inactive") {
-        window.location.href = "../login/index.php";
-      }
-    }
-  };
-  xhr.send();
-}
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../check_session_admin.php", true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === "inactive") {
+                        window.location.href = "../login/index.php";
+                    }
+                }
+            };
+            xhr.send();
+        }
 
-setInterval(checkSession, 1);
+        setInterval(checkSession, 1000);
     </script>
 </head>
+
 <?php
     require_once "../db.php";
     $id_event = $_GET['id_event'];
@@ -49,21 +71,58 @@ setInterval(checkSession, 1);
     $stmt->execute([$id_event]);
     $event = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
-<body class="d-flex align-items-center vh-100 justify-content-center bg-light">
-        <form action="edit_kuota_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="p-5 border rounded bg-white shadow animasi" enctype="multipart/form-data">
-            
-            <h2 class="text-center">Edit Kuota</h2>
-           
-            <div class="form-group">
-                <label for="nama_event">Nama Event</label>
-                <input type="text" id="nama_event" name="nama_event" class="form-control" value="<?= $event['nama_event'] ?>" readonly autocomplete="off">
+
+<body class="bg-gray-100">
+<div class="min-h-screen flex flex-col lg:flex-row">
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-64 bg-[#7B61FF] p-4 lg:h-screen">
+        <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
+        <nav>
+            <ul class="space-y-4">
+                <li>
+                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
+                </li>
+                <li>
+                    <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
+                </li>
+                <li>
+                    <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
+                </li>
+                <li>
+                    <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
+                </li>
+                <li>
+                    <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
+                </li>
+                <li>
+                    <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4">
+        <!-- Header -->
+        <header class="bg-white shadow p-4 flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-black">Edit Event</h2>
+        </header>
+
+        <!-- Edit Event Form -->
+        <form action="edit_kuota_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="bg-white p-5 border rounded shadow max-w-2xl mx-auto mt-20 animasi" enctype="multipart/form-data">
+        <h1 class="text-center text-lg font-semibold mb-3">Edit Event</h1>
+
+            <div class="mb-2">
+                <label for="nama_event" class="block text-sm">Nama Event</label>
+                <input type="text" id="nama_event" name="nama_event" class="w-full px-2 py-1 border rounded" value="<?= $event['nama_event'] ?>" readonly/>
             </div>
 
-            <div class="form-group">
-                <label for="tanggal">Tanggal</label>
-                <input type="date" id="tanggal" name="tanggal" class="form-control" value="<?= $event['tanggal'] ?>" readonly autocomplete="off">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+                <div>
+                    <label for="tanggal" class="block text-sm">Tanggal</label>
+                    <input type="date" id="tanggal" name="tanggal" class="w-full px-2 py-1 border rounded" value="<?= $event['tanggal'] ?>" readonly/>
+                </div>
             </div>
-
             <?php
                 $sql = "SELECT * FROM tiket WHERE id_event = ?";
                 $stmt = $db->prepare($sql);
@@ -106,14 +165,64 @@ setInterval(checkSession, 1);
             <?php
                 }}
             ?>
-            <button type="submit" name="add_event" class="btn btn-primary btn-block">Submit</button>
-           
+            <div class="mt-4 text-center">
+                <button type="submit" class="bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-4 py-2 rounded">Add Event</button>
+            </div>
             
         </form>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+    </main>
+</div>
+
+<footer class="bg-gray-900 bg-opacity-80 text-white py-8">
+    <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
+        <!-- About Company Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">About Company</h4>
+            <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
+            <div class="flex space-x-4 mt-4">
+                <!-- Social Media Icons -->
+                <a href="#"><img src="../brand/ig2.png" alt="Instagram" class="w-6 h-6"></a>
+                <a href="#"><img src="../brand/tiktokWhite.png" alt="TikTok" class="w-6 h-6"></a>
+                <a href="#"><img src="../brand/x.png" alt="WhatsApp" class="w-6 h-6"></a>
+            </div>
+        </div>
+
+        <!-- Service Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">Service</h4>
+            <ul class="text-sm space-y-2">
+                <li><a href="#" class="hover:text-blue-300">Add Event</a></li>
+                <li><a href="#" class="hover:text-blue-300">User Management</a></li>
+                <li><a href="#" class="hover:text-blue-300">Add Admin</a></li>
+            </ul>
+        </div>
+
+        <!-- Useful Links Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">Useful Links</h4>
+            <ul class="text-sm space-y-2">
+                <li><a href="#" class="hover:text-blue-300">About Us</a></li>
+                <li><a href="#" class="hover:text-blue-300">Team</a></li>
+                <li><a href="#" class="hover:text-blue-300">Portfolio</a></li>
+                <li><a href="#" class="hover:text-blue-300">Services</a></li>
+                <li><a href="#" class="hover:text-blue-300">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+            <form class="flex flex-col space-y-4">
+                <input type="email" placeholder="My Email" class="px-4 py-2 rounded-md text-gray-700 focus:outline-none">
+                <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="border-t border-gray-600 mt-8 pt-4 text-center">
+        <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
