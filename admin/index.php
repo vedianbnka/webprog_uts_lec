@@ -44,9 +44,6 @@ session_start();
                         <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
                     </li>
                     <li>
-                        <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
-                    </li>
-                    <li>
                         <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
                     </li>
                 </ul>

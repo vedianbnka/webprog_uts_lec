@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="icon.png" type="image/x-icon"/>
+    <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <style>
         @keyframes slideSide {
             0% {
@@ -92,9 +92,6 @@
                     <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
                 </li>
                 <li>
-                    <a href="#" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Settings</a>
-                </li>
-                <li>
                     <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
                 </li>
             </ul>
@@ -105,12 +102,12 @@
     <main class="flex-1 p-4">
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-black">Edit Event</h2>
+            <h2 class="text-2xl font-bold text-black">Edit Kuota</h2>
         </header>
 
         <!-- Edit Event Form -->
         <form action="edit_kuota_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="bg-white p-5 border rounded shadow max-w-2xl mx-auto mt-20 animasi" enctype="multipart/form-data">
-        <h1 class="text-center text-lg font-semibold mb-3">Edit Event</h1>
+        <h1 class="text-center text-lg font-semibold mb-3">Edit Kuota</h1>
 
             <div class="mb-2">
                 <label for="nama_event" class="block text-sm">Nama Event</label>
@@ -165,10 +162,8 @@
             <?php
                 }}
             ?>
-            <div class="mt-4 text-center">
-                <button type="submit" class="bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-4 py-2 rounded">Add Event</button>
-            </div>
-            
+            <button type="submit" name="add_event" class="w-full bg-[#7B61FF] hover:bg-[#6A52E0] text-white font-semibold py-2 rounded-md text-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">Edit Kuota</button>
+            <a href="javascript:history.back()" class="mt-3 block w-full text-center bg-gray-500 text-white font-semibold py-2 rounded-md text-sm hover:bg-gray-600 focus:ring-4 focus:ring-gray-400 focus:ring-opacity-50">Back</a>
         </form>
 
     </main>

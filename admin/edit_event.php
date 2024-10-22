@@ -35,17 +35,24 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
         <aside class=" lg:w-54 bg-[#7B61FF] h-auto lg:h-screen p-4">
             <img src="../brand/logo_white.png" alt="Website Logo" class="flex justify-start w-32 md:w-40 lg:w-32">
             <nav>
-                <ul class="space-y-4 mt-4">
-                    <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
-                    <li><a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
-                    <li><a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Participants</a></li>
-                    <li><a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
-                    <li>                        
-                        <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
-                    </li>
-                    <li><a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a></li>
-                </ul>
-            </nav>
+            <ul class="space-y-4">
+                <li>
+                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
+                </li>
+                <li>
+                    <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
+                </li>
+                <li>
+                    <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
+                </li>
+                <li>
+                <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
+                </li>
+                <li>
+                    <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
+                </li>
+            </ul>
+        </nav>
         </aside>
         <!-- Main Content -->
         <div class="flex-1">
