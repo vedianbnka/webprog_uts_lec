@@ -107,6 +107,7 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
                     </div>
 
                     <button type="submit" name="add_event" class="w-full bg-[#7B61FF] hover:bg-[#6A52E0] text-white font-semibold py-2 rounded-md text-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">Edit Event</button>
+                    <a href="javascript:history.back()" class="block w-full text-center bg-gray-500 text-white font-semibold py-2 rounded-md text-sm hover:bg-gray-600 focus:ring-4 focus:ring-gray-400 focus:ring-opacity-50">Back</a>
                 </form>
 
             </main>
