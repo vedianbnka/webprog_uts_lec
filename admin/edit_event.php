@@ -7,21 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="icon.png" type="image/x-icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        @keyframes slideSide {
-            0% {
-                transform: translateX(-100px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0px);
-                opacity: 1;
-            }
-        }
-        .animasi {
-            animation: slideSide 1s;
-        }
-    </style>
     <script>
         function checkSession() {
             var xhr = new XMLHttpRequest();
@@ -69,14 +54,13 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
             <!-- Header -->
             <header class="bg-white shadow p-4 flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-black">Edit Event</h2>
-                <div class="text-gray-700">Welcome, Admin</div>
             </header>
 
             <!-- Content -->
             <main class="p-6 bg-gray-100">
-                <form action="edit_event_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="p-5 border rounded bg-white shadow animasi" enctype="multipart/form-data">
+                <form action="edit_event_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="max-w-lg mx-auto p-6 border rounded-lg bg-white shadow-lg space-y-6" enctype="multipart/form-data">
                     <?php if (isset($_SESSION['success'])): ?>
-                        <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
+                        <div class="mb-4 text-green-700 bg-green-100 p-4 rounded-md">
                             <?php 
                             echo $_SESSION['success'];
                             unset($_SESSION['success']);
@@ -85,7 +69,7 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['error'])): ?>
-                        <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+                        <div class="mb-4 text-red-700 bg-red-100 p-4 rounded-md">
                             <?php 
                             echo $_SESSION['error'];
                             unset($_SESSION['error']);
@@ -93,43 +77,44 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
                         </div>
                     <?php endif; ?>
 
-                    <div class="form-group">
-                        <label for="nama_event">Nama Event</label>
-                        <input type="text" id="nama_event" name="nama_event" class="form-control" value="<?= $event['nama_event'] ?>" required="required" autocomplete="off">
+                    <div>
+                        <label for="nama_event" class="block text-sm font-medium text-gray-700">Nama Event</label>
+                        <input type="text" id="nama_event" name="nama_event" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['nama_event'] ?>" required autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                        <label for="tanggal">Tanggal</label>
-                        <input type="date" id="tanggal" name="tanggal" class="form-control" value="<?= $event['tanggal'] ?>" required="required" autocomplete="off">
+                    <div>
+                        <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal</label>
+                        <input type="date" id="tanggal" name="tanggal" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['tanggal'] ?>" required autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                        <label for="waktu">Waktu</label>
-                        <input type="time" id="waktu" name="waktu" class="form-control" value="<?= $event['waktu'] ?>" required="required" autocomplete="off">
+                    <div>
+                        <label for="waktu" class="block text-sm font-medium text-gray-700">Waktu</label>
+                        <input type="time" id="waktu" name="waktu" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['waktu'] ?>" required autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                        <label for="lokasi">Lokasi</label>
-                        <input type="text" id="lokasi" name="lokasi" class="form-control" value="<?= $event['lokasi'] ?>" required="required" autocomplete="off">
+                    <div>
+                        <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
+                        <input type="text" id="lokasi" name="lokasi" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['lokasi'] ?>" required autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                        <label for="deskripsi">Deskripsi</label>
-                        <input type="text" id="deskripsi" name="deskripsi" class="form-control" value="<?= $event['deskripsi'] ?>" required="required" autocomplete="off">
+                    <div>
+                        <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+                        <input type="text" id="deskripsi" name="deskripsi" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" value="<?= $event['deskripsi'] ?>" required autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                        <label for="banner_event">Banner Event</label>
-                        <input type="file" id="banner_event" name="banner_event" class="form-control" required="required">
+                    <div>
+                        <label for="banner_event" class="block text-sm font-medium text-gray-700">Banner Event</label>
+                        <input type="file" id="banner_event" name="banner_event" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" required>
                     </div>
 
-                    <button type="submit" name="add_event" class="btn btn-primary btn-block">Edit Event</button>
+                    <button type="submit" name="add_event" class="w-full bg-[#7B61FF] hover:bg-[#6A52E0] text-white font-semibold py-2 rounded-md focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">Edit Event</button>
                 </form>
             </main>
         </div>
     </div>
+
     <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
         <!-- About Company Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">About Company</h4>
@@ -173,11 +158,6 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
             </form>
         </div>
     </div>
-
-    <div class="border-t border-gray-600 mt-8 pt-4 text-center">
-        <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
-    </div>
-</footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
