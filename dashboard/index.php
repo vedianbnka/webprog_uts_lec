@@ -360,29 +360,53 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
       </div>
     </section>
 
-    <footer class="bg-black py-8 mt-10">
-    <div class="container mx-auto px-4 text-center">
-        <div class="flex flex-wrap justify-center space-x-6 md:space-x-10 mb-4">
-            <a href="#" target="_blank">
-                <img src="../brand/ig2.png" alt="Instagram" class="sosmed"> 
-            </a>
-            <a href="#" target="_blank">
-                <img src="../brand/x.png" alt="X (Twitter)" class="sosmedx">
-            </a>
-            <a href="#" target="_blank">
-                <img src="../brand/tiktokWhite.png" alt="TikTok" class="sosmed">
-            </a>
+    <footer class="bg-black bg-opacity-80 text-white py-8">
+    <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
+        <!-- About Company Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">About Company</h4>
+            <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
+            <div class="flex space-x-4 mt-4">
+                <!-- Social Media Icons -->
+                <a href="#"><img src="../brand/ig2.png" alt="Instagram" class="w-6 h-6"></a>
+                <a href="#"><img src="../brand/tiktokWhite.png" alt="TikTok" class="w-6 h-6"></a>
+                <a href="#"><img src="../brand/x.png" alt="WhatsApp" class="w-6 h-6"></a>
+            </div>
         </div>
-        
-        <p class="text-white text-sm md:text-base lg:text-lg">© 2024 Konserhub. All rights reserved.</p>
-        
-        <div class="flex justify-center space-x-4 mt-4">
-            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Privacy Policy</a>
-            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Terms of Service</a>
-            <a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Contact Us</a>
+
+        <!-- Service Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">Service</h4>
+            <ul class="text-sm space-y-2">
+                <li><a href="events.php" class="hover:text-blue-300">Event</a></li>
+                <li><a href="profile.php" class="hover:text-blue-300">Profile</a></li>
+                <li><a href="tiket.php" class="hover:text-blue-300">My Ticket</a></li>
+            </ul>
+        </div>
+
+        <!-- Useful Links Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">Useful Links</h4>
+            <ul class="text-sm space-y-2">
+                <li><a href="#" class="hover:text-blue-300">About Us</a></li>
+                <li><a href="#" class="hover:text-blue-300">Team</a></li>
+                <li><a href="#" class="hover:text-blue-300">Portfolio</a></li>
+                <li><a href="#" class="hover:text-blue-300">Services</a></li>
+                <li><a href="#" class="hover:text-blue-300">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div class="flex flex-col">
+            <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+            <h5 class="font-semibold text-lg mb-4">021 5993693 / +62 354168293</h5>
         </div>
     </div>
-    </footer>
+
+    <div class="border-t border-gray-600 mt-8 pt-4 text-center">
+        <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
+    </div>
+</footer>
 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
