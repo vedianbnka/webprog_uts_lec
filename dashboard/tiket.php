@@ -197,7 +197,7 @@ $id_user = $_SESSION['id_user'];
                         </td>
                         <td class="px-4 py-3 border-b"><?= $row['status'] ?></td>
                         <td class="px-4 py-3 border-b">
-                        <a href="qr.php?id_partisipan=<?= $row['id_partisipan'] ?>" class="text-[#7B61FF] hover:underline">
+                        <a href="../qr.php?id_partisipan=<?= $row['id_partisipan'] ?>" class="text-[#7B61FF] hover:underline">My QR</a>
                     </td>
                     </tr>
                     <?php
