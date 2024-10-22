@@ -197,15 +197,7 @@ $id_user = $_SESSION['id_user'];
                         </td>
                         <td class="px-4 py-3 border-b"><?= $row['status'] ?></td>
                         <td class="px-4 py-3 border-b">
-                    <?php
-                        include "../phpqrcode/qrlib.php"; 
-                         
-                        $isi = $row['no_tiket']; 
-                         
-                        // perintah untuk membuat qrcode dan menampilkannya secara langsung dengan format .PNG
-                        QRcode::png($isi); 
-                        
-                    ?>
+                        <a href="qr.php?id_partisipan=<?= $row['id_partisipan'] ?>" class="text-[#7B61FF] hover:underline">
                     </td>
                     </tr>
                     <?php
