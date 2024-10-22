@@ -370,7 +370,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
                 <img src="../brand/x.png" alt="X (Twitter)" class="sosmedx">
             </a>
             <a href="#" target="_blank">
-                <img src="../brand/tiktok3.png" alt="TikTok" class="sosmed">
+                <img src="../brand/tiktokWhite.png" alt="TikTok" class="sosmed">
             </a>
         </div>
         

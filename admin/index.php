@@ -10,7 +10,7 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" rel="stylesheet">
-    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <script>
         function checkSession() {
             var xhr = new XMLHttpRequest();

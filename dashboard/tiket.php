@@ -197,7 +197,7 @@ $id_user = $_SESSION['id_user'];
                         </td>
                         <td class="px-4 py-3 border-b"><?= $row['status'] ?></td>
                         <td class="px-4 py-3 border-b">
-                        <a href="../qr.php?id_partisipan=<?= $row['id_partisipan'] ?>" class="text-[#7B61FF] hover:underline">My QR</a>
+                        <a href="../qr.php?id_partisipan=<?= $row['id_partisipan'] ?>" target="_blank" class="text-[#7B61FF] hover:underline">My QR</a>
                     </td>
                     </tr>
                     <?php
@@ -275,7 +275,7 @@ $id_user = $_SESSION['id_user'];
                                 </td>
                                 <td class="px-4 py-3 border-b">${ticket.status}</td>
                                 <td class="px-4 py-3 border-b">
-                                    ${ticket.no_tiket === null ? '-' : `<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" class="bg-[#7B61FF] text-white p-2 rounded disabled:opacity-50 hover:underline">My QR</a>`}
+                                    ${ticket.no_tiket === null ? '-' : `<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" target="_blank"  class="bg-[#7B61FF] text-white p-2 rounded disabled:opacity-50 hover:underline">My QR</a>`}
                                 </td>
                             </tr>`;
                 ticketBody.innerHTML += row;
