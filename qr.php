@@ -14,5 +14,5 @@ header('Content-Type: image/png');
 $isi = $row['no_tiket']; 
 
 // Buat QR code dan tampilkan
-QRcode::png($isi); 
+QRcode::png($isi, false, 'L', 10, 18);
 ?>
