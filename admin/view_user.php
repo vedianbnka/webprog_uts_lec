@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Konserhub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
