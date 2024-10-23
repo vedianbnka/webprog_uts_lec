@@ -31,7 +31,10 @@
                 fields.classList.add("hidden");
             }
         }
+        
     </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body class="bg-gray-100">
 <div class="min-h-screen flex flex-col lg:flex-row">
@@ -115,7 +118,6 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <input type="text" id="vvip-harga" name="vvip_harga" placeholder="Harga VVIP" class="w-full px-2 py-1 border rounded"/>
                         <input type="number" id="vvip-kuota" name="vvip_kuota" placeholder="Kuota VVIP" class="w-full px-2 py-1 border rounded"/>
-                        <input type="text" id="vvip-benefit" name="vvip_benefit" placeholder="Benefit VVIP" class="w-full px-2 py-1 border rounded col-span-2"/>
                     </div>
                 </div>
 
@@ -128,7 +130,6 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <input type="text" id="vip-harga" name="vip_harga" placeholder="Harga VIP" class="w-full px-2 py-1 border rounded"/>
                         <input type="number" id="vip-kuota" name="vip_kuota" placeholder="Kuota VIP" class="w-full px-2 py-1 border rounded"/>
-                        <input type="text" id="vip-benefit" name="vip_benefit" placeholder="Benefit VIP" class="w-full px-2 py-1 border rounded col-span-2"/>
                     </div>
                 </div>
 
@@ -141,7 +142,6 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <input type="text" id="cat1-harga" name="cat1_harga" placeholder="Harga CAT 1" class="w-full px-2 py-1 border rounded"/>
                         <input type="number" id="cat1-kuota" name="cat1_kuota" placeholder="Kuota CAT 1" class="w-full px-2 py-1 border rounded"/>
-                        <input type="text" id="cat1-benefit" name="cat1_benefit" placeholder="Benefit CAT 1" class="w-full px-2 py-1 border rounded col-span-2"/>
                     </div>
                 </div>
 
@@ -154,7 +154,6 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <input type="text" id="cat2-harga" name="cat2_harga" placeholder="Harga CAT 2" class="w-full px-2 py-1 border rounded"/>
                         <input type="number" id="cat2-kuota" name="cat2_kuota" placeholder="Kuota CAT 2" class="w-full px-2 py-1 border rounded"/>
-                        <input type="text" id="cat2-benefit" name="cat2_benefit" placeholder="Benefit CAT 2" class="w-full px-2 py-1 border rounded col-span-2"/>
                     </div>
                 </div>
 
@@ -166,7 +165,6 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <input type="text" id="cat3-harga" name="cat3_harga" placeholder="Harga CAT 3" class="w-full px-2 py-1 border rounded"/>
                         <input type="number" id="cat3-kuota" name="cat3_kuota" placeholder="Kuota CAT 3" class="w-full px-2 py-1 border rounded"/>
-                        <input type="text" id="cat3-benefit" name="cat3_benefit" placeholder="Benefit CAT 3" class="w-full px-2 py-1 border rounded col-span-2"/>
                     </div>
                 </div>
             </div>
@@ -177,11 +175,31 @@
 </div>
 
             <div class="mt-4 text-center">
-                <button type="submit" class="bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-4 py-2 rounded">Add Event</button>
+                <button type="submit" class="bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-4 py-2 rounded" id="submit-btn">Add Event</button>
             </div>
         </form>
     </main>
 </div>
+<script>
+    document.getElementById("submit-btn").addEventListener("click", function (event) {
+        event.preventDefault(); // Mencegah form langsung submit
+
+        Swal.fire({
+            title: 'Konfirmasi Add Event',
+            text: 'Apakah data yang anda input sudah benar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, tambahkan',
+            cancelButtonText: 'Mau cek lagi'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                event.target.closest("form").submit(); // Kirim form jika user mengonfirmasi
+            }
+        });
+    });
+</script>
 <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
         <!-- About Company Section -->

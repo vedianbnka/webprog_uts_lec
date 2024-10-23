@@ -130,7 +130,8 @@
             ?>
             <div class="form-group">
                 <label for="tipe_tiket"><?= $tiket['tipe_tiket'] ?></label>
-                <input type="number" id="kuota" name="kuota_VVIP" class="form-control" value="<?= $tiket['kuota'] ?>" required autocomplete="off">            </div>
+                <input type="number" id="kuota" name="kuota_VVIP" class="form-control" value="<?= $tiket['kuota'] ?>" required autocomplete="off">            
+            </div>
             <?php
                 }
                 if ($tiket['tipe_tiket'] == 'VIP') {
