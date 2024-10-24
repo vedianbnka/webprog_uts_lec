@@ -31,38 +31,41 @@
                 fields.classList.add("hidden");
             }
         }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
         
     </script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @media (min-width: 1024px) {
+            #mobile-menu {
+                display: flex; /* Show the menu on larger screens */
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
-<div class="min-h-screen flex flex-col lg:flex-row">
-    <!-- Sidebar -->
-    <aside class="w-full lg:w-64 bg-[#7B61FF] p-4 lg:h-screen">
-        <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
-        <nav>
-            <ul class="space-y-4">
-                <li>
-                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
-                </li>
-                <li>
-                    <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
-                </li>
-                <li>
-                    <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
-                </li>
-                <li>
-                <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
-                </li>
-                <li>
-                    <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
-                </li>
+    <div>
+        <header class="bg-[#7B61FF] text-white flex justify-between items-center p-4">
+            <div class="flex items-center space-x-4">
+                <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
+            </div>
+            <button id="navigasi" class="bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none lg:hidden" onclick="toggleMenu()">☰</button>
+        </header>
+
+        <nav class="bg-[#7B61FF] hidden lg:flex lg:flex-row items-center justify-center w-full py-4" id="mobile-menu">
+            <ul class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8">
+                <li><a href="index.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
+                <li><a href="add_event.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
+                <li><a href="view_user.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
+                <li><a href="list_admin.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a></li>
+                <li><a href="../logout.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a></li>
             </ul>
         </nav>
-    </aside>
 
-    <!-- Main Content -->
     <main class="flex-1 p-4">
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
@@ -170,16 +173,15 @@
             </div>
 
             <div class="mb-2">
-    <label for="banner_event" class="block text-sm">Upload Poster</label>
-    <input type="file" id="banner_event" name="banner_event" class="w-full px-2 py-1 border rounded" required/>
-</div>
+                <label for="banner_event" class="block text-sm">Upload Poster</label>
+                <input type="file" id="banner_event" name="banner_event" class="w-full px-2 py-1 border rounded" required/>
+            </div>
 
             <div class="mt-4 text-center">
                 <button type="submit" class="bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-4 py-2 rounded" id="submit-btn">Add Event</button>
             </div>
         </form>
     </main>
-</div>
 <script>
     document.getElementById("submit-btn").addEventListener("click", function (event) {
         event.preventDefault(); // Mencegah form langsung submit
