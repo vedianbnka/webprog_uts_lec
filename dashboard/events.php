@@ -36,11 +36,6 @@ $resultEvents = $stmt;
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="../brand/icon.png" type="image/x-icon">
     <style>
-        img {
-            width: 100%;
-            height: auto;
-        }
-
         .slideshow {
             position: absolute;
             top: 0;
@@ -62,13 +57,6 @@ $resultEvents = $stmt;
 
         .slideshow img.active {
             opacity: 1;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px; /* Adjust gap between cards */
-            justify-items: center; /* Center cards horizontally */
         }
 
         .card {
@@ -117,6 +105,10 @@ $resultEvents = $stmt;
             max-height: 0; 
             overflow: hidden;
             transition: max-height 0.3s ease-in-out; 
+        }
+
+        #konten {
+            margin-top: 12rem;
         }
     </style>
     <script>
@@ -195,15 +187,15 @@ $resultEvents = $stmt;
     <!-- Content Section -->
     <section class="bg-transparent py-20 relative">
         <div class="container mx-auto px-4 text-center relative z-10">
-            <h1 class="text-4xl font-bold text-white">
+            <h1 class="text-4xl font-bold text-white" style="margin-top: 5rem;">
                 Find concerts happening near you
             </h1>
         </div>
     </section>
 
 <!-- Content Section -->
-<section class="container mx-auto mt-40 p-5 bg-white rounded shadow">
-    <h1 class="text-center text-3xl font-bold mb-5">Available events</h1>
+<section class="p-5 bg-white rounded shadow" id="konten"> 
+    <h1 class="text-center text-3xl font-bold mb-5">Available Events</h1>
 
     <?php if (isset($_SESSION['success'])): ?>
         <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
@@ -215,21 +207,21 @@ $resultEvents = $stmt;
     <?php endif; ?>
 
     <?php if ($resultEvents->rowCount() > 0): ?>
-        <div class="grid-container grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
             <?php while($row = $resultEvents->fetch(PDO::FETCH_ASSOC)): ?>
-                <div class="card relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                    <div class="relative h-40 overflow-hidden rounded-t-xl bg-gray-300">
+                <div class="flex flex-col rounded-lg bg-white shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                    <div class="relative h-40">
                         <?php if ($row['banner_event']): ?>
                             <img src="../upload/<?= htmlspecialchars($row['banner_event']) ?>" alt="banner_event" class="object-cover w-full h-full">
                         <?php else: ?>
-                            <div class="w-full h-full flex items-center justify-center text-gray-600">No banner</div>
+                            <div class="flex items-center justify-center w-full h-full bg-gray-300 text-gray-600">No banner</div>
                         <?php endif; ?>
                     </div>
-                    <div class="p-6">
-                        <h2 class="mb-2 text-xl font-bold leading-snug tracking-normal text-[#7B61FF] antialiased">
+                    <div class="p-4">
+                        <h2 class="mb-2 text-xl font-bold text-[#7B61FF] leading-snug tracking-normal antialiased">
                             <?= htmlspecialchars($row['nama_event']) ?>
                         </h2>
-                        <p class="block font-sans text-base font-light leading-relaxed text-gray-700 antialiased">
+                        <p class="font-sans text-base font-light leading-relaxed text-gray-700 antialiased">
                             <strong>Tanggal:</strong> <?= htmlspecialchars($row['tanggal']) ?><br>
                             <strong>Waktu:</strong> <?= htmlspecialchars($row['waktu']) ?><br>
                             <strong>Lokasi:</strong> <?= htmlspecialchars($row['lokasi']) ?><br>
@@ -253,8 +245,8 @@ $resultEvents = $stmt;
                             ?>
                         </p>
                     </div>
-                    <div class="p-6 pt-0">
-                        <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="select-none rounded-lg bg-[#7B61FF] py-3 px-6 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:bg-[#7B61FF]/90">
+                    <div class="p-4">
+                        <a href="regis.php?id_event=<?= htmlspecialchars($row['id_event']) ?>" class="block rounded-lg bg-[#7B61FF] py-3 text-center font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:bg-[#7B61FF]/90">
                             Register
                         </a>
                     </div>
@@ -265,7 +257,7 @@ $resultEvents = $stmt;
         <!-- Pagination -->
         <div class="mt-10 flex justify-center">
             <?php for ($i = 1; $i <= ceil($total_events / $events_per_page); $i++): ?>
-                <a href="?page=<?= $i ?>" class="mx-2 px-4 py-2 bg-<?= ($page == $i) ? '[#7B61FF]' : 'gray-300' ?> text-white rounded">
+                <a href="?page=<?= $i ?>" class="mx-1 px-4 py-2 bg-<?= ($page == $i) ? '[#7B61FF]' : 'gray-300' ?> text-white rounded transition-colors hover:bg-[#7B61FF]">
                     <?= $i ?>
                 </a>
             <?php endfor; ?>
@@ -277,6 +269,9 @@ $resultEvents = $stmt;
         </div>
     <?php endif; ?>
 </section>
+
+
+
 
 
     <!-- Footer -->

@@ -179,6 +179,7 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
                                 type="file"
                                 id="banner_event"
                                 name="banner_event"
+                                value="<?= $event['banner_event'] ?>"   
                                 class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                                 required="required">
                         </div>
