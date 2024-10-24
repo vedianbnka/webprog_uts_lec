@@ -62,7 +62,7 @@ $event = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
             </ul>
         </nav>
         <!-- Main Content -->
-        <div class="flex-1">
+        <div class="flex-1 p-4">
             <!-- Header -->
             <header class="bg-white shadow p-4 flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-black">Edit Event</h2>
