@@ -202,7 +202,7 @@
         });
     });
 </script>
-<footer class="bg-gray-900 bg-opacity-80 text-white py-8">
+<footer class="bg-gray-900 bg-opacity-80 text-white py-8 mt-10">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
         <!-- About Company Section -->
         <div class="flex flex-col">

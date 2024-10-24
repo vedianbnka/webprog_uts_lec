@@ -126,7 +126,6 @@
                                         <form id="deleteForm_<?= $row['id_user'] ?>" action="delete_admin.php?id_user=<?= $row['id_user'] ?>" method="POST" style="display:none;">
                                             <input type="hidden" name="id_user" value="<?= $row['id_user'] ?>">
                                         </form>
-                                        <a href="history.php?id_user=<?= $row['id_user'] ?>" class="text-blue-500 hover:text-blue-700 border-[#7B61FF] ml-4">History Partisipan</a>
                                     </td>
                                 </tr>
                                 <?php
