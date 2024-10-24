@@ -47,13 +47,15 @@ session_start();
 </head>
 <body class="bg-gray-100">
     <div class="flex flex-col lg:flex-row">
+        <span>
+        <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
         <button 
         class="lg:hidden fixed top-4 right-4 z-50 bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none"
         onclick="toggleMenu()">
         ☰
       </button>
+        </span>
         <aside class="lg:w-64 bg-[#7B61FF] h-screen p-4 hidden lg:block transition-transform duration-300 ease-in-out transform origin-top" id="mobile-menu">
-            <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
             <nav>
             <ul class="space-y-4">
                 <li>
