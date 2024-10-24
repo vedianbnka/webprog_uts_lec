@@ -207,7 +207,7 @@
         <!-- About Company Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">About Company</h4>
-            <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
+            <p class="text-sm">Universitas Multimedia Nusantara</p>
             <div class="flex space-x-4 mt-4">
                 <!-- Social Media Icons -->
                 <a href="#"><img src="../brand/ig2.png" alt="Instagram" class="w-6 h-6"></a>
@@ -241,7 +241,7 @@
         <!-- Contact Us Section -->
         <div class="flex flex-col">
             <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-            <h5 class="font-semibold text-lg mb-4">021 5993693 / +62 354168293</h5>
+            <a class="hover:text-blue-300">+021-5993693  <br> +62-354168293</a>
         </div>
     </div>
 
