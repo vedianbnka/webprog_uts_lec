@@ -174,9 +174,8 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
                 class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
                 <!-- About Company Section -->
                 <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg mb-4">About Company</h4>
-                    <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
-                    <div class="flex space-x-4 mt-4">
+                    <h4 class="font-semibold text-lg mb-4">Our Social Media</h4>
+                    <div class="flex space-x-4">
                         <!-- Social Media Icons -->
                         <a href="#"><img src="../brand/ig2.png" alt="Instagram" class="w-6 h-6"></a>
                         <a href="#"><img src="../brand/tiktokWhite.png" alt="TikTok" class="w-6 h-6"></a>
@@ -202,46 +201,30 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
 
                 <!-- Useful Links Section -->
                 <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg mb-4">Useful Links</h4>
-                    <ul class="text-sm space-y-2">
-                        <li>
-                            <a href="#" class="hover:text-blue-300">About Us</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-blue-300">Team</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-blue-300">Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-blue-300">Services</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-blue-300">Contact Us</a>
-                        </li>
-                    </ul>
+                    <h4 class="font-semibold text-lg mb-4">Our Address</h4>
+                    <p>Jl. Raya Cimanggis No. 2, Cimanggis, Kec. Cimanggis, Kota Depok, Jawa Barat</p>
                 </div>
 
                 <!-- Contact Us Section -->
                 <div class="flex flex-col">
                     <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-                    <a class="hover:text-blue-300">+021-5993693
-                        <br>
-                        +62-354168293</a>
+                    <h5 class="font text-md mb-4">☎️ : +62 354168293</h5>
+                    <h5 class="font text-md mb-4">📩 : admin@konserhub.com</h5>
                 </div>
             </div>
+        </div>
 
-            <div class="border-t border-gray-600 mt-8 pt-4 text-center">
-                <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
-            </div>
-        </footer>
+        <div class="border-t border-gray-600 mt-8 pt-4 text-center">
+            <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
+        </div>
+    </footer>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#tabell').DataTable();
-            });
-        </script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tabell').DataTable();
+        });
+    </script>
+</body>
 </html>

@@ -233,49 +233,49 @@ session_start();
                 <!-- Contact Us Section -->
                 <div class="flex flex-col">
                     <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-                    <a class="hover:text-blue-300">+021-5993693
-                        <br>
-                        +62-354168293</a>
+                    <h5 class="font text-md mb-4">☎️ : +62 354168293</h5>
+                    <h5 class="font text-md mb-4">📩 : admin@konserhub.com</h5>
                 </div>
             </div>
+        </div>
 
-            <div class="border-t border-gray-600 mt-8 pt-4 text-center">
-                <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
-            </div>
-        </footer>
-        <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                $('#tabell').DataTable();
-            });
-        </script>
-        <script>
-            // Ketika tombol hapus diklik
-            document
-                .querySelectorAll('.delete-btn')
-                .forEach(button => {
-                    button.addEventListener('click', function () {
-                        var eventId = this.getAttribute('data-event-id');
-                        Swal
-                            .fire({
-                                title: 'Hapus Event',
-                                text: 'Apakah Anda yakin ingin menghapus event ini?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: 'Ya, Hapus',
-                                cancelButtonText: 'Tidak, Batalkan'
-                            })
-                            .then((result) => {
-                                if (result.isConfirmed) {
-                                    // Submit form yang sesuai untuk menghapus event
-                                    document
-                                        .getElementById('deleteForm_' + eventId)
-                                        .submit();
-                                }
-                            });
-                    });
+        <div class="border-t border-gray-600 mt-8 pt-4 text-center">
+            <p class="text-sm">&copy;2024 Konserhub. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            $('#tabell').DataTable();
+        });
+    </script>
+    <script>
+        // Ketika tombol hapus diklik
+        document
+            .querySelectorAll('.delete-btn')
+            .forEach(button => {
+                button.addEventListener('click', function () {
+                    var eventId = this.getAttribute('data-event-id');
+                    Swal
+                        .fire({
+                            title: 'Hapus Event',
+                            text: 'Apakah Anda yakin ingin menghapus event ini?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Ya, Hapus',
+                            cancelButtonText: 'Tidak, Batalkan'
+                        })
+                        .then((result) => {
+                            if (result.isConfirmed) {
+                                // Submit form yang sesuai untuk menghapus event
+                                document
+                                    .getElementById('deleteForm_' + eventId)
+                                    .submit();
+                            }
+                        });
                 });
-        </script>
-    </body>
+            });
+    </script>
+</body>
 
 </html>
