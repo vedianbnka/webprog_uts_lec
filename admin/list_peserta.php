@@ -152,10 +152,11 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
                                     <td class="px-4 py-2"><?= $row['tanggal_register'] ?></td>
                                     <td class="px-4 py-2"><?= $row['tipe_tiket'] ?></td>
                                     <td class="px-4 py-2"><?= $row['jumlah'] ?></td>
-                                    <td class="px-4 py-2"><img
+                                    <td class="px-4 py-2"><a href="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>" target="_blank"><img
                                         class="w-20"
                                         src="../bukti_pembayaran/<?= $row['bukti_pembayaran'] ?>"
-                                        alt=""></td>
+                                        alt=""></a>
+                                    </td>
                                     <td class="px-4 py-2">
                                         <form
                                             method="post"
@@ -164,6 +165,8 @@ $event = $statement->fetch(PDO::FETCH_ASSOC);
                                                 <option value="approved" <?= $row['status'] == 'approved' ? 'selected' : '' ?>>Approved</option>
                                                 <option value="pending" <?= $row['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
                                                 <option value="rejected" <?= $row['status'] == 'rejected' ? 'selected' : '' ?>>Rejected</option>
+                                                <option value="canceled" <?= $row['status'] == 'canceled' ? 'selected' : '' ?>>Canceled By User</option>
+                                                <option value="canceled_admin" <?= $row['status'] == 'event canceled' ? 'selected' : '' ?>>Event Canceled</option>
                                             </select>
                                         </form>
                                     </td>

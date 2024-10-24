@@ -319,10 +319,10 @@ $id_user = $_SESSION['id_user'];
                                 </td>
                                 <td class="px-4 py-3 border-b">${ticket.status}</td>
                                 <td class="px-4 py-3 border-b">
-                                    ${ticket.status === 'pending' ? 'No. Tiket akan muncul setelah pembayaran anda di approve oleh admin kami.' : ticket.status==='canceled'? 'Tiket anda telah di cancel. Refund akan segera kami proses.':`<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" target="_blank"  class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">My QR</a>`}
+                                    ${ticket.status === 'pending' ? 'No. Tiket akan muncul setelah pembayaran anda di approve oleh admin kami.' : ticket.status==='canceled'? 'Tiket anda telah di cancel. Refund akan segera kami proses.': ticket.status==='event canceled' ? 'Event ini telah di cancel. Refund akan segera kami proses' : `<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" target="_blank"  class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">My QR</a>`}
                                 </td>
                                 <td class="px-4 py-3 border-b">
-                                    <form action="cancel_ticket.php?id_partisipan=<?= $row['id_partisipan'] ?>" method="POST">
+                                    <form action="cancel_ticket.php?id_partisipan=${ticket.id_partisipan}" method="POST">
                                         <button type="submit" class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">Cancel</button>
                                     </form>
                                 </td>
