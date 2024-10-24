@@ -277,8 +277,8 @@ $id_user = $_SESSION['id_user'];
             <!-- Contact Us Section -->
             <div class="flex flex-col">
                 <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-                <h5 class="font-semibold text-lg mb-4">021 5993693 / +62 354168293</h5>
-                </div>
+                <h5 class="font text-md mb-4">☎️ : +62 354168293</h5>
+                <h5 class="font text-md mb-4">📩 : admin@konserhub.com</h5>                </div>
             </div>
 
             <div class="border-t border-gray-600 mt-8 pt-4 text-center">
@@ -318,7 +318,7 @@ $id_user = $_SESSION['id_user'];
                                 </td>
                                 <td class="px-4 py-3 border-b">${ticket.status}</td>
                                 <td class="px-4 py-3 border-b">
-                                    ${ticket.status === 'pending' ? 'No. Tiket akan muncul setelah pembayaran anda di approve oleh admin kami.' : ticket.status==='canceled'? 'Tiket anda telah di cancel.':`<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" target="_blank"  class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">My QR</a>`}
+                                    ${ticket.status === 'pending' ? 'No. Tiket akan muncul setelah pembayaran anda di approve oleh admin kami.' : ticket.status==='canceled'? 'Tiket anda telah di cancel. Refund akan segera kami proses.':`<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" target="_blank"  class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">My QR</a>`}
                                 </td>
                                 <td class="px-4 py-3 border-b">
                                     <form action="cancel_ticket.php?id_partisipan=<?= $row['id_partisipan'] ?>" method="POST">
