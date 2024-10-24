@@ -3,7 +3,7 @@
         'name' => 'vedianbunka/webprog_uts_lec',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9207a5b89476de2a678c091b2cdb8e67951bd891',
+        'reference' => 'ea9d79c23d9eab410fa17ffdcef08f3aad29af87',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -93,7 +93,7 @@
         'vedianbunka/webprog_uts_lec' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9207a5b89476de2a678c091b2cdb8e67951bd891',
+            'reference' => 'ea9d79c23d9eab410fa17ffdcef08f3aad29af87',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,11 +1,17 @@
 {
     "name": "vedianbunka/webprog_uts_lec",
-    "description": "uts_lec",
+    "description": "excel",
     "autoload": {
         "psr-4": {
             "Vedianbunka\\WebprogUtsLec\\": "src/"
         }
     },
+    "authors": [
+        {
+            "name": "vedianbnka",
+            "email": "v.bunka238@gmail.com"
+        }
+    ],
     "minimum-stability": "dev",
     "require": {
         "phpoffice/phpspreadsheet": "dev-master"
