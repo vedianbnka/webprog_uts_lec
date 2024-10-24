@@ -402,9 +402,8 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
             <!-- About Company Section -->
             <div class="flex flex-col">
-                <h4 class="font-semibold text-lg mb-4">About Company</h4>
-                <p class="text-sm">2-c-20, Kansua, Kota Rajasthan-324004</p>
-                <div class="flex space-x-4 mt-4">
+                <h4 class="font-semibold text-lg mb-4">Our Social Media</h4>
+                <div class="flex space-x-4">
                     <!-- Social Media Icons -->
                     <a href="#"><img src="../brand/ig2.png" alt="Instagram" class="w-6 h-6"></a>
                     <a href="#"><img src="../brand/tiktokWhite.png" alt="TikTok" class="w-6 h-6"></a>
@@ -430,24 +429,8 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
 
             <!-- Useful Links Section -->
             <div class="flex flex-col">
-                <h4 class="font-semibold text-lg mb-4">Useful Links</h4>
-                <ul class="text-sm space-y-2">
-                    <li>
-                        <a href="#" class="hover:text-blue-300">About Us</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:text-blue-300">Team</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:text-blue-300">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:text-blue-300">Services</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:text-blue-300">Contact Us</a>
-                    </li>
-                </ul>
+                <h4 class="font-semibold text-lg mb-4">Our Address</h4>
+                <p>Jl. Raya Cimanggis No. 2, Cimanggis, Kec. Cimanggis, Kota Depok, Jawa Barat</p>
             </div>
 
             <!-- Contact Us Section -->
