@@ -113,7 +113,7 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
             <main class="flex-1 p-4">
                 <!-- Header -->
                 <header class="bg-white shadow p-4 flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-black">history</h2>
+                    <h2 class="text-2xl font-bold text-black">History</h2>
                     <div class="text-gray-700">Welcome,
                         <?php echo $_SESSION['nama']; ?></div>
                 </header>

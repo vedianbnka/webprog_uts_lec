@@ -184,7 +184,8 @@ $id_user = $_SESSION['id_user'];
                         <th class="px-4 py-2 border-b">Jumlah Pembelian Tiket</th>
                         <th class="px-4 py-2 border-b">Bukti Pembayaran</th>
                         <th class="px-4 py-2 border-b">Status</th>
-                        <th class="px-4 py-2 border-b rounded-tr-lg">No. Tiket</th>
+                        <th class="px-4 py-2 border-b">No. Tiket</th>
+                        <th class="px-4 py-2 border-b rounded-tr-lg">Action</th>
                     </tr>
                 </thead>
                 <tbody id="ticketBody">
@@ -211,6 +212,11 @@ $id_user = $_SESSION['id_user'];
                         <td class="px-4 py-3 border-b"><?= $row['status'] ?></td>
                         <td class="px-4 py-3 border-b">
                         <a href="../qr.php?id_partisipan=<?= $row['id_partisipan'] ?>" target="_blank" class="text-[#7B61FF] hover:underline">My QR</a>
+                    </td>
+                    <td class="px-4 py-3 border-b">
+                        <form action="cancel_ticket.php?id_partisipan=<?= $row['id_partisipan'] ?>" method="POST">
+                            <button type="submit" class="bg-[#7B61FF] text-white p-2 rounded disabled:opacity-50">Cancel</button>
+                        </form>
                     </td>
                     </tr>
                     <?php
@@ -312,7 +318,12 @@ $id_user = $_SESSION['id_user'];
                                 </td>
                                 <td class="px-4 py-3 border-b">${ticket.status}</td>
                                 <td class="px-4 py-3 border-b">
-                                    ${ticket.no_tiket === null ? 'No. Tiket akan muncul setelah pembayaran anda di approve oleh admin kami.' : `<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" target="_blank"  class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">My QR</a>`}
+                                    ${ticket.status === 'pending' ? 'No. Tiket akan muncul setelah pembayaran anda di approve oleh admin kami.' : ticket.status==='canceled'? 'Tiket anda telah di cancel.':`<a href="../qr.php?id_partisipan=${ticket.id_partisipan}" target="_blank"  class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">My QR</a>`}
+                                </td>
+                                <td class="px-4 py-3 border-b">
+                                    <form action="cancel_ticket.php?id_partisipan=<?= $row['id_partisipan'] ?>" method="POST">
+                                        <button type="submit" class="bg-[#7B61FF] text-white p-1 rounded disabled:opacity-50 hover:underline">Cancel</button>
+                                    </form>
                                 </td>
                             </tr>`;
                 ticketBody.innerHTML += row;
