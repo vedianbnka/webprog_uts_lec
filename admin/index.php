@@ -29,114 +29,98 @@ session_start();
 
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-            if (menu.classList.contains('hidden')) {
-            menu.classList.remove('hidden');
-            setTimeout(() => {
-                menu.classList.remove('scale-y-0');
-                menu.classList.add('scale-y-100');
-            }, 10); // Sedikit delay agar animasi berjalan
-            } else {
-            menu.classList.remove('scale-y-100');
-            menu.classList.add('scale-y-0');
-            setTimeout(() => {
-                menu.classList.add('hidden');
-            }, 300); // Sesuaikan dengan durasi animasi
+            menu.classList.toggle('hidden');
+        }
+
+
+    </script>
+    <style>
+
+        @media (min-width: 1024px) {
+            #mobile-menu {
+                display: flex; /* Show the menu on larger screens */
             }
         }
-    </script>
+    </style>
 </head>
 <body class="bg-gray-100">
-    <div class="flex flex-col lg:flex-row">
-        <span>
-        <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
-        <button 
-        class="lg:hidden fixed top-4 right-4 z-50 bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none"
-        onclick="toggleMenu()">
-        ☰
-      </button>
-        </span>
-        <aside class="lg:w-64 bg-[#7B61FF] h-screen p-4 hidden lg:block transition-transform duration-300 ease-in-out transform origin-top" id="mobile-menu">
-            <nav>
-            <ul class="space-y-4">
-                <li>
-                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
-                </li>
-                <li>
-                    <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
-                </li>
-                <li>
-                    <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
-                </li>
-                <li>
-                <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
-                </li>
-                <li>
-                    <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
-                </li>
+    <div>
+        <!-- Header with Logo and Navigation Button -->
+        <header class="bg-[#7B61FF] text-white flex justify-between items-center p-4">
+            <div class="flex items-center space-x-4">
+                <!-- Logo -->
+                <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
+            </div>
+            <!-- Hamburger Menu Button for Mobile -->
+            <button id="navigasi" class="bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none lg:hidden" onclick="toggleMenu()">☰</button>
+        </header>
+
+        <!-- Navigation Bar (Moves from left to top) -->
+        <nav class="bg-[#7B61FF] hidden lg:flex lg:flex-row items-center justify-center w-full py-4" id="mobile-menu">
+            <ul class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8">
+                <li><a href="index.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
+                <li><a href="add_event.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
+                <li><a href="view_user.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
+                <li><a href="list_admin.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a></li>
+                <li><a href="../logout.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a></li>
             </ul>
         </nav>
-        </aside>
 
-        <main class="flex-1 p-4">
-        <!-- Header -->
+    <!-- Main Content -->
+    <main class="flex-1 p-4">
         <header class="bg-white shadow p-4 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-black">Dashboard</h2>
             <div class="text-gray-700">Welcome, <?php echo $_SESSION['nama']; ?></div>
         </header>
 
-            <main class="p-6 bg-gray-100">
-                <?php if (isset($_SESSION['success'])): ?>
-                    <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
-                        <?php 
-                        echo $_SESSION['success'];
-                        unset($_SESSION['success']);
-                        ?>
-                    </div>
-                <?php endif; ?>
-                <?php if (isset($_SESSION['error'])): ?>
-                    <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
-                        <?php 
-                        echo $_SESSION['error'];
-                        unset($_SESSION['error']);
-                        ?>
-                    </div>
-                <?php endif; ?>
+        <section class="p-6 bg-gray-100">
+            <!-- Success and Error messages -->
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
+                    <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+                    <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                </div>
+            <?php endif; ?>
 
-                <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-                    <h3 class="text-xl font-semibold text-black mb-4">Manage Events</h3>
-                    <div class="overflow-x-auto">
-                        <table id="tabell" class="min-w-full bg-white">
-                            <thead class="bg-[#7B61FF] text-white">
+            <!-- Table for managing events -->
+            <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
+                <h3 class="text-xl font-semibold text-black mb-4">Manage Events</h3>
+                <div class="overflow-x-auto">
+                    <table id="tabell" class="min-w-full bg-white">
+                        <thead class="bg-[#7B61FF] text-white">
+                            <tr>
+                                <th class="py-3 px-4 text-left">Nama Event</th>
+                                <th class="py-3 px-4 text-left">Foto</th>
+                                <th class="py-3 px-4 text-left">Status Event</th>
+                                <th class="py-3 px-4 text-left">Partisipan</th>
+                                <th class="py-3 px-4 text-left">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                        <?php
+                                require_once "../db.php";
+                                $sql = "SELECT * FROM event_konser";
+                                $hasil = $db->query($sql);
+                                while ($row = $hasil->fetch(PDO::FETCH_ASSOC)) {
+                            ?>
                                 <tr>
-                                    <th class="py-3 px-4 text-left">Nama Event</th>
-                                    <th class="py-3 px-4 text-left">Foto</th>
-                                    <th class="py-3 px-4 text-left">Status Event</th>
-                                    <th class="py-3 px-4 text-left">Partisipan</th>
-                                    <th class="py-3 px-4 text-left">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-700">
-                                <?php
-                                    require_once "../db.php";
-                                    $sql = "SELECT * FROM event_konser";
-                                    $hasil = $db->query($sql);
-
-                                    while ($row = $hasil->fetch(PDO::FETCH_ASSOC)) {
-                                ?>
-                                    <tr>
-                                        <td class="py-2 px-4"><?= $row['nama_event'] ?></td>
-                                        <td class="py-2 px-4"><img class="h-16 w-32 object-cover" src="../upload/<?= $row['banner_event'] ?>" alt=""></td>
-                                        <td class="py-2 px-4">
-                                            <form method="post" action="update_status.php?id_event=<?= $row['id_event'] ?>">
-                                                <select class="bg-gray-200 border border-gray-300 p-2 rounded" name="status" onchange="this.form.submit()">
-                                                    <option value="open" <?= $row['status_event'] == 'open' ? 'selected' : '' ?>>Active</option>
-                                                    <option value="closed" <?= $row['status_event'] == 'closed' ? 'selected' : '' ?>>Closed</option>
-                                                    <option value="canceled" <?= $row['status_event'] == 'canceled' ? 'selected' : '' ?>>Canceled</option>
-                                                </select>
-                                            </form>
-                                        </td>
-                                        <td class="py-2 px-4">
-                                            <?php
+                                    <td class="py-2 px-4"><?= $row['nama_event'] ?></td>
+                                    <td class="py-2 px-4"><img class="h-16 w-32 object-cover" src="../upload/<?= $row['banner_event'] ?>" alt=""></td>
+                                    <td class="py-2 px-4">
+                                        <form method="post" action="update_status.php?id_event=<?= $row['id_event'] ?>">
+                                            <select class="bg-gray-200 border border-gray-300 p-2 rounded" name="status" onchange="this.form.submit()">
+                                                <option value="open" <?= $row['status_event'] == 'open' ? 'selected' : '' ?>>Active</option>
+                                                <option value="closed" <?= $row['status_event'] == 'closed' ? 'selected' : '' ?>>Closed</option>
+                                                <option value="canceled" <?= $row['status_event'] == 'canceled' ? 'selected' : '' ?>>Canceled</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                    <td class="py-2 px-4">
+                                        <?php
                                             $sqll = "SELECT * FROM tiket WHERE id_event = $row[id_event]";
                                             $result = $db->query($sqll);
                                             $kuota = 0;
@@ -146,32 +130,32 @@ session_start();
                                                 $kuota += $roww['kuota'];
                                             }
                                             echo $jumlah_sold . " / " . $kuota;
-                                            ?>
-                                        </td>
-                                        <td class="py-2 px-4">
-                                            <div class="flex flex-col lg:flex-row gap-2">
-                                                <a href="edit_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit</a>
-                                                <a href="detail_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Detail Event</a>
-                                                <a href="list_peserta.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">List Partisipan</a>
-                                                <a href="edit_kuota.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit Kuota</a>
-                                                <a href="#" class="text-red-500 hover:underline delete-btn" data-event-id="<?= $row['id_event'] ?>">Delete</a>
-                                                <!-- Form yang akan dikirim saat event dihapus -->
-                                                <form id="deleteForm_<?= $row['id_event'] ?>" action="delete_event.php?id_event=<?= $row['id_event'] ?>" method="POST" style="display:none;">
-                                                    <input type="hidden" name="id_event" value="<?= $row['id_event'] ?>">
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
+                                        ?>
+                                    </td>
+                                    <td class="py-2 px-4">
+                                        <div class="flex flex-col lg:flex-row gap-2">
+                                            <a href="edit_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit</a>
+                                            <a href="detail_event.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Detail Event</a>
+                                            <a href="list_peserta.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">List Partisipan</a>
+                                            <a href="edit_kuota.php?id_event=<?= $row['id_event'] ?>" class="text-[#7B61FF] hover:underline">Edit Kuota</a>
+                                            <a href="#" class="text-red-500 hover:underline delete-btn" data-event-id="<?= $row['id_event'] ?>">Delete</a>
+                                            <form id="deleteForm_<?= $row['id_event'] ?>" action="delete_event.php?id_event=<?= $row['id_event'] ?>" method="POST" style="display:none;">
+                                                <input type="hidden" name="id_event" value="<?= $row['id_event'] ?>">
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </main>
+</div>
+
     <footer class="bg-gray-900 bg-opacity-80 text-white py-8">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
         <!-- About Company Section -->
