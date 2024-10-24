@@ -35,7 +35,6 @@ session_start();
 
     </script>
     <style>
-
         @media (min-width: 1024px) {
             #mobile-menu {
                 display: flex; /* Show the menu on larger screens */
@@ -45,17 +44,13 @@ session_start();
 </head>
 <body class="bg-gray-100">
     <div>
-        <!-- Header with Logo and Navigation Button -->
         <header class="bg-[#7B61FF] text-white flex justify-between items-center p-4">
             <div class="flex items-center space-x-4">
-                <!-- Logo -->
                 <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
             </div>
-            <!-- Hamburger Menu Button for Mobile -->
             <button id="navigasi" class="bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none lg:hidden" onclick="toggleMenu()">☰</button>
         </header>
 
-        <!-- Navigation Bar (Moves from left to top) -->
         <nav class="bg-[#7B61FF] hidden lg:flex lg:flex-row items-center justify-center w-full py-4" id="mobile-menu">
             <ul class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8">
                 <li><a href="index.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
@@ -66,7 +61,6 @@ session_start();
             </ul>
         </nav>
 
-    <!-- Main Content -->
     <main class="flex-1 p-4">
         <header class="bg-white shadow p-4 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-black">Dashboard</h2>
@@ -74,7 +68,6 @@ session_start();
         </header>
 
         <section class="p-6 bg-gray-100">
-            <!-- Success and Error messages -->
             <?php if (isset($_SESSION['success'])): ?>
                 <div class="mb-4 text-green-600 bg-green-100 p-3 rounded">
                     <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
@@ -86,7 +79,6 @@ session_start();
                 </div>
             <?php endif; ?>
 
-            <!-- Table for managing events -->
             <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
                 <h3 class="text-xl font-semibold text-black mb-4">Manage Events</h3>
                 <div class="overflow-x-auto">
