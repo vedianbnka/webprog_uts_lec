@@ -60,7 +60,21 @@
         }
 
         setInterval(checkSession, 1000);
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
     </script>
+    <style>
+
+@media (min-width: 1024px) {
+    #mobile-menu {
+        display: flex; /* Show the menu on larger screens */
+    }
+}
+</style>
 </head>
 
 <?php
@@ -73,36 +87,33 @@
 ?>
 
 <body class="bg-gray-100">
-<div class="min-h-screen flex flex-col lg:flex-row">
-    <!-- Sidebar -->
-    <aside class="w-full lg:w-64 bg-[#7B61FF] p-4 lg:h-screen">
-        <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
-        <nav>
-            <ul class="space-y-4">
-                <li>
-                    <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
-                </li>
-                <li>
-                    <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
-                </li>
-                <li>
-                    <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
-                </li>
-                <li>
-                    <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
-                </li>
-                <li>
-                    <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
-                </li>
+    <div>
+        <!-- Header with Logo and Navigation Button -->
+        <header class="bg-[#7B61FF] text-white flex justify-between items-center p-4">
+            <div class="flex items-center space-x-4">
+                <!-- Logo -->
+                <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
+            </div>
+            <!-- Hamburger Menu Button for Mobile -->
+            <button id="navigasi" class="bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none lg:hidden" onclick="toggleMenu()">☰</button>
+        </header>
+
+        <!-- Navigation Bar (Moves from left to top) -->
+        <nav class="bg-[#7B61FF] hidden lg:flex lg:flex-row items-center justify-center w-full py-4" id="mobile-menu">
+            <ul class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8">
+                <li><a href="index.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
+                <li><a href="add_event.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
+                <li><a href="view_user.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
+                <li><a href="list_admin.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a></li>
+                <li><a href="../logout.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a></li>
             </ul>
         </nav>
-    </aside>
 
     <!-- Main Content -->
     <main class="flex-1 p-4">
         <!-- Header -->
         <header class="bg-white shadow p-4 flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-black">Edit Kuota</h2>
+            <h2 class="text-2xl font-bold text-black">Edit Kuota </h2>
         </header>
 
         <!-- Edit Event Form -->
