@@ -120,7 +120,7 @@
                                     <td class="py-4 px-6 text-sm text-gray-900 border-b border-[#7B61FF]"><?= $row['email'] ?></td>
                                     <td class="py-4 px-6 text-sm text-gray-900 border-b border-[#7B61FF]"><?= $row['phone'] ?></td>
                                     <td class="py-4 px-6 text-sm border-b border-[#7B61FF]">
-                                        <a href="#" class="text-red-500 hover:text-red-700 border-[#7B61FF] delete-btn" data-event-id="<?= $row['id_user'] ?>">Delete User</a>
+                                        <a href="#" class="text-red-500 hover:text-red-700 border-[#7B61FF] delete-btn" data-event-id="<?= $row['id_user'] ?>">Delete Admin</a>
 
                                         <!-- Form yang akan dikirim saat event dihapus -->
                                         <form id="deleteForm_<?= $row['id_user'] ?>" action="delete_admin.php?id_user=<?= $row['id_user'] ?>" method="POST" style="display:none;">
@@ -198,7 +198,7 @@ document.querySelectorAll('.delete-btn').forEach(button => {
         var eventId = this.getAttribute('data-event-id');
         Swal.fire({
             title: 'Hapus Event',
-            text: 'Apakah Anda yakin ingin menghapus user ini?',
+            text: 'Apakah Anda yakin ingin menghapus admin ini?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Ya, Hapus',
