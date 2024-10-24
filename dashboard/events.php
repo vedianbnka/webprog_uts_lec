@@ -191,8 +191,7 @@ $resultEvents = $stmt;
         <img src="slide/slide9.jpg" alt="Slide 1">
         <img src="slide/slide7.jpg" alt="Slide 2">
         <img src="slide/slide8.jpg" alt="Slide 3">
-    </div><br><br>
-
+    </div>
     <!-- Content Section -->
     <section class="bg-transparent py-20 relative">
         <div class="container mx-auto px-4 text-center relative z-10">
@@ -201,7 +200,6 @@ $resultEvents = $stmt;
             </h1>
         </div>
     </section>
-    <br><br><br><br><br>
 
 <!-- Content Section -->
 <section class="container mx-auto mt-40 p-5 bg-white rounded shadow">
@@ -216,17 +214,8 @@ $resultEvents = $stmt;
         </div>
     <?php endif; ?>
 
-    <?php if (isset($_SESSION['error'])): ?>
-        <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
-            <?php 
-            echo $_SESSION['error'];
-            unset($_SESSION['error']);
-            ?>
-        </div>
-    <?php endif; ?>
-
     <?php if ($resultEvents->rowCount() > 0): ?>
-        <div class="grid-container">
+        <div class="grid-container grid grid-cols-1 md:grid-cols-3 gap-6">
             <?php while($row = $resultEvents->fetch(PDO::FETCH_ASSOC)): ?>
                 <div class="card relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                     <div class="relative h-40 overflow-hidden rounded-t-xl bg-gray-300">
@@ -291,7 +280,7 @@ $resultEvents = $stmt;
 
 
     <!-- Footer -->
-    <footer class="bg-black bg-opacity-80 text-white py-8">
+    <footer class="bg-black bg-opacity-80 text-white py-8 mt-10">
         <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-8">
             <!-- About Company Section -->
             <div class="flex flex-col">

@@ -116,7 +116,7 @@ $id_user = $_SESSION['id_user'];
         }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<body class="bg-gray-100">
 
     <!-- Navbar -->
     <nav class="bg-white shadow-lg">

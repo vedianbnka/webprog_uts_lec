@@ -170,18 +170,16 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
         </div>
     </nav>
 
-
-
     <div class="slideshow">        
         <img src="slide/slide1.jpg" alt="Slide 1">
         <img src="slide/slide2.jpg" alt="Slide 2">
         <img src="slide/slide3.jpg" alt="Slide 3">
         <img src="slide/slide4.jpg" alt="Slide 3">
         <img src="slide/slide5.jpg" alt="Slide 3">
-    </div><br><br>
+    </div>
 
     <!-- Content Section -->
-    <section class="bg-transparent py-20 relative">
+    <section class="bg-transparent py-20 relative mt-2">
     <div class="container mx-auto px-4 text-center relative z-10">
         <h1 class="text-4xl font-bold text-white">
             Experience the Best Concerts
@@ -193,7 +191,6 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             </button>
         </a>
     </div>
-    <br><br><br><br><br>
 </section>
 
 <!-- Content Section -->
