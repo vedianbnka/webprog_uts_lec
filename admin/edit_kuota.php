@@ -118,7 +118,6 @@
 
         <!-- Edit Event Form -->
         <form action="edit_kuota_proses.php?id_event=<?= $event['id_event'] ?>" method="POST" class="bg-white p-5 border rounded shadow max-w-2xl mx-auto mt-20 animasi" enctype="multipart/form-data">
-        <h1 class="text-center text-lg font-semibold mb-3">Edit Kuota</h1>
 
             <div class="mb-2">
                 <label for="nama_event" class="block text-sm">Nama Event</label>
