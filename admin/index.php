@@ -31,8 +31,6 @@ session_start();
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
-
-
     </script>
     <style>
         @media (min-width: 1024px) {
