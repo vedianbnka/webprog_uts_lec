@@ -276,7 +276,13 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
         <div class="text-center mt-5">
             <p class="text-gray-600">Tidak ada event konser yang terbuka saat ini.</p>
         </div>
-    <?php endif; ?>
+    <?php endif; ?><?php if ($limit < $totalEvents): ?>
+            <div class="text-center mt-5 mb-6"> 
+                <br>
+                <a href="events.php?limit=<?= $limit + 6 ?>" class="mt-6 px-6 py-3 bg-[#7B61FF] text-white rounded-md shadow-lg hover:bg-[#6A52E0]">See More ></a>
+                <br>
+            </div>
+        <?php endif; ?>
     </section>
     <script>
     const slider = document.getElementById('event-slider');
@@ -302,13 +308,7 @@ $totalEvents = $db->query($sqlTotal)->fetchColumn();
             display: none; /* Safari and Chrome */
         }
     </style>
-        <?php if ($limit < $totalEvents): ?>
-            <div class="text-center mt-5 mb-6"> 
-                <br>
-                <a href="events.php?limit=<?= $limit + 6 ?>" class="mt-6 px-6 py-3 bg-[#7B61FF] text-white rounded-md shadow-lg hover:bg-[#6A52E0]">See More ></a>
-                <br>
-            </div>
-        <?php endif; ?>
+        
     </section>
 
     <section class="py-16 bg-gray-100">
