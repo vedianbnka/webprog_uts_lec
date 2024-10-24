@@ -23,32 +23,31 @@
       }
 
       setInterval(checkSession, 1);
+
+      function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
     </script>
   </head>
   <body class="bg-gray-100">
-  <div class="flex flex-col lg:flex-row">
-        <aside class="w-full lg:w-64 bg-[#7B61FF] h-auto lg:h-screen p-4">
-            <img src="../brand/logo_white.png" alt="Website Logo" class="mb-4 w-32 mx-auto lg:mx-0">
-            <nav>
-              <ul class="space-y-4">
-                  <li>
-                      <a href="index.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a>
-                  </li>
-                  <li>
-                      <a href="add_event.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a>
-                  </li>
-                  <li>
-                      <a href="view_user.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a>
-                  </li>
-                  <li>
-                  <a href="list_admin.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a>
-                  </li>
-                  <li>
-                      <a href="../logout.php" class="block text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a>
-                  </li>
-              </ul>
-          </nav>
-        </aside>
+    <div>
+        <header class="bg-[#7B61FF] text-white flex justify-between items-center p-4">
+            <div class="flex items-center space-x-4">
+                <img src="../brand/logo_white.png" alt="Website Logo" class="h-12 w-auto">
+            </div>
+            <button id="navigasi" class="bg-[#7B61FF] text-white p-2 rounded-md focus:outline-none lg:hidden" onclick="toggleMenu()">☰</button>
+        </header>
+
+        <nav class="bg-[#7B61FF] hidden lg:flex lg:flex-row items-center justify-center w-full py-4" id="mobile-menu">
+            <ul class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8">
+                <li><a href="index.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Dashboard</a></li>
+                <li><a href="add_event.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Add Events</a></li>
+                <li><a href="view_user.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">User Management</a></li>
+                <li><a href="list_admin.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">List Admin</a></li>
+                <li><a href="../logout.php" class="text-white py-2 px-4 rounded hover:bg-[#6A52E0]">Logout</a></li>
+            </ul>
+        </nav>
 
         <main class="flex-1 p-4">
         <!-- Header -->
