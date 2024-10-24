@@ -314,7 +314,8 @@ $resultEvents = $stmt;
             <!-- Contact Us Section -->
             <div class="flex flex-col">
                 <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
-                <h5 class="font-semibold text-lg mb-4">021 5993693 / +62 354168293</h5>
+                <h5 class="font text-md mb-4">☎️ : +62 354168293</h5>
+                <h5 class="font text-md mb-4">📩 : admin@konserhub.com</h5>
                 </div>
             </div>
 
